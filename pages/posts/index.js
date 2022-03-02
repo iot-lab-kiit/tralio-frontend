@@ -4,20 +4,9 @@ import PostPage from "../../container/PostPage/PostPage";
 function Posts(props) {
     const posts = props.posts.allPost;
 
-    function createPost(post) {
-        return (
-            <PostPage
-                key={post._id}
-                title={post.title}
-                content={post.content}
-            />
-        );
-    }
-    
     return (
         <div>
-            Postpage
-            {posts.map(createPost)}
+            <PostPage posts={posts} />
         </div>
     );
 }

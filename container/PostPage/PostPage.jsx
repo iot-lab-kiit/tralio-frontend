@@ -1,12 +1,19 @@
-import React from 'react'
+import React from "react";
+import Post from "../../components/Post/Post";
 
 function PostPage(props) {
-  return (
-    <div>
-        <h1>{props.title}</h1>
-        <p>{props.content}</p>
-    </div>
-  )
+    const { posts } = props;
+
+    function createPost(post) {
+        return (
+            <Post
+                key={post._id}
+                title={post.title}
+                content={post.content}
+            />
+        );
+    }
+    return <div>{posts.map(createPost)}</div>;
 }
 
 export default PostPage;
