@@ -1,6 +1,6 @@
 function Testomonial() {
   return (
-    <div>Testomonial Page</div>
+    <div>Testomonial Design</div>
   )
 }
 
