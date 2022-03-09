@@ -79,7 +79,7 @@ async function uploadBlog(payload) {
 
 async function test() {
     const url = `api/${apiVersion}/test`;
-    const test = await tralioAPI("GET", null, url);
+    const test = await tralioAPI("GET", null, '');
     return test;
 }
 
