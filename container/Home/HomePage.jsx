@@ -22,9 +22,9 @@ const style = {
 
 function HomePage() {
   const [user, setUser] = useState({});
-  const [registrationError, setRegistrationError] = useState(false);
-  const [errorHeading, setErrorHeading] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [registrationModal, setRegistrationModal] = useState(false);
+  const [modalHeading, setModalHeading] = useState("");
+  const [modalMessage, setModalMessage] = useState("");
 
   const handleSomeAPIOperation = async () => {
     const response = await test();
@@ -38,6 +38,10 @@ function HomePage() {
       ...user,
       [name]: value,
     });
+  };
+
+  const handleRegistrationModal = () => {
+    setRegistrationModal(false);
   };
 
   const generateSignUpForm = (input) => {
@@ -61,18 +65,18 @@ function HomePage() {
     if (response.status >= 200 && response.status < 300) {
       const newUser = await response.json();
       console.log("USER", newUser);
+      setRegistrationModal(true);
+      setModalHeading(response.statusText);
+      setModalMessage("User Successfully Registered");
       // Further actions you want to perform after successful registration
     } else {
       const resError = await response.json();
-      setRegistrationError(true);
-      setErrorHeading(response.statusText);
-      setErrorMessage(resError.error.message);
+      setRegistrationModal(true);
+      setModalHeading(response.statusText);
+      setModalMessage(resError.error.message);
     }
   };
 
-  const handleCloseRegistrationError = () => {
-    setRegistrationError(false);
-  };
 
   return (
     <div>
@@ -85,17 +89,17 @@ function HomePage() {
       <button onClick={handleSomeAPIOperation}>Test API</button>
       <Testomonial />
       <Modal
-        open={registrationError}
-        onClose={handleCloseRegistrationError}
+        open={registrationModal}
+        onClose={handleRegistrationModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {errorHeading}
+            {modalHeading}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {errorMessage}
+            {modalMessage}
           </Typography>
         </Box>
       </Modal>
