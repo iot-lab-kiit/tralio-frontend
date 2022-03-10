@@ -12,8 +12,7 @@ async function tralioAPI(method, payload, endpointURL) {
             },
             body: JSON.stringify(payload),
         });
-        const data = await response.json();
-        return data;
+        return response;
     } else if (method === "GET" || method === "DELETE") {
         const response = await fetch(`${API_URL}/${endpointURL}`, {
             method: method,
@@ -22,8 +21,7 @@ async function tralioAPI(method, payload, endpointURL) {
                 "access-token": localStorage.getItem("access-token"),
             },
         });
-        const data = await response.json();
-        return data;
+        return response;
     }
 }
 
@@ -46,8 +44,8 @@ async function uploadBlog(payload) {
 }
 
 async function test() {
-    const test = await tralioAPI("GET", null, "");
-    return test;
+    const testResult = await tralioAPI("GET", null, "");
+    return testResult;
 }
 
 async function dbStatus() {
