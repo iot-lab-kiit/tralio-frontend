@@ -10,7 +10,7 @@ import Apple from "../../public/images/Logos/appleLogo.svg";
 import Linkedin from "../../public/images/Logos/linkedInLogo.svg";
 import Github from "../../public/images/Logos/githubLogo.svg";
 
-const SignUp = ({ setCurrentStage }) => {
+export default function SignUp({ setCurrentStage }) {
 
     return (
         <>
@@ -69,8 +69,3 @@ const SignUp = ({ setCurrentStage }) => {
         </>
     );
 };
-
-
-
-
-export default SignUp;

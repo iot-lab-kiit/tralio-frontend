@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 import Link from "../Layouts/Link"
 import Logo from "/public/images/Logos/logo.svg"
 import Image from "next/image";
-import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide,} from "@mui/material";
+import Dialog from "@mui/material/Dialog";
 import Login from "../../page-components/Login/Login";
 import SignUp from "../../page-components/SignUp/SignUp";
 

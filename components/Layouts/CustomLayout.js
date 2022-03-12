@@ -7,8 +7,8 @@ import Footer from "../Footer/Footer";
 
 
 const CustomLayout = ({ children }) => {
-    const Router = useRouter();
 
+    const Router = useRouter();
     const path = Router.pathname;
 
     return (

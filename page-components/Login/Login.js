@@ -3,7 +3,9 @@ import Box from '@mui/material/Box';
 import Link from "../../components/Layouts/Link";
 import Image from "next/image";
 import TextField from "@mui/material/TextField";
-import {Checkbox, Divider, FormControlLabel} from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import Divider from "@mui/material/Divider";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
 import Google from "../../public/images/Logos/googleLogol.svg";
 import Apple from "../../public/images/Logos/appleLogo.svg";
@@ -12,7 +14,7 @@ import Github from "../../public/images/Logos/githubLogo.svg";
 import Hidden from "@mui/material/Hidden";
 
 
-const Login = ({ setCurrentStage }) => {
+export default function Login ({ setCurrentStage }) {
 
     return (
         <>
@@ -80,8 +82,3 @@ const Login = ({ setCurrentStage }) => {
         </>
     );
 };
-
-
-
-
-export default Login;
