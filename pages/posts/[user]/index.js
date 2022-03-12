@@ -2,7 +2,11 @@ import React from 'react'
 
 function PostByUser(props) {
   return (
-    <div>Hello {props.posts}</div>
+    <>
+      <div>Hello</div>
+      <h1>{props.posts}</h1>
+    </>
+    
   )
 }
 
@@ -42,7 +46,7 @@ export async function getStaticProps() {
 
     return {
         props: {
-            posts: "Testing user posts",
+            posts: "Successfull Testing user posts",
         },
     };
 }

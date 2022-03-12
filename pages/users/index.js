@@ -1,9 +1,6 @@
-import getConfig from "next/config";
+import styles from "../styles/Home.module.css";
 
-const { publicRuntimeConfig } = getConfig();
-const { API_URL, apiVersion } = publicRuntimeConfig;
-
-function Users() {
+export default function Users() {
     return (
         <div>
             <h1>Users</h1>
