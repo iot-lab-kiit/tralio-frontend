@@ -10,7 +10,7 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import {createStyles, makeStyles, useTheme} from '@mui/styles';
-import {Avatar, Container, Divider, Grid, Typography} from "@mui/material";
+import Avatar from "@mui/material/Avatar";
 import Link from "../Layouts/Link"
 import Image from "next/image";
 import Logo from "../../public/images/Logos/logo.svg";

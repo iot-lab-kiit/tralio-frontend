@@ -1,35 +1,25 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import {createStyles, makeStyles} from '@mui/styles';
-import Container from "@mui/material/Container";
 import LandingNavbar from "../Navbar/LandingNavbar";
 import Navbar from "../Navbar/Navbar";
+import {useRouter} from "next/router";
+import Footer from "../Footer/Footer";
 
-const useStyles = makeStyles(() =>
-    createStyles({
-       main: {
-
-       },
-    }),
-);
 
 const CustomLayout = ({ children }) => {
-    const classes = useStyles();
+    const Router = useRouter();
+
+    const path = Router.pathname;
 
     return (
         <>
-            {/*<LandingNavbar />*/}
-            <Navbar />
+            {path === '/' ? <LandingNavbar /> : <Navbar />}
 
-            <Box mt={10}>
+            <Box mt={8}>
                 { children }
             </Box>
 
-            <Box>
-                <Container maxWidth={'lg'}>
-
-                </Container>
-            </Box>
+            <Footer />
         </>
     );
 };

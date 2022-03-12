@@ -7,17 +7,7 @@ import Link from "../Layouts/Link"
 import Logo from "/public/images/Logos/logo.svg"
 import Image from "next/image";
 
-import {createStyles, makeStyles} from '@mui/styles';
-const useStyles = makeStyles(() =>
-    createStyles({
-       main: {
-
-       },
-    }),
-);
-
 const LandingNavbar = () => {
-    // const classes = useStyles();
 
     // const [onTop, setOnTop] = useState(true);
     // const navRef = useRef();
