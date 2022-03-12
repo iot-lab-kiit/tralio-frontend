@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import {createStyles, makeStyles} from '@mui/styles';
 import Container from "@mui/material/Container";
 import LandingNavbar from "../Navbar/LandingNavbar";
+import Navbar from "../Navbar/Navbar";
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -17,7 +18,8 @@ const CustomLayout = ({ children }) => {
 
     return (
         <>
-            <LandingNavbar />
+            {/*<LandingNavbar />*/}
+            <Navbar />
 
             <Box mt={10}>
                 { children }
