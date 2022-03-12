@@ -6,6 +6,9 @@ import Container from "@mui/material/Container";
 import Link from "../Layouts/Link"
 import Logo from "/public/images/Logos/logo.svg"
 import Image from "next/image";
+import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide,} from "@mui/material";
+import Login from "../../page-components/Login/Login";
+import SignUp from "../../page-components/SignUp/SignUp";
 
 const LandingNavbar = () => {
 
@@ -23,6 +26,16 @@ const LandingNavbar = () => {
     //     };
     // });
 
+    const [pop, setPop] = useState(false);
+
+    const handleClick = (event) => {
+        setPop(true);
+    };
+
+    const handleClose = () => {
+        setPop(false);
+    };
+
     return (
         <>
             <AppBar
@@ -35,15 +48,43 @@ const LandingNavbar = () => {
                         <Box component={Link} noLinkStyle href="/" width={'120px'} height={'41px'}>
                             <Image src={Logo} alt={'logo'} />
                         </Box>
-                        <Button variant={'contained'}>
+                        <Button variant={'contained'} onClick={handleClick}>
                             Login
                         </Button>
+                        <Dialog
+                            open={pop}
+                            onClose={handleClose}
+                        >
+                           <Pop />
+                        </Dialog>
                     </Box>
                 </Container>
             </AppBar>
         </>
     );
 };
+
+const Pop = () => {
+
+    const [currentStage , setCurrentStage] = useState(0);
+
+    return(
+        <>
+            <Box width={'100%'} height={'100%'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                <Box width={'500px'} bgcolor={'white'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} pt={6} pb={6}>
+                    {
+                        currentStage === 0 &&
+                       <Login setCurrentStage={setCurrentStage} />
+                    }
+                    {
+                        currentStage === 1 &&
+                        <SignUp setCurrentStage={setCurrentStage} />
+                    }
+                </Box>
+            </Box>
+        </>
+    )
+}
 
 
 

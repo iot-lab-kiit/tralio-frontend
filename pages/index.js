@@ -1,4 +1,4 @@
-import HomePage from '../container/Home/HomePage'
+
 import styles from '../styles/Home.module.css'
 import Box from "@mui/material/Box";
 
