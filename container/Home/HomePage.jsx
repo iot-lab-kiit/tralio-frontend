@@ -65,7 +65,7 @@ function HomePage() {
     // Checking if the response is an error
     if (response.status >= 200 && response.status < 300) {
       const newUser = await response.json();
-      console.log("USER", newUser);
+      
       setRegistrationModal(true);
       setModalHeading(response.statusText);
       setModalMessage("User Successfully Registered");
@@ -84,6 +84,7 @@ function HomePage() {
       <h1>Home Page</h1>
 
       {registerForm.map(generateSignUpForm)}
+    
 
       <button onClick={handleRegistration}>Register</button>
 
