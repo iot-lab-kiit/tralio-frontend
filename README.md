@@ -1,5 +1,5 @@
 
-![Tralio](https://i.imgur.com/kxtEqeX.png)
+![Tralio](https://i.imgur.com/BDIEi2B.png)
 
 # Tralio
 
