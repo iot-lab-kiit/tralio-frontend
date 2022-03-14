@@ -38,12 +38,12 @@ const Navbar = () => {
                     bgcolor={!onTop ? '#317CEB' : ''}
                     color={!onTop ? '#FFF' : '#317CEB'}
                 >
-                    <Box display={'flex'} alignItems={'center'}>
+                    <Box display={'flex'} alignItems={'center'} sx={{cursor: 'pointer'}}>
                         <IconButton>
-                            <ArrowBackIcon />
+                            <ArrowBackIcon sx={{color: !onTop ? '#FFF' : '#317CEB'}} />
                         </IconButton>
                         <Hidden mdDown>
-                            <Box ml={1} fontSize={'20px'}>
+                            <Box ml={1} fontSize={'20px'} fontWeight={600}>
                                 Back to Dashboard
                             </Box>
                         </Hidden>
