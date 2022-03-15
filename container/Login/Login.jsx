@@ -35,9 +35,11 @@ export default function Login ({ setCurrentStage }) {
                 <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} flexDirection={{lg: 'row', md: 'row', sm: 'row', xs: 'column'}} width={'100%'} mb={1}>
                     <FormControlLabel control={<Checkbox />} label="Remember me" />
                     <Hidden smDown>
-                        <Link underline="hover" color="inherit" href={'/'} sx={{}}>
-                            {'Forgot password?'}
-                        </Link>
+                        <Box color="#458FF6" sx={{cursor: 'pointer'}} onClick={() => {
+                            setCurrentStage(-1);
+                        }}>
+                            {'Forgot Password?'}
+                        </Box>
                     </Hidden>
                 </Box>
                 <Button variant={'contained'} sx={{width: '100%'}}>
@@ -45,9 +47,11 @@ export default function Login ({ setCurrentStage }) {
                 </Button>
                 <Hidden smUp>
                     <Box mt={1} />
-                    <Link underline="hover" color="#458FF6" href={'/'}>
-                        {'Forgot password?'}
-                    </Link>
+                    <Box color="#458FF6" sx={{cursor: 'pointer'}} onClick={() => {
+                        setCurrentStage(-1);
+                    }}>
+                        {'Forgot Password?'}
+                    </Box>
                 </Hidden>
                 <Box mt={2}/>
                 <Divider orientation="horizontal" flexItem>

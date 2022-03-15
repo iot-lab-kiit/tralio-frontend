@@ -39,6 +39,7 @@ function HomePage() {
       ...user,
       [name]: value,
     });
+    console.log(user);
   };
 
   const handleRegistrationModal = () => {
