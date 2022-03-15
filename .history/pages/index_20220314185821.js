@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         if (localStorage.getItem("access-token")) {

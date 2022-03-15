@@ -1,6 +1,6 @@
 import BgImage from "../../components/Dashboard/BgImage"
 import Templates from "../../components/Dashboard/Templates"
-import styles from "./Dashboard.modules.css"
+impo
 function Dashboard() {
   return (
     <div className="Dashboard">

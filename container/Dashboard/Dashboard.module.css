@@ -1,0 +1,680 @@
+.Dashboard {
+  width: 100vw;
+}
+nav {
+  background-color: #3086fd;
+}
+
+.XYZ {
+  display: flex;
+}
+
+.NavTags {
+  margin: 0 1rem;
+  padding: 0.75rem;
+  padding-bottom: 0.5rem;
+}
+
+.navTags-1 {
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
+.profile-image {
+  height: 33px;
+  width: 33px;
+}
+
+.Profile {
+  margin-left: auto;
+  margin-right: 2rem;
+}
+.first-container {
+  background-image: url("../public/svg\ banner\ 1.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 800px;
+  padding-bottom: 3rem;
+  text-align: center;
+}
+.heading {
+  font-size: 76px;
+  font-weight: 700;
+  padding-top: 8%;
+  margin: 0;
+  text-shadow: 0px 0px 7px rgba(149, 150, 150, 1);
+}
+input {
+  height: 2rem;
+  width: 30rem;
+  box-shadow: 1px 0px 3px 3px rgba(0, 0, 0, 0.25) inset;
+  -webkit-box-shadow: 1px 0px 3px 3px rgba(0, 0, 0, 0.25) inset;
+  -moz-box-shadow: 1px 0px 3px 3px rgba(0, 0, 0, 0.25) inset;
+  border: 1px black solid;
+  border-radius: 5px;
+  margin-top: 8%;
+  padding-left: 1rem;
+}
+
+.TemplateImages {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border: 1px grey solid;
+}
+
+.Templates {
+  width: 42rem;
+  height: 32rem;
+}
+
+.Templates-Parent {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 2rem;
+  /* width: 100%; */
+}
+@media screen and (min-width: 200px) and (max-width: 350px) {
+  .first-container {
+    background-image: url("../public/Mobile\ Banner.svg");
+    background-repeat: no-repeat;
+    height: 150.5px;
+    margin-bottom: 0.25rem;
+  }
+  input {
+    margin-top: 1rem;
+    width: 60%;
+    height: 1rem;
+    padding: 0.25rem;
+    border-radius: 3px;
+    border-color: white;
+  }
+  .Templates-Parent {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 12rem;
+    height: 7rem;
+    margin-bottom: 1rem;
+  }
+  .navTags-1 {
+    color: white;
+
+    font-size: 0.75rem;
+    padding-top: 0.3rem;
+  }
+  .NavTags {
+    margin: 0 0.5rem;
+    padding: 0.15rem;
+    padding-top: 0.3rem;
+  }
+  .heading {
+    font-size: 15px;
+  }
+  .Profile {
+    margin-left: auto;
+    margin-right: 0.2rem;
+  }
+  .profile-image {
+    height: 29.5px;
+    width: 29.5px;
+  }
+}
+@media screen and (min-width: 351px) and (max-width: 500px) {
+  .NavTags {
+    margin: 0;
+    padding: 0rem 0.5rem;
+    padding-top: 0.25rem;
+  }
+  .Horizontal {
+    height: 25px;
+    width: 25px;
+  }
+  .navTags-1 {
+    color: white;
+
+    font-size: 0.75rem;
+  }
+  .profile-image {
+    height: 25px;
+    width: 25px;
+  }
+  .Profile {
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+  .heading {
+    font-size: 20px;
+  }
+  .first-container {
+    padding: 5% 0;
+  }
+  input {
+    margin-top: 1.75rem;
+    width: 60%;
+    height: 1.05rem;
+    padding-left: 0.5rem;
+    border-radius: 2px;
+  }
+  .first-container {
+    background-image: url("../public/Mobile\ Banner.svg");
+
+    background-repeat: no-repeat;
+    height: 160px;
+  }
+  .Templates-Parent {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 15rem;
+    height: 10rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 501px) and (max-width: 600px) {
+  .NavTags {
+    margin: 0 0.25rem;
+    padding: 0.45rem;
+  }
+  .Horizontal {
+    height: 25px;
+    width: 25px;
+  }
+  .navTags-1 {
+    color: white;
+
+    font-size: 1rem;
+  }
+  .profile-image {
+    height: 25px;
+    width: 25px;
+  }
+  .Profile {
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+  .heading {
+    font-size: 25px;
+    padding-top: 2.5rem;
+  }
+  .first-container {
+    padding: 5% 0;
+  }
+  input {
+    margin-top: 2.25rem;
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+  .first-container {
+    background-image: url("../public/Mobile\ Banner.svg");
+
+    background-repeat: no-repeat;
+    height: 200px;
+  }
+  .Templates-Parent {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 16rem;
+    height: 11rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 750px) {
+  .NavTags {
+    margin: 0 0.25rem;
+    padding: 0.45rem;
+  }
+  .Horizontal {
+    height: 25px;
+    width: 25px;
+  }
+  .navTags-1 {
+    color: white;
+
+    font-size: 1rem;
+  }
+  .profile-image {
+    height: 25px;
+    width: 25px;
+  }
+  .Profile {
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+  .heading {
+    font-size: 30px;
+    padding-top: 2.5rem;
+  }
+  .first-container {
+    padding: 5% 0;
+  }
+  input {
+    margin-top: 3rem;
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+  .first-container {
+    background-image: url("../public/Mobile\ Banner.svg");
+
+    background-repeat: no-repeat;
+    height: 250px;
+  }
+  .Templates-Parent {
+    /* flex-direction: column; */
+
+    align-items: center;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 11rem;
+    height: 8rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 751px) and (max-width: 810px) {
+  .NavTags {
+    margin: 0 0.25rem;
+    padding: 0.45rem;
+  }
+  .Horizontal {
+    height: 25px;
+    width: 25px;
+  }
+  .navTags-1 {
+    color: white;
+
+    font-size: 1rem;
+  }
+  .profile-image {
+    height: 25px;
+    width: 25px;
+  }
+  .Profile {
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+  .heading {
+    font-size: 30px;
+    padding-top: 2.5rem;
+  }
+  .first-container {
+    padding: 5% 0;
+  }
+  input {
+    margin-top: 3rem;
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+  .first-container {
+    background-image: url("../public/Mobile\ Banner.svg");
+    background-repeat: no-repeat;
+    height: 300px;
+    padding-bottom: 0;
+  }
+  .Templates-Parent {
+    align-items: center;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 12rem;
+    height: 9rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 811px) and (max-width: 949px) {
+  .NavTags {
+    margin: 0 0.25rem;
+    padding: 0.45rem;
+  }
+  .Horizontal {
+    height: 25px;
+    width: 25px;
+  }
+  .navTags-1 {
+    color: white;
+
+    font-size: 1rem;
+  }
+  .profile-image {
+    height: 25px;
+    width: 25px;
+  }
+  .Profile {
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+  .heading {
+    font-size: 30px;
+    padding-top: 2.5rem;
+  }
+  .first-container {
+    padding: 5% 0;
+  }
+  input {
+    margin-top: 3rem;
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+  .first-container {
+    background-repeat: no-repeat;
+    height: 230px;
+
+    padding-bottom: 0;
+  }
+  .Templates-Parent {
+    align-items: center;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 12rem;
+    height: 9rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 949px) and (max-width: 1080px) {
+  .NavTags {
+    margin: 0 0.25rem;
+    padding: 0.45rem;
+  }
+  .Horizontal {
+    height: 25px;
+    width: 25px;
+  }
+  .navTags-1 {
+    color: white;
+
+    font-size: 1rem;
+  }
+  .profile-image {
+    height: 25px;
+    width: 25px;
+  }
+  .Profile {
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+  .heading {
+    font-size: 30px;
+    padding-top: 2.5rem;
+  }
+  .first-container {
+    padding: 5% 0;
+  }
+  input {
+    margin-top: 3rem;
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+  .first-container {
+    background-repeat: no-repeat;
+    height: 270px;
+    padding-bottom: 0;
+  }
+  .Templates-Parent {
+    align-items: center;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 12rem;
+    height: 9rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 1080px) and (max-width: 1316px) {
+  input {
+    margin-top: 5rem;
+    width: 70%;
+    height: 2rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+  .first-container {
+    height: 400px;
+  }
+  .heading {
+    font-size: 36px;
+  }
+  .Templates {
+    width: 17rem;
+    height: 11rem;
+  }
+}
+@media screen and (min-width: 1317px) and (max-width: 1419px) {
+  .Profile {
+    margin-right: 3rem;
+  }
+  .heading {
+    font-size: 50px;
+  }
+  .first-container {
+    height: 434px;
+  }
+  input {
+    margin-top: 5rem;
+    width: 70%;
+    height: 2rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+  .Templates {
+    width: 18rem;
+    height: 12rem;
+  }
+}
+@media screen and (min-width: 1420px) and (max-width: 1650px) {
+  .Profile {
+    margin-right: 3rem;
+  }
+  .heading {
+    font-size: 50px;
+  }
+  input {
+    margin-top: 5rem;
+    width: 70%;
+    height: 2rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+  .first-container {
+    height: 500px;
+    padding-bottom: 0;
+  }
+   .Templates {
+    width: 18rem;
+    height: 12rem;
+  }
+}
+@media screen and (min-width: 1651px) and (max-width: 1833px) {
+  .Profile {
+    margin-right: 3rem;
+  }
+  .heading {
+    font-size: 60px;
+  }
+  input {
+    margin-top: 6rem;
+    width: 70%;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  .first-container {
+    height: 550px;
+
+    padding-bottom: 0;
+  }
+  .Templates-Parent {
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 29rem;
+    height: 22rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 1834px) and (max-width: 2053px) {
+  .Profile {
+    margin-right: 3rem;
+  }
+  .heading {
+    font-size: 60px;
+  }
+  input {
+    margin-top: 6rem;
+    width: 70%;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  .first-container {
+    height: 620px;
+
+    padding-bottom: 0;
+  }
+  .Templates-Parent {
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 29rem;
+    height: 22rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 2053px) and (max-width: 2366px) {
+  .Profile {
+    margin-right: 3rem;
+  }
+  .heading {
+    font-size: 60px;
+  }
+  input {
+    margin-top: 6rem;
+    width: 70%;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  .first-container {
+    height: 720px;
+
+    padding-bottom: 0;
+  }
+  .Templates-Parent {
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 29rem;
+    height: 22rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 2053px) and (max-width: 2366px) {
+  .Profile {
+    margin-right: 3rem;
+  }
+  .heading {
+    font-size: 60px;
+  }
+  input {
+    margin-top: 6rem;
+    width: 70%;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  .first-container {
+    height: 720px;
+    padding-bottom: 0;
+  }
+  .Templates-Parent {
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 29rem;
+    height: 22rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 2367px) and (max-width: 2664px) {
+  .Profile {
+    margin-right: 3rem;
+  }
+  .heading {
+    font-size: 60px;
+  }
+  input {
+    margin-top: 6rem;
+    width: 70%;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  .first-container {
+    height: 770px;
+    padding-bottom: 2rem;
+  }
+  .Templates-Parent {
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 29rem;
+    height: 22rem;
+    margin-bottom: 1rem;
+  }
+  .Profile {
+  margin-left: auto;
+  margin-right: 3rem;
+}
+}
+@media screen and (min-width: 2367px) {
+  input {
+    margin-top: 10rem;
+    width: 70%;
+    height: 4rem;
+    padding: .75rem .75rem .75rem 0.5rem;
+    border-radius: 10px;
+    font-size: 3rem;
+  }
+  .Profile {
+  margin-left: auto;
+  margin-right: 4rem;
+}
+}
