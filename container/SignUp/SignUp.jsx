@@ -9,6 +9,7 @@ import Google from "../../public/images/Logos/googleLogol.svg";
 import Apple from "../../public/images/Logos/appleLogo.svg";
 import Linkedin from "../../public/images/Logos/linkedInLogo.svg";
 import Github from "../../public/images/Logos/githubLogo.svg";
+import LoginIcons from '../../components/LoginIcons/LoginIcons';
 
 export default function SignUp({ setCurrentStage }) {
 
@@ -40,20 +41,7 @@ export default function SignUp({ setCurrentStage }) {
                 <Divider orientation="horizontal" flexItem>
                     OR
                 </Divider>
-                <Box display={'flex'} justifyContent={'space-around'} alignItems={'center'} width={'100%'} mt={2} pl={4} pr={4}>
-                    <Box component={Link} noLinkStyle href="/" width={'25px'} height={'25px'}>
-                        <Image src={Google} alt={'logo'} />
-                    </Box>
-                    <Box component={Link} noLinkStyle href="/" width={'25px'} height={'25px'} mt={-1}>
-                        <Image src={Apple} alt={'logo'} />
-                    </Box>
-                    <Box component={Link} noLinkStyle href="/" width={'25px'} height={'25px'}>
-                        <Image src={Linkedin} alt={'logo'} />
-                    </Box>
-                    <Box component={Link} noLinkStyle href="/" width={'25px'} height={'25px'}>
-                        <Image src={Github} alt={'logo'} />
-                    </Box>
-                </Box>
+                <LoginIcons />
             </Box>
             <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2}>
                 <Box>
