@@ -8,8 +8,6 @@ const registerForm = [
             minLength: 3,
             maxLength: 20
         },
-        valid: false,
-        touched: false
     },
     {
         type: 'text',
@@ -20,8 +18,6 @@ const registerForm = [
             minLength: 3,
             maxLength: 20
         },
-        valid: false,
-        touched: false
     },
     {
         type: 'text',
@@ -32,8 +28,6 @@ const registerForm = [
             minLength: 3,
             maxLength: 20
         },
-        valid: false,
-        touched: false
     },
     {
         type: 'email',
@@ -43,8 +37,6 @@ const registerForm = [
             required: true,
             isEmail: true
         },
-        valid: false,
-        touched: false
     },
     {
         type: 'password',
@@ -55,16 +47,17 @@ const registerForm = [
             minLength: 6,
             maxLength: 20
         },
-        valid: false,
-        touched: false
     },
     {
-        type: 'text',
-        name: 'userGender',
-        placeholder: 'Gender',
-    }
-        
-
+        type: 'password',
+        name: 'userConfirmPassword',
+        placeholder: 'Confirm Password',
+        validation: {
+            required: true,
+            minLength: 6,
+            maxLength: 20
+        },
+    },
 ]
 
 export default registerForm;
