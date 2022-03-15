@@ -3,6 +3,7 @@ import { test, registerUser } from "../../TralioAPI/tralio";
 import { useState } from "react";
 import registerForm from "../../TralioAPI/registerForm";
 import Testomonial from "../../components/Testimonial/Testimonial";
+import TopLandingScreen from "../../components/LandingPage/TopLandingScreen";
 
 //Material UI
 import Box from "@mui/material/Box";
@@ -81,10 +82,11 @@ function HomePage() {
 
   return (
     <div>
+      <TopLandingScreen />
       <h1>Home Page</h1>
+      
 
-      {registerForm.map(generateSignUpForm)}
-    
+      {registerForm.map(generateSignUpForm)}    
 
       <button onClick={handleRegistration}>Register</button>
 
