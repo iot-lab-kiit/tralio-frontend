@@ -1,16 +1,20 @@
-import '../styles/globals.css'
-import Navbar from '../components/Navbar/Navbar'
-import Footer from '../components/Footer/Footer'
+import * as React from 'react';
+import CustomLayout from "../components/Layouts/CustomLayout";
+import {useEffect, useMemo, useState} from "react";
+import globalStyles from '../styles/globals.css'
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <>
-      <Navbar />
-      <Component {...pageProps} />
-      <Footer />
-    </>
-    
-  );
+
+export default function MyApp(props) {
+
+    const { Component, pageProps } = props;
+    const [loading, setLoading] = useState(false);
+
+    return (
+        <>
+            <CustomLayout>
+                <Component {...pageProps} />
+            </CustomLayout>
+        </>
+
+    );
 }
-
-export default MyApp
