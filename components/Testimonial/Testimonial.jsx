@@ -1,7 +1,13 @@
-function Testomonial() {
+import React from "react";
+import PropTypes from "prop-types";
+function Image(props) {
   return (
-    <div>Testomonial Design</div>
-  )
+    <>
+      <div className="Feature">
+        <img className="ImgFeature" src={props.Source} alt="" />
+        <h2>{props.heading}</h2>
+        <p>{props.desc}</p>
+      </div>
+    </>
+  );
 }
-
-export default Testomonial;
