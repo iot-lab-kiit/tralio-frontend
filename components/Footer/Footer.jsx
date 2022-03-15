@@ -9,6 +9,93 @@ import Image from "next/image";
 
 const Footer = () => {
 
+  const footerData = [
+    {
+      title: 'Company',
+      content: [
+        {
+          head: 'About',
+          href: '/'
+        },
+        {
+          head: 'About',
+          href: '/'
+        },
+        {
+          head: 'About',
+          href: '/'
+        },
+        {
+          head: 'About',
+          href: '/'
+        },
+      ]
+    },
+    {
+      title: 'About',
+      content: [
+        {
+          head: 'About',
+          href: '/'
+        },
+        {
+          head: 'About',
+          href: '/'
+        },
+        {
+          head: 'About',
+          href: '/'
+        },
+        {
+          head: 'About',
+          href: '/'
+        },
+      ]
+    },
+    {
+      title: 'Abcd',
+      content: [
+        {
+          head: 'About',
+          href: '/'
+        },
+        {
+          head: 'About',
+          href: '/'
+        },
+        {
+          head: 'About',
+          href: '/'
+        },
+        {
+          head: 'About',
+          href: '/'
+        },
+      ]
+    },
+  ]
+
+  const generateFooter = (e) => {
+    return(
+        <>
+          <Grid item sm={12} md={2} xs={12}>
+            <Box display={'flex'} flexDirection={'column'} textAlign={{lg: 'left', md: 'left', sm: 'center', xs: 'center'}} mt={3}>
+              <Box key={"footer " + e.title} fontSize={'20px'} fontWeight={'700'}>
+                {e.title}
+              </Box>
+              <Box display={'flex'} flexDirection={'column'} mt={2} fontWeight={300}>
+                {e.content.map(data => (
+                    <Link key={data.head} underline="hover" color="inherit" href={data.href} sx={{marginBottom: 2}}>
+                      {data.head}
+                    </Link>
+                ))}
+              </Box>
+            </Box>
+          </Grid>
+        </>
+    )
+  }
+
   return (
       <>
         <Box sx={{background: 'linear-gradient(183.41deg, #67C3F3 -8.57%, #5A98F2 82.96%)',}} color={'#FFF'} p={{lg: 6, md: 5, sm: 4, xs: 1}} width={'100%'}>
@@ -28,69 +115,7 @@ const Footer = () => {
                   </Box>
                 </Box>
               </Grid>
-              <Grid item sm={12} md={2} xs={12}>
-                <Box display={'flex'} flexDirection={'column'} textAlign={{lg: 'left', md: 'left', sm: 'center', xs: 'center'}} mt={3}>
-                  <Box fontSize={'20px'} fontWeight={'700'}>
-                    Company
-                  </Box>
-                  <Box display={'flex'} flexDirection={'column'} mt={2} fontWeight={300}>
-                    <Link underline="hover" color="inherit" href={'/'} sx={{marginBottom: 2}}>
-                      {'About'}
-                    </Link>
-                    <Link underline="hover" color="inherit" href={'/'} sx={{marginBottom: 2}}>
-                      {'Image Gallery'}
-                    </Link>
-                    <Link underline="hover" color="inherit" href={'/'} sx={{marginBottom: 2}}>
-                      {'Video Gallery'}
-                    </Link>
-                    <Link underline="hover" color="inherit" href={'/our-team'} sx={{marginBottom: 2}}>
-                      {'Our Team'}
-                    </Link>
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item sm={12} md={2} xs={12}>
-                <Box display={'flex'} flexDirection={'column'} mt={3} textAlign={{lg: 'left', md: 'left', sm: 'center', xs: 'center'}}>
-                  <Box fontSize={'20px'} fontWeight={'700'}>
-                    Region
-                  </Box>
-                  <Box display={'flex'} flexDirection={'column'} mt={2} fontWeight={300}>
-                    <Link underline="hover" color="inherit" href={'/'} sx={{marginBottom: 2}}>
-                      {'About'}
-                    </Link>
-                    <Link underline="hover" color="inherit" href={'/'} sx={{marginBottom: 2}}>
-                      {'Image Gallery'}
-                    </Link>
-                    <Link underline="hover" color="inherit" href={'/'} sx={{marginBottom: 2}}>
-                      {'Video Gallery'}
-                    </Link>
-                    <Link underline="hover" color="inherit" href={'/our-team'} sx={{marginBottom: 2}}>
-                      {'Our Team'}
-                    </Link>
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item sm={12} md={2} xs={12}>
-                <Box display={'flex'} flexDirection={'column'} mt={3} textAlign={{lg: 'left', md: 'left', sm: 'center', xs: 'center'}}>
-                  <Box fontSize={'20px'} fontWeight={'700'}>
-                    Help
-                  </Box>
-                  <Box display={'flex'} flexDirection={'column'} mt={2} fontWeight={300}>
-                    <Link underline="hover" color="inherit" href={'/'} sx={{marginBottom: 2}}>
-                      {'About'}
-                    </Link>
-                    <Link underline="hover" color="inherit" href={'/'} sx={{marginBottom: 2}}>
-                      {'Image Gallery'}
-                    </Link>
-                    <Link underline="hover" color="inherit" href={'/'} sx={{marginBottom: 2}}>
-                      {'Video Gallery'}
-                    </Link>
-                    <Link underline="hover" color="inherit" href={'/our-team'} sx={{marginBottom: 2}}>
-                      {'Our Team'}
-                    </Link>
-                  </Box>
-                </Box>
-              </Grid>
+              {footerData.map(generateFooter)}
             </Grid>
           </Container>
         </Box >
