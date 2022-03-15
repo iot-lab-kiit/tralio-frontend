@@ -1,0 +1,322 @@
+.XYZ {
+  display: flex;
+}
+
+.firstContainer {
+  background-image: url("../public/svg\ banner\ 1.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 800px;
+  padding-bottom: 3rem;
+  text-align: center;
+}
+.heading {
+  font-size: 76px;
+  font-weight: 700;
+  padding-top: 8%;
+  margin: 0;
+  text-shadow: 0px 0px 7px rgba(149, 150, 150, 1);
+}
+.input {
+  height: 2rem;
+  width: 30rem;
+  box-shadow: 1px 0px 3px 3px rgba(0, 0, 0, 0.25) inset;
+  -webkit-box-shadow: 1px 0px 3px 3px rgba(0, 0, 0, 0.25) inset;
+  -moz-box-shadow: 1px 0px 3px 3px rgba(0, 0, 0, 0.25) inset;
+  border: 1px black solid;
+  border-radius: 5px;
+  margin-top: 8%;
+  padding-left: 1rem;
+}
+
+@media screen and (min-width: 200px) and (max-width: 350px) {
+  .firstContainer {
+    background-image: url("../public/Mobile\ Banner.svg");
+    background-repeat: no-repeat;
+    height: 150.5px;
+    margin-bottom: 0.25rem;
+  }
+  .input {
+    margin-top: 1rem;
+    width: 60%;
+    height: 1rem;
+    padding: 0.25rem;
+    border-radius: 3px;
+    border-color: white;
+  }
+  .heading {
+    font-size: 15px;
+  }
+}
+@media screen and (min-width: 351px) and (max-width: 500px) {
+  .heading {
+    font-size: 20px;
+  }
+  .firstContainer {
+    padding: 5% 0;
+    background-image: url("../public/Mobile\ Banner.svg");
+    background-repeat: no-repeat;
+    height: 160px;
+  }
+  .input {
+    margin-top: 1.75rem;
+    width: 60%;
+    height: 1.05rem;
+    padding-left: 0.5rem;
+    border-radius: 2px;
+  }
+}
+@media screen and (min-width: 501px) and (max-width: 600px) {
+  .heading {
+    font-size: 25px;
+    padding-top: 2.5rem;
+  }
+  .firstContainer {
+    padding: 5% 0;
+    background-image: url("../public/Mobile\ Banner.svg");
+    background-repeat: no-repeat;
+    height: 200px;
+  }
+  .input {
+    margin-top: 2.25rem;
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 750px) {
+  .heading {
+    font-size: 30px;
+    padding-top: 2.5rem;
+  }
+  .firstContainer {
+    padding: 5% 0;
+    background-image: url("../public/Mobile\ Banner.svg");
+    background-repeat: no-repeat;
+    height: 250px;
+  }
+  .input {
+    margin-top: 3rem;
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+}
+@media screen and (min-width: 751px) and (max-width: 810px) {
+  .heading {
+    font-size: 30px;
+    padding-top: 2.5rem;
+  }
+  .firstContainer {
+    padding: 5% 0;
+    background-image: url("../public/Mobile\ Banner.svg");
+    background-repeat: no-repeat;
+    height: 300px;
+    padding-bottom: 0;
+  }
+  .input {
+    margin-top: 3rem;
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+}
+@media screen and (min-width: 811px) and (max-width: 949px) {
+  .heading {
+    font-size: 30px;
+    padding-top: 2.5rem;
+  }
+  .firstContainer {
+    padding: 5% 0;
+    background-repeat: no-repeat;
+    height: 230px;
+    padding-bottom: 0;
+  }
+  .input {
+    margin-top: 3rem;
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+}
+@media screen and (min-width: 949px) and (max-width: 1080px) {
+  .heading {
+    font-size: 30px;
+    padding-top: 2.5rem;
+  }
+  .firstContainer {
+    padding: 5% 0;
+     background-repeat: no-repeat;
+    height: 270px;
+    padding-bottom: 0;
+  }
+  .input {
+    margin-top: 3rem;
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+}
+@media screen and (min-width: 1080px) and (max-width: 1316px) {
+  .input {
+    margin-top: 5rem;
+    width: 70%;
+    height: 2rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+  .firstContainer {
+    height: 400px;
+  }
+  .heading {
+    font-size: 36px;
+  }
+ }
+@media screen and (min-width: 1317px) and (max-width: 1419px) {
+  .heading {
+    font-size: 50px;
+  }
+  .firstContainer {
+    height: 434px;
+  }
+  .input {
+    margin-top: 5rem;
+    width: 70%;
+    height: 2rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+}
+@media screen and (min-width: 1420px) and (max-width: 1650px) {
+  .heading {
+    font-size: 50px;
+  }
+  .input {
+    margin-top: 5rem;
+    width: 70%;
+    height: 2rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+  .firstContainer {
+    height: 500px;
+    padding-bottom: 0;
+  }
+}
+@media screen and (min-width: 1651px) and (max-width: 1833px) {
+  .heading {
+    font-size: 60px;
+  }
+  .input {
+    margin-top: 6rem;
+    width: 70%;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  .firstContainer {
+    height: 550px;
+    padding-bottom: 0;
+  }
+}
+@media screen and (min-width: 1834px) and (max-width: 2053px) {
+  .heading {
+    font-size: 60px;
+  }
+  .input {
+    margin-top: 6rem;
+    width: 70%;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  .firstContainer {
+    height: 620px;
+    padding-bottom: 0;
+  }
+}
+@media screen and (min-width: 2053px) and (max-width: 2366px) {
+  .heading {
+    font-size: 60px;
+  }
+  .input {
+    margin-top: 6rem;
+    width: 70%;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  .firstContainer {
+    height: 720px;
+    padding-bottom: 0;
+  }
+}
+@media screen and (min-width: 2053px) and (max-width: 2366px) {
+  .heading {
+    font-size: 60px;
+  }
+  .input {
+    margin-top: 6rem;
+    width: 70%;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  .firstContainer {
+    height: 720px;
+    padding-bottom: 0;
+  }
+}
+@media screen and (min-width: 2367px) and (max-width: 2664px) {
+  .heading {
+    font-size: 60px;
+  }
+  .input {
+    margin-top: 6rem;
+    width: 70%;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  .firstContainer {
+    height: 770px;
+    padding-bottom: 2rem;
+  }
+  .TemplatesParent {
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 29rem;
+    height: 22rem;
+    margin-bottom: 1rem;
+  }
+  .Profile {
+    margin-left: auto;
+    margin-right: 3rem;
+  }
+}
+@media screen and (min-width: 2367px) {
+  .input {
+    margin-top: 10rem;
+    width: 70%;
+    height: 4rem;
+    padding: 0.75rem 0.75rem 0.75rem 0.5rem;
+    border-radius: 10px;
+    font-size: 3rem;
+  }
+  .Profile {
+    margin-left: auto;
+    margin-right: 4rem;
+  }
+}

@@ -1,0 +1,14 @@
+import React from "react";
+import styles from "../../container/Dashboard/"
+export default function BgImage() {
+  return (
+    <>
+      <div className={styles.firstContainer}>
+        <div>
+          <p className={styles.heading}>Lorem ipsum dolor sit amet, conse</p>
+          <input className={styles.in} placeholder="Search 🔍" />
+        </div>
+      </div>
+    </>
+  );
+}

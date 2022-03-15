@@ -46,7 +46,7 @@ nav {
   margin: 0;
   text-shadow: 0px 0px 7px rgba(149, 150, 150, 1);
 }
-.input {
+input {
   height: 2rem;
   width: 30rem;
   box-shadow: 1px 0px 3px 3px rgba(0, 0, 0, 0.25) inset;
@@ -70,7 +70,7 @@ nav {
   height: 32rem;
 }
 
-.TemplatesParent {
+.Templates-Parent {
   display: flex;
   justify-content: space-evenly;
   margin: 0 2rem;
@@ -83,7 +83,7 @@ nav {
     height: 150.5px;
     margin-bottom: 0.25rem;
   }
-  .input {
+  input {
     margin-top: 1rem;
     width: 60%;
     height: 1rem;
@@ -91,7 +91,7 @@ nav {
     border-radius: 3px;
     border-color: white;
   }
-  .TemplatesParent {
+  .Templates-Parent {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -154,7 +154,7 @@ nav {
   .firstContainer {
     padding: 5% 0;
   }
-  .input {
+  input {
     margin-top: 1.75rem;
     width: 60%;
     height: 1.05rem;
@@ -167,7 +167,7 @@ nav {
     background-repeat: no-repeat;
     height: 160px;
   }
-  .TemplatesParent {
+  .Templates-Parent {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -209,7 +209,7 @@ nav {
   .firstContainer {
     padding: 5% 0;
   }
-  .input {
+  input {
     margin-top: 2.25rem;
     width: 70%;
     height: 1.5rem;
@@ -222,7 +222,7 @@ nav {
     background-repeat: no-repeat;
     height: 200px;
   }
-  .TemplatesParent {
+  .Templates-Parent {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -264,7 +264,7 @@ nav {
   .firstContainer {
     padding: 5% 0;
   }
-  .input {
+  input {
     margin-top: 3rem;
     width: 70%;
     height: 1.5rem;
@@ -277,7 +277,7 @@ nav {
     background-repeat: no-repeat;
     height: 250px;
   }
-  .TemplatesParent {
+  .Templates-Parent {
     /* flex-direction: column; */
 
     align-items: center;
@@ -319,7 +319,7 @@ nav {
   .firstContainer {
     padding: 5% 0;
   }
-  .input {
+  input {
     margin-top: 3rem;
     width: 70%;
     height: 1.5rem;
@@ -332,7 +332,7 @@ nav {
     height: 300px;
     padding-bottom: 0;
   }
-  .TemplatesParent {
+  .Templates-Parent {
     align-items: center;
     margin: 1rem 0;
     padding-bottom: 1rem;
@@ -372,7 +372,7 @@ nav {
   .firstContainer {
     padding: 5% 0;
   }
-  .input {
+  input {
     margin-top: 3rem;
     width: 70%;
     height: 1.5rem;
@@ -385,7 +385,7 @@ nav {
 
     padding-bottom: 0;
   }
-  .TemplatesParent {
+  .Templates-Parent {
     align-items: center;
     margin: 1rem 0;
     padding-bottom: 1rem;
@@ -425,7 +425,7 @@ nav {
   .firstContainer {
     padding: 5% 0;
   }
-  .input {
+  input {
     margin-top: 3rem;
     width: 70%;
     height: 1.5rem;
@@ -437,7 +437,7 @@ nav {
     height: 270px;
     padding-bottom: 0;
   }
-  .TemplatesParent {
+  .Templates-Parent {
     align-items: center;
     margin: 1rem 0;
     padding-bottom: 1rem;
@@ -449,7 +449,7 @@ nav {
   }
 }
 @media screen and (min-width: 1080px) and (max-width: 1316px) {
-  .input {
+  input {
     margin-top: 5rem;
     width: 70%;
     height: 2rem;
@@ -477,7 +477,7 @@ nav {
   .firstContainer {
     height: 434px;
   }
-  .input {
+  input {
     margin-top: 5rem;
     width: 70%;
     height: 2rem;
@@ -496,7 +496,7 @@ nav {
   .heading {
     font-size: 50px;
   }
-  .input {
+  input {
     margin-top: 5rem;
     width: 70%;
     height: 2rem;
@@ -519,7 +519,7 @@ nav {
   .heading {
     font-size: 60px;
   }
-  .input {
+  input {
     margin-top: 6rem;
     width: 70%;
     height: 3rem;
@@ -532,7 +532,7 @@ nav {
 
     padding-bottom: 0;
   }
-  .TemplatesParent {
+  .Templates-Parent {
     align-items: center;
     padding-bottom: 1rem;
   }
@@ -549,7 +549,7 @@ nav {
   .heading {
     font-size: 60px;
   }
-  .input {
+  input {
     margin-top: 6rem;
     width: 70%;
     height: 3rem;
@@ -562,7 +562,7 @@ nav {
 
     padding-bottom: 0;
   }
-  .TemplatesParent {
+  .Templates-Parent {
     align-items: center;
     padding-bottom: 1rem;
   }
@@ -579,7 +579,7 @@ nav {
   .heading {
     font-size: 60px;
   }
-  .input {
+  input {
     margin-top: 6rem;
     width: 70%;
     height: 3rem;
@@ -592,7 +592,7 @@ nav {
 
     padding-bottom: 0;
   }
-  .TemplatesParent {
+  .Templates-Parent {
     align-items: center;
     padding-bottom: 1rem;
   }
@@ -609,7 +609,7 @@ nav {
   .heading {
     font-size: 60px;
   }
-  .input {
+  input {
     margin-top: 6rem;
     width: 70%;
     height: 3rem;
@@ -621,7 +621,7 @@ nav {
     height: 720px;
     padding-bottom: 0;
   }
-  .TemplatesParent {
+  .Templates-Parent {
     align-items: center;
     padding-bottom: 1rem;
   }
@@ -638,7 +638,7 @@ nav {
   .heading {
     font-size: 60px;
   }
-  .input {
+  input {
     margin-top: 6rem;
     width: 70%;
     height: 3rem;
@@ -650,7 +650,7 @@ nav {
     height: 770px;
     padding-bottom: 2rem;
   }
-  .TemplatesParent {
+  .Templates-Parent {
     align-items: center;
     padding-bottom: 1rem;
   }
@@ -665,7 +665,7 @@ nav {
 }
 }
 @media screen and (min-width: 2367px) {
-  .input {
+  input {
     margin-top: 10rem;
     width: 70%;
     height: 4rem;

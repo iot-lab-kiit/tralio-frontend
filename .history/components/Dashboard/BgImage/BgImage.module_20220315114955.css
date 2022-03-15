@@ -22,15 +22,6 @@ nav {
   font-size: 1.25rem;
 }
 
-.profile-image {
-  height: 33px;
-  width: 33px;
-}
-
-.Profile {
-  margin-left: auto;
-  margin-right: 2rem;
-}
 .firstContainer {
   background-image: url("../public/svg\ banner\ 1.svg");
   background-size: contain;

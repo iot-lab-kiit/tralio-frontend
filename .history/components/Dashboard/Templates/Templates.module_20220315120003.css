@@ -1,0 +1,132 @@
+.TemplateImages {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border: 1px grey solid;
+}
+
+.Templates {
+  width: 42rem;
+  height: 32rem;
+}
+
+.TemplatesParent {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 2rem;
+}
+
+@media screen and (min-width: 200px) and (max-width: 350px) {
+  .TemplatesParent {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 12rem;
+    height: 7rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 351px) and (max-width: 500px) {
+   .TemplatesParent {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 15rem;
+    height: 10rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 501px) and (max-width: 600px) {
+  .TemplatesParent {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 16rem;
+    height: 11rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 750px) {
+  .TemplatesParent {
+    align-items: center;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 11rem;
+    height: 8rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 751px) and (max-width: 810px) {
+  .TemplatesParent {
+    align-items: center;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 12rem;
+    height: 9rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 811px) and (max-width: 949px) {
+  .TemplatesParent {
+    align-items: center;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 12rem;
+    height: 9rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 949px) and (max-width: 1080px) {
+  .TemplatesParent {
+    align-items: center;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 12rem;
+    height: 9rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 1080px) and (max-width: 1316px) {
+  .Templates {
+    width: 17rem;
+    height: 11rem;
+  }
+}
+@media screen and (min-width: 1317px) and (max-width: 1419px) {
+  .heading {
+    font-size: 50px;
+  }
+  .firstContainer {
+    height: 434px;
+  }
+  .input {
+    margin-top: 5rem;
+    width: 70%;
+    height: 2rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+  }
+  .Templates {
+    width: 18rem;
+    height: 12rem;
+  }
+}

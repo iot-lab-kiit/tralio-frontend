@@ -9,28 +9,7 @@ nav {
   display: flex;
 }
 
-.NavTags {
-  margin: 0 1rem;
-  padding: 0.75rem;
-  padding-bottom: 0.5rem;
-}
 
-.navTags-1 {
-  text-decoration: none;
-  color: white;
-  font-weight: 400;
-  font-size: 1.25rem;
-}
-
-.profile-image {
-  height: 33px;
-  width: 33px;
-}
-
-.Profile {
-  margin-left: auto;
-  margin-right: 2rem;
-}
 .firstContainer {
   background-image: url("../public/svg\ banner\ 1.svg");
   background-size: contain;

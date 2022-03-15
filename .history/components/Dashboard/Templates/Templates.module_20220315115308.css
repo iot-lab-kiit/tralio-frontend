@@ -1,0 +1,66 @@
+.TemplateImages {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border: 1px grey solid;
+}
+
+.Templates {
+  width: 42rem;
+  height: 32rem;
+}
+
+.TemplatesParent {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 2rem;
+}
+
+@media screen and (min-width: 200px) and (max-width: 350px) {
+  .TemplatesParent {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 12rem;
+    height: 7rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 351px) and (max-width: 500px) {
+  .Horizontal {
+    height: 25px;
+    width: 25px;
+  }
+
+  .heading {
+    font-size: 20px;
+  }
+  .firstContainer {
+    padding: 5% 0;
+    background-image: url("../public/Mobile\ Banner.svg");
+    background-repeat: no-repeat;
+    height: 160px;
+  }
+  .input {
+    margin-top: 1.75rem;
+    width: 60%;
+    height: 1.05rem;
+    padding-left: 0.5rem;
+    border-radius: 2px;
+  }
+   .TemplatesParent {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem;
+    padding-bottom: 1rem;
+  }
+  .Templates {
+    width: 15rem;
+    height: 10rem;
+    margin-bottom: 1rem;
+  }
+}
