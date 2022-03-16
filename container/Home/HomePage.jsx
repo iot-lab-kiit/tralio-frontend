@@ -40,7 +40,6 @@ function HomePage() {
       ...user,
       [name]: value,
     });
-    console.log(user);
   };
 
   const handleRegistrationModal = () => {
@@ -99,7 +98,9 @@ function HomePage() {
   return (
     <div>
       <h1>Home Page</h1>
+
       {registerForm.map(generateSignUpForm)}
+    
 
       <button onClick={handleRegistration}>Register</button>
 
@@ -109,7 +110,8 @@ function HomePage() {
         open={registrationModal}
         onClose={handleRegistrationModal}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {modalHeading}
