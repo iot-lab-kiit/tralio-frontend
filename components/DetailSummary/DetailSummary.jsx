@@ -1,11 +1,11 @@
 import React from "react";
 import style from "./DetailSummary.module.css";
-import { Grid, Container} from "@mui/material";
+import { Grid} from "@mui/material";
 
 import Image from "next/image";
 function DetailSummary(props) {
   return (
-    <Container maxWidth="lg">
+    
     <Grid
       container
       className={style.structure}
@@ -29,7 +29,7 @@ function DetailSummary(props) {
         <p>{props.description}</p>
       </Grid>
     </Grid>
-    </Container>
+    
   );
 }
 
