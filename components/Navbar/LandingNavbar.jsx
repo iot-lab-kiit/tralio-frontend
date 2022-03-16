@@ -10,6 +10,7 @@ import Dialog from "@mui/material/Dialog";
 import Login from "../../container/Login/Login";
 import SignUp from "../../container/SignUp/SignUp";
 import {createStyles, makeStyles} from "@mui/styles";
+import ForgotPassword from "../../container/ForgotPassword/ForgotPassword";
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -59,7 +60,14 @@ const LandingNavbar = () => {
                         <Box component={Link} noLinkStyle href="/" width={'120px'} height={'41px'}>
                             <Image src={Logo} alt={'logo'} />
                         </Box>
-                        <Button variant={'contained'} onClick={handleClick}>
+                        <Button
+                            variant={'contained'}
+                            onClick={handleClick}
+                            sx={{
+                                padding: {lg: '5px 44px', md: '5px 44px', sm: '5px 34px', sx: '5px 27px'},
+                                background: '#1981FF',
+                            }}
+                        >
                             Login
                         </Button>
                         <Dialog
@@ -95,6 +103,10 @@ const Pop = () => {
                     {
                         currentStage === 1 &&
                         <SignUp setCurrentStage={setCurrentStage} />
+                    }
+                    {
+                        currentStage === -1 &&
+                        <ForgotPassword setCurrentStage={setCurrentStage} />
                     }
                 </Box>
             </Box>
