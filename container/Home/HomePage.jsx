@@ -39,7 +39,6 @@ function HomePage() {
       ...user,
       [name]: value,
     });
-    console.log(user);
   };
 
   const handleRegistrationModal = () => {
@@ -66,7 +65,7 @@ function HomePage() {
     // Checking if the response is an error
     if (response.status >= 200 && response.status < 300) {
       const newUser = await response.json();
-      console.log("USER", newUser);
+      console.log("USER ", newUser);
       setRegistrationModal(true);
       setModalHeading(response.statusText);
       setModalMessage("User Successfully Registered");

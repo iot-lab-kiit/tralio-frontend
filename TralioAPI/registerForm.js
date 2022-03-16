@@ -48,16 +48,16 @@ const registerForm = [
             maxLength: 20
         },
     },
-    {
-        type: 'password',
-        name: 'userConfirmPassword',
-        placeholder: 'Confirm Password',
-        validation: {
-            required: true,
-            minLength: 6,
-            maxLength: 20
-        },
-    },
+    // {
+    //     type: 'password',
+    //     name: 'userConfirmPassword',
+    //     placeholder: 'Confirm Password',
+    //     validation: {
+    //         required: true,
+    //         minLength: 6,
+    //         maxLength: 20
+    //     },
+    // },
 ]
 
 export default registerForm;

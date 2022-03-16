@@ -1,6 +1,7 @@
 import * as React from 'react';
 import CustomLayout from "../components/Layouts/CustomLayout";
 import {useEffect, useMemo, useState} from "react";
+import {SnackbarProvider} from "notistack";
 import globalStyles from '../styles/globals.css'
 
 
@@ -11,9 +12,11 @@ export default function MyApp(props) {
 
     return (
         <>
-            <CustomLayout>
-                <Component {...pageProps} />
-            </CustomLayout>
+            <SnackbarProvider>
+                <CustomLayout>
+                    <Component {...pageProps} />
+                </CustomLayout>
+            </SnackbarProvider>
         </>
 
     );

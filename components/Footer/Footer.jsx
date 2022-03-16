@@ -5,75 +5,10 @@ import Grid from "@mui/material/Grid";
 import Link from "../Layouts/Link"
 import Logo from "/public/images/Logos/logo.svg"
 import Image from "next/image";
+import footerData from "./footerData";
 
 
 const Footer = () => {
-
-  const footerData = [
-    {
-      title: 'Company',
-      content: [
-        {
-          head: 'About',
-          href: '/'
-        },
-        {
-          head: 'About',
-          href: '/'
-        },
-        {
-          head: 'About',
-          href: '/'
-        },
-        {
-          head: 'About',
-          href: '/'
-        },
-      ]
-    },
-    {
-      title: 'About',
-      content: [
-        {
-          head: 'About',
-          href: '/'
-        },
-        {
-          head: 'About',
-          href: '/'
-        },
-        {
-          head: 'About',
-          href: '/'
-        },
-        {
-          head: 'About',
-          href: '/'
-        },
-      ]
-    },
-    {
-      title: 'Abcd',
-      content: [
-        {
-          head: 'About',
-          href: '/'
-        },
-        {
-          head: 'About',
-          href: '/'
-        },
-        {
-          head: 'About',
-          href: '/'
-        },
-        {
-          head: 'About',
-          href: '/'
-        },
-      ]
-    },
-  ]
 
   const generateFooter = (e) => {
     return(
