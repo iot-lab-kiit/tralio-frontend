@@ -32,12 +32,6 @@ export default function SignUp({ setCurrentStage }) {
 
     const handleRegistration = async () => {
 
-        setUser({
-            ...user,
-            userGender: gender,
-            userDOB: userDOB,
-        });
-        console.log(user);
         const response = await registerUser(user);
 
         if(validate(user)) {
@@ -74,17 +68,20 @@ export default function SignUp({ setCurrentStage }) {
         )
     }
 
-    const [gender, setGender] = useState('');
     const handleGenderChange = (event) => {
-        const {
-            target: { value },
-        } = event;
-        setGender(value);
+        const {name, value} = event.target;
+        setUser({
+          ...user,
+          [name]:value
+        })
     };
 
-    const [userDOB, setUserDOB] = useState(new Date());
-    const handleDate = (newValue) => {
-        setUserDOB(newValue);
+    
+    const handleDate = (newDate) => {
+        setUser({
+            ...user,
+            userDOB: newDate
+        })
     };
 
     return (
@@ -102,8 +99,8 @@ export default function SignUp({ setCurrentStage }) {
                         <FormControl sx={{width: {lg: '200px', md: '200px', sm: '190px', xs: '180px'}}}>
                             <InputLabel>Gender</InputLabel>
                             <Select
+                                name='userGender'
                                 input={<OutlinedInput label="Gender" />}
-                                value={gender}
                                 onChange={handleGenderChange}
                             >
                                 <MenuItem key="male" value="male">Male</MenuItem>
@@ -116,7 +113,7 @@ export default function SignUp({ setCurrentStage }) {
                             <DesktopDatePicker
                                 label="Date of Birth"
                                 inputFormat="dd/MM/yyyy"
-                                value={userDOB}
+                                
                                 onChange={handleDate}
                                 renderInput={(params) => <TextField {...params} />}
                             />
