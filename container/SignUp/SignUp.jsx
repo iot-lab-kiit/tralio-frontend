@@ -10,17 +10,18 @@ export default function SignUp({ setCurrentStage }) {
 
     const generateSignUpForm = (input) => {
         return (
-            <>
-                <TextField
-                    fullWidth
-                    label={input.placeholder}
-                    variant="outlined"
-                    type={input.type}
-                    required={input.validation.required}
-                />
-                <Box mt={1} />
-            </>
-        )
+          <>
+            <TextField
+              key={input.name}
+              fullWidth
+              label={input.placeholder}
+              variant="outlined"
+              type={input.type}
+              required={input.validation.required}
+            />
+            <Box mt={1} />
+          </>
+        );
     }
 
     return (
