@@ -1,0 +1,251 @@
+.bg {
+    background-color: #e9f4ff;
+    padding: 0.8rem;
+  }
+  
+  .flex{
+    display: flex;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0rem 6rem;
+  }
+  
+  .box1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%;
+    height: 90%;
+    margin: 1.5rem 10rem;
+  }
+  
+  .heading {
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+  }
+  
+  .desc {
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    color: #7D7987;
+  }
+  
+  .box2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: auto;
+  }
+  
+  .textJustify {
+    text-align: justify;
+  }
+  
+  .imgSize {
+    display: flex;
+    width: 75vw;
+    height: 75vh;
+  }
+  
+  .bt{
+    display: flex;
+    padding: 1.2vw 1.6vw;
+    font-size: 2.2vw;
+    border-radius: 0.5rem;
+    background-color: #458FF6;
+    color: white;
+    font-family: 'Mulish';
+    font-style: normal;
+  }
+  
+  /* --------below sm------- */
+  @media (min-width: 300px) {
+    .container{
+        margin: 0rem 0.3rem;
+    }
+    .heading {
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1rem;
+    }
+    .desc {
+      font-size: 0.7rem;
+      line-height: 0.8rem;
+      text-align: left;
+    }
+    .imgSize {
+      width: 80vw;
+      /* height: 100%; */
+      display: flex;
+    }
+    .bt{
+      font-size: 0.55rem;
+      padding: 0.3rem 1rem;
+      border-radius: 0.3rem;
+    }
+  }
+  
+  
+  @media (min-width: 400px) {
+    .container{
+        margin: 0rem 2rem;
+    }
+    .heading {
+      text-align: left;
+      font-size: 1.2rem;
+      line-height: 1.2rem;
+      text-align: center;
+    }
+    .desc {
+      font-size: 0.9rem;
+      line-height: 1rem;
+      text-align: left;
+    }
+    /* .imgSize {
+      width: 75vw;
+      height: 50vw;
+      display: flex;
+    } */
+    .bt{
+      font-size: 0.6rem;
+      padding: 0.3rem 1.1rem;
+      border-radius: 0.3rem;
+    }
+  }
+  
+  
+  /* --------sm------- */
+  @media (min-width: 640px) {
+    .heading {
+      text-align: center;
+      font-size: 1.8rem;
+      line-height: 2.5rem;  
+    }
+    .container{
+        margin: 0rem 2rem;
+    }
+    .desc {
+      font-size: 1rem;
+      line-height: 1.3rem;
+      text-align: left;
+    }
+    .bt{
+      font-size: 0.8rem;
+      padding: 0.5rem 1.5rem;
+    }
+  }
+  /* --------md------- */
+  @media (min-width: 768px) {
+    .heading {
+      text-align: center;
+      font-size: 1.8rem;
+      line-height: 2.2rem;
+    }
+    .container{
+        margin: 0rem 2rem;
+    }
+    .desc {
+      font-size: 1.1rem;
+      line-height: 1.3rem;
+      /* text-align: center; */
+    }
+    .imgSize {
+      width: 75vw;
+      height: 35vw;
+      display: flex;
+    }
+    .bt{
+      font-size: 0.8rem;
+      padding: 0.5rem 1.5rem;
+    }
+  }
+  /* --------lg------- */
+  @media (min-width: 1024px) {
+    .container {
+      display: flex;
+      flex-direction: row;
+    align-items: flex-start;
+    }
+    .heading {
+      text-align: left;
+      font-size: 1.7rem;
+      line-height: 1.6rem;
+    }
+    .desc {
+      font-size: 1rem;
+      line-height: 1.1rem;
+      text-align: left;
+    }
+    .box1 {
+      margin: 0.8rem 2rem;
+      padding: 20vh 0;
+    }
+    .box2 {
+      height: auto;
+      width: 50%;
+    }
+    .imgSize {
+      width: 60vw;
+      height: 90vh;
+      display: flex;
+    }
+    .bt{
+      font-size: 0.9rem;
+      padding: 0.6rem 1.5rem;
+    }
+  }
+  /* --------xl------- */
+  @media (min-width: 1280px) {
+    .heading {
+      text-align: left;
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+    .desc {
+      text-align: left;
+      font-size: 1.1rem;
+      line-height: 1.3rem;
+      width: 80%;
+    }
+    .bt{
+      font-size: 0.9rem;
+      padding: 0.5rem 1.5rem;
+    }
+  }
+  /* --------2xl------- */
+  @media (min-width: 1536px) {
+    .heading {
+      text-align: left;
+      font-size: 2.7rem;
+      line-height: 2.9rem;
+    }
+    .desc {
+      text-align: left;
+      font-size: 1.6rem;
+      line-height: 1.7rem;
+      width: 80%;
+    }
+    .box1 {
+      margin: 0.8rem 3rem;
+      width: 60%;
+    }
+    .box2 {
+      height: auto;
+    }
+    .bt{
+      font-size: 1rem;
+      padding: 0.6rem 1.6rem;
+    }
+  }

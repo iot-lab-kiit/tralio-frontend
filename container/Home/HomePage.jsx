@@ -5,6 +5,8 @@ import registerForm from "../../TralioAPI/registerForm";
 import Testomonial from "../../components/Testimonial/Testimonial";
 import DetailSummary from "../../components/DetailSummary/DetailSummary";
 import { HomeDetailSummary } from "../../TralioAPI/DetailSummary";
+import TopLandingScreen from "../../components/LandingPage/TopLandingScreen";
+
 //Material UI
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -97,10 +99,11 @@ function HomePage() {
 
   return (
     <div>
+      <TopLandingScreen />
       <h1>Home Page</h1>
+      
 
-      {registerForm.map(generateSignUpForm)}
-    
+      {registerForm.map(generateSignUpForm)}    
 
       <button onClick={handleRegistration}>Register</button>
 
