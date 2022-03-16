@@ -1,4 +1,4 @@
-.structure{
+.structure {
   padding: 2rem 8rem;
 }
 .details {
@@ -6,7 +6,7 @@
 }
 .details > p {
   margin: 0.5rem 0;
-  text-align:justify;
+  text-align: justify;
 }
 .details > h2 {
   margin: 0.8rem 0;
@@ -15,8 +15,32 @@
   border-top: 3px solid black;
   width: 5rem;
 }
+.profBox{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* margin: 2rem; */
+  padding: 2rem 0 7rem;
+}
+.bt{
+  display: flex;
+  padding: 0.6vw 1.8vw;
+  font-size: 1.2vw;
+  border-radius: 0.5rem;
+  background-color: #458FF6;
+  color: white;
+  font-family: 'Mulish';
+}
+.profile {
+  font-family: "Mulish";
+  color: #49494A;
+  font-weight: 700;
+ font-size: 40px;
+  /* line-height: 56px; */
+  /* text-align: center;  */
+}
 @media (max-width: 900px) {
-  .structure{
+  .structure {
     padding: 1rem 1rem;
     text-align: center;
   }

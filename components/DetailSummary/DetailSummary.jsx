@@ -10,7 +10,7 @@ function DetailSummary(props) {
       container
       className={style.structure}
       key={props.id}
-      justifyContent="space-evenly"
+      justifyContent="space-between"
       alignItems="center"
       columnSpacing={{ xs: 0, md: 8 }}
       direction={props.id % 2 == 0 ? "row" : "row-reverse"}>

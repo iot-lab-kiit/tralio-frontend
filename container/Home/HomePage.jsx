@@ -5,81 +5,62 @@ import registerForm from "../../TralioAPI/registerForm";
 import Testomonial from "../../components/Testimonial/Testimonial";
 import DetailSummary from "../../components/DetailSummary/DetailSummary";
 import { HomeDetailSummary } from "../../TralioAPI/DetailSummary";
+import DetailFeatures from "../../components/DetailFeatures/DetailFeatures";
 import TopLandingScreen from "../../components/LandingPage/TopLandingScreen";
+import Login from "../../container/Login/Login";
+import SignUp from "../../container/SignUp/SignUp";
+import ForgotPassword from "../../container/ForgotPassword/ForgotPassword";
+import { HomeDetailFeature } from "../../TralioAPI/DetailFeature";
+
+
 
 //Material UI
 import { Box, Container } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import { createStyles, makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    backDrop: {
+      backdropFilter: "blur(3px)",
+      backgroundColor: 'rgba(0,0,30,0.4)'
+    },
+  }),
+);
+
 
 function HomePage() {
-  const [user, setUser] = useState({});
-  const [registrationModal, setRegistrationModal] = useState(false);
-  const [modalHeading, setModalHeading] = useState("");
-  const [modalMessage, setModalMessage] = useState("");
 
-  const handleSomeAPIOperation = async () => {
-    const response = await test();
-    console.log(response);
-    return response;
+  const classes = useStyles();
+
+  const [pop, setPop] = useState(false);
+
+  const handleClick = (event) => {
+    setPop(true);
   };
 
-  const handleUserInfo = (e) => {
-    const { name, value } = e.target;
-    setUser({
-      ...user,
-      [name]: value,
-    });
+  const handleClose = () => {
+    setPop(false);
   };
 
-  const handleRegistrationModal = () => {
-    setRegistrationModal(false);
-  };
 
-  const generateSignUpForm = (input) => {
-    return (
-      <div className={styles.form} key={input.name}>
-        <input
-          type={input.type}
-          name={input.name}
-          placeholder={input.placeholder}
-          value={input.value}
-          onChange={handleUserInfo}
-        />
-      </div>
-    );
-  };
-
-  const handleRegistration = async () => {
-    const response = await registerUser(user);
-
-    // Checking if the response is an error
-    if (response.status >= 200 && response.status < 300) {
-      const newUser = await response.json();
-
-      setRegistrationModal(true);
-      setModalHeading(response.statusText);
-      setModalMessage("User Successfully Registered");
-      // Further actions you want to perform after successful registration
-    } else {
-      const resError = await response.json();
-      setRegistrationModal(true);
-      setModalHeading(response.statusText);
-      setModalMessage(resError.error.message);
+  const PropsDetailFeature = HomeDetailFeature.map(
+    ({ id, feature_icon, feature_heading, feature_description }) => {
+      return (
+        <div>
+          <DetailFeatures
+            id={id}
+            images={feature_icon}
+            heading={feature_heading}
+            description={feature_description}
+          />
+        </div>
+      );
     }
-  };
+  );
 
   const PropsDetailSummary = HomeDetailSummary.map(
     ({ id, images, heading, description }) => {
@@ -101,30 +82,56 @@ function HomePage() {
       <TopLandingScreen />
       <Container maxWidth="lg">
         {PropsDetailSummary}
-        <h1>Home Page</h1>
       </Container>
-      {registerForm.map(generateSignUpForm)}
-
-      <button onClick={handleRegistration}>Register</button>
-
-      <button onClick={handleSomeAPIOperation}>Test API</button>
       <Testomonial />
-      <Modal
-        open={registrationModal}
-        onClose={handleRegistrationModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {modalHeading}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {modalMessage}
-          </Typography>
-        </Box>
-      </Modal>
+      <Container>
+
+        {PropsDetailFeature}
+        <div className={styles.profBox}>
+          <p className={styles.profile}>Flourish your profile online</p>
+          <button href="#" className={styles.bt} onClick={handleClick}>Join Now</button>
+          <Dialog
+            open={pop}
+            onClose={handleClose}
+            BackdropProps={{
+              classes: {
+                root: classes.backDrop,
+              },
+            }}
+          >
+            <Pop />
+          </Dialog>
+        </div>
+
+      </Container>
     </div>
   );
+}
+
+const Pop = () => {
+
+  const [currentStage, setCurrentStage] = useState(1);
+
+  return (
+    <>
+      <Box width={'100%'} height={'100%'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+        <Box zIndex={1} width={'500px'} bgcolor={'white'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} pt={6} pb={6}>
+          {
+            currentStage === 0 &&
+            <Login setCurrentStage={setCurrentStage} />
+          }
+          {
+            currentStage === 1 &&
+            <SignUp setCurrentStage={setCurrentStage} />
+          }
+          {
+            currentStage === -1 &&
+            <ForgotPassword setCurrentStage={setCurrentStage} />
+          }
+        </Box>
+      </Box>
+    </>
+  )
 }
 
 export default HomePage;
