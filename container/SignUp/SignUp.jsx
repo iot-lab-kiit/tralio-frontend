@@ -112,8 +112,7 @@ export default function SignUp({ setCurrentStage }) {
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DesktopDatePicker
                                 label="Date of Birth"
-                                inputFormat="dd/MM/yyyy"
-                                
+                                inputFormat="dd/MM/yyyy"        
                                 onChange={handleDate}
                                 renderInput={(params) => <TextField {...params} />}
                             />
