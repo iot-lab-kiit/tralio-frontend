@@ -3,7 +3,8 @@ import { test, registerUser } from "../../TralioAPI/tralio";
 import { useState } from "react";
 import registerForm from "../../TralioAPI/registerForm";
 import Testomonial from "../../components/Testimonial/Testimonial";
-
+import DetailSummary from "../../components/DetailSummary/DetailSummary";
+import { HomeDetailSummary } from "../../TralioAPI/DetailSummary";
 //Material UI
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -59,9 +60,10 @@ function HomePage() {
     );
   };
 
+  
   const handleRegistration = async () => {
     const response = await registerUser(user);
-
+    
     // Checking if the response is an error
     if (response.status >= 200 && response.status < 300) {
       const newUser = await response.json();
@@ -78,13 +80,25 @@ function HomePage() {
     }
   };
 
+      const PropsDetailSummary = HomeDetailSummary.map(
+        ({ id, images, heading, description }) => {
+          return (
+            <div>
+              <DetailSummary
+                id={id}
+                images={images}
+                heading={heading}
+                description={description}
+              />
+            </div>
+          );
+        }
+    );
 
   return (
     <div>
       <h1>Home Page</h1>
-
       {registerForm.map(generateSignUpForm)}
-    
 
       <button onClick={handleRegistration}>Register</button>
 
@@ -94,8 +108,7 @@ function HomePage() {
         open={registrationModal}
         onClose={handleRegistrationModal}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {modalHeading}
