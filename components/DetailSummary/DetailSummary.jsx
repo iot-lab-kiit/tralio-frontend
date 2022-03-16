@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./DetailSummary.module.css";
-import { Grid} from "@mui/material";
+import Grid from "@mui/material/Grid";
 
 import Image from "next/image";
 function DetailSummary(props) {
