@@ -80,7 +80,7 @@ export default function SignUp({ setCurrentStage }) {
         return (
             <>
                 <TextField
-                    key={input.name}
+                    key={"Signup "+input.name}
                     fullWidth
                     id={input.name}
                     label={input.placeholder}
