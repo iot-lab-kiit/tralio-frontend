@@ -1,42 +1,53 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Box from "@mui/material/Box";
 import {TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Hidden from "@mui/material/Hidden";
 import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
 
-export default function BackgroundSearch() {
+export default function BackgroundSearch({head, src}) {
+
+
     return (
         <>
-            <Box p={1} color={'black'} width={'100%'}  display={'flex'} justifyContent={'space-around'} flexDirection={'column'} alignItems={'center'}>
-                <Box mt={7} mb={4} fontSize={{lg: '37px', md: '37px', sm: '30px', xs: '25px'}} maxWidth={'600px'} fontWeight={'600'}>
-                    The best free stock photos, royalty free images & videos shared by creators.
-                </Box>
-                <TextField
-                    fullWidth
-                    label={'Search'}
-                    variant="outlined"
-                    sx={{
-                        background: 'white',
-                        maxWidth: '600px',
-                    }}
-                    InputProps={{
-                        endAdornment: (
-                            <SearchIcon sx={{cursor: 'pointer'}} />
-                        ),
-                    }}
-                />
-                <Box color={'#5e5e5e'} fontSize={{lg: '15px', md: '15px', sm: '13x', xs: '13px'}} maxWidth={'600px'} mt={1}>
-                    Suggested: business, mobile, office, programming, sports, gaming, marketing, more
-                </Box>
-            </Box>
-            <Box p={1} mt={10} display={'flex'} justifyContent={'space-between'}>
-                <Hidden smDown>
-                    <Box/>
-                </Hidden>
-                <Button variant={'contained'} sx={{alignSelf: 'flex-end'}}>
-                    Update Portfolio
-                </Button>
+            <Box
+                width={'100%'}
+                sx={{
+                    background: `url(${src})`,
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    height: {xl: '650px', lg: '570px', md: '550px', sm: '550px', xs: '550px'},
+                    display: 'flex',
+                    alignItems: 'center',
+                }}
+            >
+                <Container maxWidth={'lg'}>
+                    <Box p={1} color={'black'} width={'100%'}  display={'flex'} justifyContent={'center'} flexDirection={'column'} alignItems={'center'}>
+                        <Box maxWidth={{lg: '700px', md: '600px', sm: '600px', xs: '600px'}}>
+                            <Box mb={4} fontSize={{lg: '37px', md: '37px', sm: '30px', xs: '25px'}} fontWeight={'600'}>
+                                The best free stock photos, royalty free images & videos shared by creators.
+                            </Box>
+                            <TextField
+                                focused
+                                fullWidth
+                                label={'Search'}
+                                variant="outlined"
+                                sx={{
+                                    background: 'transparent',
+                                }}
+                                InputProps={{
+                                    endAdornment: (
+                                        <SearchIcon sx={{cursor: 'pointer', color: 'white'}} />
+                                    ),
+                                }}
+                            />
+                            <Box color={'#c7c7c7'} fontSize={{lg: '15px', md: '15px', sm: '13x', xs: '13px'}} mt={2}>
+                                Suggested: business, mobile, office, programming, sports, gaming, marketing, more
+                            </Box>
+                        </Box>
+                    </Box>
+                </Container>
             </Box>
         </>
     );

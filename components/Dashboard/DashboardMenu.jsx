@@ -1,14 +1,14 @@
 import React from 'react';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import SettingsIcon from '@mui/icons-material/Settings';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import Avatar from "@mui/material/Avatar";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import PagesIcon from '@mui/icons-material/Pages';
+import BarChartIcon from '@mui/icons-material/BarChart';
 import {ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper, Typography} from "@mui/material";
 import {useRouter} from "next/router";
 
-export default function MenuButton() {
+export default function DashboardMenu() {
 
     const Router = useRouter();
 
@@ -33,12 +33,14 @@ export default function MenuButton() {
 
     return (
         <>
-            <Avatar onClick={handleToggle} ref={anchorRef}>K</Avatar>
+            <Button onClick={handleToggle} ref={anchorRef} variant="outlined" startIcon={<KeyboardArrowDownIcon />}>
+                Filter
+            </Button>
             <Popper
                 anchorEl={anchorRef.current}
                 disablePortal
                 open={open}
-                placement={'bottom-end'}
+                placement={'bottom-start'}
                 role={undefined}
                 transition
             >
@@ -47,23 +49,23 @@ export default function MenuButton() {
                         {...TransitionProps}
                         style={{ transformOrigin: placement === 'top' ? 'center top' : 'center top' }}
                     >
-                        <Paper sx={{p: 0.5}}>
+                        <Paper sx={{p: 0.5, bgcolor: '#282828', color: '#fff'}}>
                             <ClickAwayListener onClickAway={handleCloseMenu}>
                                 <MenuList autoFocusItem={open}>
                                     <MenuItem>
-                                        <AccountCircleIcon />
+                                        <DynamicFeedIcon/>
                                         <Box mr={1.5} />
-                                        <Typography variant={'subtitle2'}>{'Profile'}</Typography>
+                                        <Typography variant={'subtitle2'}>{'My Posts'}</Typography>
                                     </MenuItem>
                                     <MenuItem>
-                                        <SettingsIcon />
+                                        <PagesIcon/>
                                         <Box mr={1.5} />
-                                        <Typography variant={'subtitle2'}>{'Settings'}</Typography>
+                                        <Typography variant={'subtitle2'}>{'My Portfolios'}</Typography>
                                     </MenuItem>
-                                    <MenuItem onClick={handleLogout}>
-                                        <ExitToAppIcon />
+                                    <MenuItem>
+                                        <BarChartIcon/>
                                         <Box mr={1.5} />
-                                        <Typography variant={'subtitle2'}>{'Logout'}</Typography>
+                                        <Typography variant={'subtitle2'}>{'Activity'}</Typography>
                                     </MenuItem>
                                 </MenuList>
                             </ClickAwayListener>

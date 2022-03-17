@@ -17,6 +17,7 @@ import Logo from "../../public/images/Logos/logo.svg";
 import LogoWhite from "../../public/images/Logos/logoWhite.svg";
 import {ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper, Typography} from "@mui/material";
 import MenuButton from "../MenuButton/MenuButton";
+import {useRouter} from "next/router";
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -33,6 +34,7 @@ const useStyles = makeStyles(() =>
 
 const DashboardNavbar = () => {
     const classes = useStyles();
+    const Router = useRouter()
 
     const [mobOpen, setMobOpen] = React.useState(false);
     const handleMobDrawer = () => {
@@ -55,6 +57,11 @@ const DashboardNavbar = () => {
 
     const drawerWidth = 240;
     const appbarHeight = 55;
+
+    const handleLogout = () => {
+        localStorage.removeItem("access-token");
+        Router.reload();
+    }
 
     const tabs = [
         {
@@ -159,6 +166,12 @@ const DashboardNavbar = () => {
                             </div>
                         </ListItem>
                         <Box mt={1} />
+                        <ListItem>
+                            <Box ml={1} />
+                            <Button>
+                                Profile
+                            </Button>
+                        </ListItem>
                         {tabs.map((each, index) => (
                             <ListItem key={each.id}>
                                 <Box ml={1} />
@@ -167,6 +180,18 @@ const DashboardNavbar = () => {
                                 </Button>
                             </ListItem>
                         ))}
+                        <ListItem>
+                            <Box ml={1} />
+                            <Button >
+                                Settings
+                            </Button>
+                        </ListItem>
+                        <ListItem>
+                            <Box ml={1} />
+                            <Button onClick={handleLogout}>
+                                Logout
+                            </Button>
+                        </ListItem>
                     </List>
                 </Box>
             </Drawer>
