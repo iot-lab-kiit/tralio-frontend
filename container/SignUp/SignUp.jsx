@@ -23,11 +23,7 @@ export default function SignUp({ setCurrentStage }) {
             delete userPayload.userConfirmPassword;
             return true;
         }
-        else{
-            enqueueSnackbar('fuck u', {
-                variant: 'error',
-            });
-        }
+        return false;
     }
 
     const handleUserInfo = (e) => {
@@ -73,6 +69,12 @@ export default function SignUp({ setCurrentStage }) {
                     variant: 'error',
                 });
             }
+        }
+        else{
+            enqueueSnackbar(`Password didn't match`, {
+                variant: 'error',
+            });
+            return false
         }
     };
 
