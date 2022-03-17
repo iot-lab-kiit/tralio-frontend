@@ -17,10 +17,10 @@ export default function SignUp({ setCurrentStage }) {
     const [user, setUser] = useState({});
     const { enqueueSnackbar } = useSnackbar();
 
-    const validate = ({user, reregisterForm}) => {
-        //here we need to verify the input fields
-        if(user.userPassword === user.userConfirmPassword){
-            delete user.userConfirmPassword;
+    const isUserPayloadValid = (userPayload) => {
+        // here we need to verify the input fields
+        if(userPayload.userPassword === userPayload.userConfirmPassword){
+            delete userPayload.userConfirmPassword;
             return true;
         }
         else{
@@ -58,12 +58,11 @@ export default function SignUp({ setCurrentStage }) {
 
         console.log(user)
 
-        if(validate(user)) {
+        if(isUserPayloadValid(user)) {
             const response = await registerUser(user);
             // Checking if the response is an error
             if (response.status >= 200 && response.status < 300) {
                 const newUser = await response.json();
-                console.log("USER ", newUser);
                 enqueueSnackbar('User Successfully Registered', {
                     variant: 'success',
                 });
