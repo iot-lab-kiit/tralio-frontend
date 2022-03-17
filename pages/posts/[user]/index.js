@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 
   const pathsUsers = paths.map((user) => ({
     params: {
-      user: user.username ,
+      user: user.username,
     },
   }));
 

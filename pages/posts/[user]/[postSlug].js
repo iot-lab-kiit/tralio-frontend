@@ -21,14 +21,14 @@ export async function getServerSideProps(context) {
     const apiPath = `posts`
     const query = `user=${user}&postSlug=${postSlug}`
 
-    // const data = await fetch(
-    //     `${API_URL}/api/${apiVersion}/${apiPath}?${query}`
-    // ).then((res) => res.json());
+    const data = await fetch(
+        `${API_URL}/api/${apiVersion}/${apiPath}?${query}`
+    ).then((res) => res.json());
 
     
     return {
         props: {
-            post: "Successfull Testing post slug",
+            post: `Successfull Testing post ${postSlug} by user ${user}`,
         }
     }
 }
