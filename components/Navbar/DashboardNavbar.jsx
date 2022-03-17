@@ -15,6 +15,8 @@ import Link from "../Layouts/Link"
 import Image from "next/image";
 import Logo from "../../public/images/Logos/logo.svg";
 import LogoWhite from "../../public/images/Logos/logoWhite.svg";
+import {ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper, Typography} from "@mui/material";
+import MenuButton from "../MenuButton/MenuButton";
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -69,6 +71,7 @@ const DashboardNavbar = () => {
         },
     ];
 
+
     return (
         <>
             <AppBar
@@ -104,22 +107,26 @@ const DashboardNavbar = () => {
                         </Box>
                         <Hidden mdDown>
                             <Box mr={10} />
-                            <Box className={classes.tab}>
-                                Portfolio
-                            </Box>
-                            <Box className={classes.tab}>
-                                Posts
-                            </Box>
-                            <Box className={classes.tab}>
-                                Tracker
-                            </Box>
+                            {
+                                tabs.map((each) => (
+                                    <Box
+                                        key={each.id}
+                                        className={classes.tab}
+                                        onClick={() => {
+                                            window.location.href = each.href;
+                                        }}
+                                    >
+                                        {each.id}
+                                    </Box>
+                                ))
+                            }
                         </Hidden>
                     </Box>
                     <Hidden mdUp>
                         <Box />
                     </Hidden>
                     <Hidden mdDown>
-                        <Avatar>K</Avatar>
+                       <MenuButton />
                     </Hidden>
                 </Box>
             </AppBar>
