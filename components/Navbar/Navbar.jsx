@@ -37,7 +37,9 @@ const Navbar = () => {
                     bgcolor={'#317CEB'}
                     color={'#FFF'}
                 >
-                    <Box display={'flex'} alignItems={'center'} sx={{cursor: 'pointer'}}>
+                    <Box display={'flex'} alignItems={'center'} sx={{cursor: 'pointer'}} onClick={() => {
+                        window.location.href = '/';
+                    }}>
                         <IconButton>
                             <ArrowBackIcon sx={{color: '#FFF'}} />
                         </IconButton>

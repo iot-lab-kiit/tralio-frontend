@@ -25,7 +25,8 @@ const CustomLayout = ({ children }) => {
         <>
             {!isLoggedIn ? <LandingNavbar /> : path === '/' ? <DashboardNavbar /> : <Navbar />}
 
-            <Box mt={8}>
+            {/*if ur components are going inside navbar then insert <Box mt={8}/> before it*/}
+            <Box width={'100vw'}>
                 { children }
             </Box>
 
