@@ -1,34 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+![Tralio](https://i.imgur.com/BDIEi2B.png)
 
-First, run the development server:
+# Tralio
+
+Tralio enables you to create a portfolio where you can choose a website template, upload your information, and share your portfolio link with everyone with just one click.
+
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
+
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
+  git clone https://github.com/iot-lab-kiit/tralio-frontend.git
 ```
 
+Go to the project directory
+
+```bash
+  cd tralio-frontend
+```
+
+Install dependencies
+
+```bash
+  yarn
+```
+
+Start the server
+
+```bash
+  yarn dev
+```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Build Project
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Making build file
+```bash
+yarn build
+```
+Serving build file
+```bash
+yarn start
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Tech Stack
 
-## Learn More
+**Client:** NEXT.js
 
-To learn more about Next.js, take a look at the following resources:
+**Server:** Node, Express
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Authors
 
-## Deploy on Vercel
+- [@saketharshraj](https://www.github.com/saketharshraj)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [@manisa18](https://www.github.com/manisa18)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [@palsiddharth091](https://www.github.com/palsiddharth091)
+
+- [@Sibananda-Sahu17](https://www.github.com/Sibananda-Sahu17)
+
+- [@rohsanchatei](https://www.github.com/saketharshraj)
+
