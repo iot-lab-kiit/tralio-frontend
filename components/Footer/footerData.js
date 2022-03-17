@@ -7,57 +7,57 @@ const footerData = [
                 href: '/'
             },
             {
-                head: 'About',
+                head: 'Testimonial',
                 href: '/'
             },
             {
-                head: 'About',
+                head: 'Find',
                 href: '/'
             },
             {
-                head: 'About',
-                href: '/'
-            },
-        ]
-    },
-    {
-        title: 'About',
-        content: [
-            {
-                head: 'About',
-                href: '/'
-            },
-            {
-                head: 'About',
-                href: '/'
-            },
-            {
-                head: 'About',
-                href: '/'
-            },
-            {
-                head: 'About',
+                head: 'Apps',
                 href: '/'
             },
         ]
     },
     {
-        title: 'Abcd',
+        title: 'Region',
         content: [
             {
-                head: 'About',
+                head: 'India',
                 href: '/'
             },
             {
-                head: 'About',
+                head: 'Singapore',
                 href: '/'
             },
             {
-                head: 'About',
+                head: 'Germany',
                 href: '/'
             },
             {
-                head: 'About',
+                head: 'Japan',
+                href: '/'
+            },
+        ]
+    },
+    {
+        title: 'Help',
+        content: [
+            {
+                head: 'Help Center',
+                href: '/'
+            },
+            {
+                head: 'Contact us',
+                href: '/'
+            },
+            {
+                head: 'Instructions',
+                href: '/'
+            },
+            {
+                head: 'How it works',
                 href: '/'
             },
         ]

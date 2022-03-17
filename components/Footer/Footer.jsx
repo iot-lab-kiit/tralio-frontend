@@ -13,9 +13,9 @@ const Footer = () => {
   const generateFooter = (e) => {
     return(
         <>
-          <Grid item sm={12} md={2} xs={12}>
+          <Grid key={"footer " + e.title} item sm={12} md={2} xs={12}>
             <Box display={'flex'} flexDirection={'column'} textAlign={{lg: 'left', md: 'left', sm: 'center', xs: 'center'}} mt={3}>
-              <Box key={"footer " + e.title} fontSize={'20px'} fontWeight={'700'}>
+              <Box fontSize={'20px'} fontWeight={'700'}>
                 {e.title}
               </Box>
               <Box display={'flex'} flexDirection={'column'} mt={2} fontWeight={300}>

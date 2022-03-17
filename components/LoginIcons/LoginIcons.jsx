@@ -37,7 +37,7 @@ export default function LoginIcons () {
             <Box display={'flex'} justifyContent={'space-around'} alignItems={'center'} width={'100%'} mt={2} pl={4} pr={4}>
                 {
                     icons.map(e => (
-                        <Box key={e.src} component={Link} noLinkStyle href={e.href} width={'25px'} height={'25px'}>
+                        <Box key={e.alt} component={Link} noLinkStyle href={e.href} width={'25px'} height={'25px'}>
                             <Image src={e.src} alt={e.alt} />
                         </Box>
                     ))

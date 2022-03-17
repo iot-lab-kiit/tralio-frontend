@@ -19,7 +19,15 @@ export default function SignUp({ setCurrentStage }) {
 
     const validate = ({user, reregisterForm}) => {
         //here we need to verify the input fields
-        return true;
+        if(user.userPassword === user.userConfirmPassword){
+            delete user.userConfirmPassword;
+            return true;
+        }
+        else{
+            enqueueSnackbar('fuck u', {
+                variant: 'error',
+            });
+        }
     }
 
     const handleUserInfo = (e) => {
@@ -73,6 +81,7 @@ export default function SignUp({ setCurrentStage }) {
         return (
             <>
                 <TextField
+                    key={input.name}
                     fullWidth
                     id={input.name}
                     label={input.placeholder}

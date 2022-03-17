@@ -153,9 +153,9 @@ const DashboardNavbar = () => {
                         </ListItem>
                         <Box mt={1} />
                         {tabs.map((each, index) => (
-                            <ListItem key={each}>
+                            <ListItem key={each.id}>
                                 <Box ml={1} />
-                                <Button component={Link} key={each} href={each.href} as={''} noLinkStyle color={'primary'}>
+                                <Button component={Link} href={each.href} as={''} noLinkStyle color={'primary'}>
                                     {each.id}
                                 </Button>
                             </ListItem>
