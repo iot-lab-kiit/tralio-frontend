@@ -30,11 +30,28 @@ export default function SignUp({ setCurrentStage }) {
         });
     };
 
+    const handleGenderChange = (event) => {
+        const {name, value} = event.target;
+        setUser({
+            ...user,
+            [name]:value
+        })
+    };
+
+
+    const handleDate = (newDate) => {
+        setUser({
+            ...user,
+            userDOB: newDate
+        })
+    };
+
     const handleRegistration = async () => {
 
-        const response = await registerUser(user);
+        console.log(user)
 
         if(validate(user)) {
+            const response = await registerUser(user);
             // Checking if the response is an error
             if (response.status >= 200 && response.status < 300) {
                 const newUser = await response.json();
@@ -67,22 +84,6 @@ export default function SignUp({ setCurrentStage }) {
             </>
         )
     }
-
-    const handleGenderChange = (event) => {
-        const {name, value} = event.target;
-        setUser({
-          ...user,
-          [name]:value
-        })
-    };
-
-    
-    const handleDate = (newDate) => {
-        setUser({
-            ...user,
-            userDOB: newDate
-        })
-    };
 
     return (
         <>
@@ -118,7 +119,6 @@ export default function SignUp({ setCurrentStage }) {
                             />
                         </LocalizationProvider>
                     </Box>
-
                     <Box mt={3} />
                     <Button onClick={handleRegistration} variant={'contained'} sx={{width: '100%'}}>
                         Sign Up
