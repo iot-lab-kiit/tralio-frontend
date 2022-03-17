@@ -19,9 +19,13 @@ export default function SignUp({ setCurrentStage }) {
     const Router = useRouter();
     const { enqueueSnackbar } = useSnackbar();
 
-    const validate = ({user, reregisterForm}) => {
-        //here we need to verify the input fields
-        return true;
+    const isUserPayloadValid = (userPayload) => {
+        // here we need to verify the input fields
+        if(userPayload.userPassword === userPayload.userConfirmPassword){
+            delete userPayload.userConfirmPassword;
+            return true;
+        }
+        return false;
     }
 
     const handleUserInfo = (e) => {
@@ -52,7 +56,7 @@ export default function SignUp({ setCurrentStage }) {
 
         console.log(user)
 
-        if(validate(user)) {
+        if(isUserPayloadValid(user)) {
             const response = await registerUser(user);
             // Checking if the response is an error
             if (response.status >= 200 && response.status < 300) {
@@ -70,13 +74,19 @@ export default function SignUp({ setCurrentStage }) {
                 });
             }
         }
+        else{
+            enqueueSnackbar(`Password didn't match`, {
+                variant: 'error',
+            });
+            return false
+        }
     };
 
     const generateSignUpForm = (input) => {
         return (
             <>
                 <TextField
-                    key={input.name}
+                    key={"Signup "+input.name}
                     fullWidth
                     id={input.name}
                     label={input.placeholder}
