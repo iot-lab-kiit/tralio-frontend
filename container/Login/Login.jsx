@@ -13,9 +13,22 @@ import Linkedin from "../../public/images/Logos/linkedInLogo.svg";
 import Github from "../../public/images/Logos/githubLogo.svg";
 import Hidden from "@mui/material/Hidden";
 import LoginIcons from '../../components/LoginIcons/LoginIcons';
+import {useSnackbar} from "notistack";
+import {useRouter} from "next/router";
 
 
 export default function Login ({ setCurrentStage }) {
+
+    const Router = useRouter();
+    const { enqueueSnackbar } = useSnackbar();
+
+    const handleLogin = () => {
+        localStorage.setItem("access-token", "test-access-token")
+        enqueueSnackbar('Login successful', {
+            variant: 'success',
+        });
+        Router.reload();
+    }
 
     return (
         <>
@@ -40,7 +53,7 @@ export default function Login ({ setCurrentStage }) {
                         </Box>
                     </Hidden>
                 </Box>
-                <Button variant={'contained'} sx={{width: '100%'}}>
+                <Button variant={'contained'} sx={{width: '100%'}} onClick={handleLogin}>
                     Login
                 </Button>
                 <Hidden smUp>
