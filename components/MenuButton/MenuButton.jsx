@@ -8,7 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import {ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper, Typography} from "@mui/material";
 import {useRouter} from "next/router";
 
-export default function MenuButton() {
+export default function MenuButton({setDashboardPage}) {
 
     const Router = useRouter();
 
@@ -50,12 +50,16 @@ export default function MenuButton() {
                         <Paper sx={{p: 0.5}} onClick={handleCloseMenu}>
                             <ClickAwayListener onClickAway={handleCloseMenu}>
                                 <MenuList autoFocusItem={open}>
-                                    <MenuItem>
+                                    <MenuItem onClick={() => {
+                                        setDashboardPage(3);
+                                    }}>
                                         <AccountCircleIcon />
                                         <Box mr={1.5} />
                                         <Typography variant={'subtitle2'}>{'Profile'}</Typography>
                                     </MenuItem>
-                                    <MenuItem>
+                                    <MenuItem onClick={() => {
+                                        Router.push('/settings')
+                                    }}>
                                         <SettingsIcon />
                                         <Box mr={1.5} />
                                         <Typography variant={'subtitle2'}>{'Settings'}</Typography>

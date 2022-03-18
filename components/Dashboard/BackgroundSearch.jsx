@@ -1,10 +1,18 @@
 import React, {useEffect, useRef, useState} from 'react';
 import Box from "@mui/material/Box";
-import {TextField} from "@mui/material";
+import {Autocomplete, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Container from "@mui/material/Container";
 
-export default function BackgroundSearch({head, src}) {
+export default function BackgroundSearch({head, src, color}) {
+
+    const index = [
+        { title: 'group1' },
+        { title: 'group2' },
+        { title: 'group3' },
+        { title: 'group4' },
+        { title: 'group5' }
+    ];
 
 
     return (
@@ -40,7 +48,24 @@ export default function BackgroundSearch({head, src}) {
                                     ),
                                 }}
                             />
-                            <Box color={'#c7c7c7'} fontSize={{lg: '15px', md: '15px', sm: '13x', xs: '13px'}} mt={2}>
+                            {/*<Autocomplete*/}
+                            {/*    id="searchbar"*/}
+                            {/*    focused*/}
+                            {/*    freeSolo*/}
+                            {/*    fullWidth*/}
+                            {/*    options={index.map(option => option.title)}*/}
+                            {/*    renderInput={params => (*/}
+                            {/*        <TextField*/}
+                            {/*            focused*/}
+                            {/*            {...params}*/}
+                            {/*            label="Search Keyword"*/}
+                            {/*            margin="normal"*/}
+                            {/*            variant="outlined"*/}
+                            {/*        />*/}
+                            {/*    )}*/}
+                            {/*/>*/}
+
+                            <Box color={color} fontSize={{lg: '15px', md: '15px', sm: '13x', xs: '13px'}} mt={2}>
                                 Suggested: business, mobile, office, programming, sports, gaming, marketing, more
                             </Box>
                         </Box>

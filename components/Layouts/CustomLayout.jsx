@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer";
 import Dashboard from "../../container/Dashboard/Dashboard";
 import HomePage from "../../container/Home/HomePage";
 
-const CustomLayout = ({ children }) => {
+const CustomLayout = ({ children, setDashboardPage }) => {
 
     const Router = useRouter();
     const path = Router.pathname;
@@ -23,7 +23,7 @@ const CustomLayout = ({ children }) => {
 
     return (
         <>
-            {!isLoggedIn ? <LandingNavbar /> : path === '/' ? <DashboardNavbar /> : <Navbar />}
+            {!isLoggedIn ? <LandingNavbar /> : path === '/' ? <DashboardNavbar setDashboardPage={setDashboardPage} /> : <Navbar />}
 
             {/*if ur components are going inside navbar then insert <Box mt={8}/> before it*/}
             <Box width={'100%'}>

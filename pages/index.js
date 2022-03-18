@@ -3,7 +3,7 @@ import Dashboard from "../container/Dashboard/Dashboard";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function Home({dashboardPage, setDashboardPage}) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
@@ -12,5 +12,5 @@ export default function Home() {
         }
     }, []);
 
-    return isLoggedIn ? <Dashboard /> : <HomePage />;
+    return isLoggedIn ? <Dashboard dashboardPage={dashboardPage} setDashboardPage={setDashboardPage} /> : <HomePage />;
 }

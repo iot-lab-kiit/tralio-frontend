@@ -10,11 +10,13 @@ export default function MyApp(props) {
     const { Component, pageProps } = props;
     const [loading, setLoading] = useState(false);
 
+    const [dashboardPage,setDashboardPage] = useState(0);
+
     return (
         <>
             <SnackbarProvider>
-                <CustomLayout>
-                    <Component {...pageProps} />
+                <CustomLayout setDashboardPage={setDashboardPage}>
+                    <Component dashboardPage={dashboardPage} setDashboardPage={setDashboardPage} {...pageProps} />
                 </CustomLayout>
             </SnackbarProvider>
         </>

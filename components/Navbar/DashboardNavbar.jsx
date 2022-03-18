@@ -32,9 +32,9 @@ const useStyles = makeStyles(() =>
     }),
 );
 
-const DashboardNavbar = () => {
+const DashboardNavbar = ({setDashboardPage}) => {
     const classes = useStyles();
-    const Router = useRouter()
+    const Router = useRouter();
 
     const [mobOpen, setMobOpen] = React.useState(false);
     const handleMobDrawer = () => {
@@ -65,17 +65,21 @@ const DashboardNavbar = () => {
 
     const tabs = [
         {
+            id: 'Home',
+            value: 0,
+        },
+        {
             id: 'Portfolio',
-            href: '/portfolio'
+            value: 1,
         },
         {
             id: 'Posts',
-            href: '/posts',
+            value: 2,
         },
-        {
-            id: 'Tracker',
-            href: '/tracker',
-        },
+        // {
+        //     id: 'Tracker',
+        //     value: 7,
+        // },
     ];
 
 
@@ -109,7 +113,7 @@ const DashboardNavbar = () => {
                         justifyContent={'space-between'}
                         alignItems={'center'}
                     >
-                        <Box component={Link} noLinkStyle href="/" width={'120px'} height={'41px'}>
+                        <Box onClick={() => {setDashboardPage(0)}} width={'120px'} height={'41px'} mr={4}>
                             <Image src={onTop ? Logo : LogoWhite} alt={'logo'} />
                         </Box>
                         <Hidden mdDown>
@@ -120,7 +124,7 @@ const DashboardNavbar = () => {
                                         key={each.id}
                                         className={classes.tab}
                                         onClick={() => {
-                                            window.location.href = each.href;
+                                            setDashboardPage(each.value)
                                         }}
                                     >
                                         {each.id}
@@ -133,12 +137,12 @@ const DashboardNavbar = () => {
                         <Box />
                     </Hidden>
                     <Hidden mdDown>
-                       <MenuButton />
+                       <MenuButton setDashboardPage={setDashboardPage} />
                     </Hidden>
                 </Box>
             </AppBar>
 
-            {/*=============================================================================*/}
+            {/*==========================================*/}
 
             <Drawer open={mobOpen} onClose={handleMobDrawer}>
                 <Box display={'flex'}
@@ -154,7 +158,9 @@ const DashboardNavbar = () => {
                                 onClick={handleMobDrawer}
                                 height={appbarHeight}
                             >
-                                <Box component={Link} noLinkStyle href="/" width={'80px'} height={'35px'} mt={1}>
+                                <Box width={'80px'} height={'35px'} mt={1} onClick={() => {
+                                    setDashboardPage(0);
+                                }}>
                                     <Image src={Logo} alt={'logo'} />
                                 </Box>
                             </Box>
@@ -166,23 +172,31 @@ const DashboardNavbar = () => {
                             </div>
                         </ListItem>
                         <Box mt={1} />
-                        <ListItem>
-                            <Box ml={1} />
-                            <Button>
-                                Profile
-                            </Button>
-                        </ListItem>
                         {tabs.map((each, index) => (
                             <ListItem key={each.id}>
                                 <Box ml={1} />
-                                <Button component={Link} href={each.href} as={''} noLinkStyle color={'primary'}>
+                                <Button
+                                    onClick={() => {
+                                        setDashboardPage(each.value)
+                                    }}
+                                >
                                     {each.id}
                                 </Button>
                             </ListItem>
                         ))}
                         <ListItem>
                             <Box ml={1} />
-                            <Button >
+                            <Button onClick={() => {
+                                setDashboardPage(3);
+                            }}>
+                                Profile
+                            </Button>
+                        </ListItem>
+                        <ListItem>
+                            <Box ml={1} />
+                            <Button onClick={() => {
+                                window.location.href('/settings')
+                            }}>
                                 Settings
                             </Button>
                         </ListItem>
