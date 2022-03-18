@@ -2,8 +2,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import Box from "@mui/material/Box";
 import {TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import Hidden from "@mui/material/Hidden";
-import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 
 export default function BackgroundSearch({head, src}) {
@@ -26,7 +24,7 @@ export default function BackgroundSearch({head, src}) {
                     <Box p={1} color={'black'} width={'100%'}  display={'flex'} justifyContent={'center'} flexDirection={'column'} alignItems={'center'}>
                         <Box maxWidth={{lg: '700px', md: '600px', sm: '600px', xs: '600px'}}>
                             <Box mb={4} fontSize={{lg: '37px', md: '37px', sm: '30px', xs: '25px'}} fontWeight={'600'}>
-                                The best free stock photos, royalty free images & videos shared by creators.
+                                {head}
                             </Box>
                             <TextField
                                 focused

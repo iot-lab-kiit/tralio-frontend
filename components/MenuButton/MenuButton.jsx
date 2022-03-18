@@ -47,7 +47,7 @@ export default function MenuButton() {
                         {...TransitionProps}
                         style={{ transformOrigin: placement === 'top' ? 'center top' : 'center top' }}
                     >
-                        <Paper sx={{p: 0.5}}>
+                        <Paper sx={{p: 0.5}} onClick={handleCloseMenu}>
                             <ClickAwayListener onClickAway={handleCloseMenu}>
                                 <MenuList autoFocusItem={open}>
                                     <MenuItem>
