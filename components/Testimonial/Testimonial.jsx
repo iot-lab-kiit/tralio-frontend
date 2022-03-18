@@ -3,7 +3,8 @@ import dp from '../../public/images/Testimonial/dp.svg'
 import styles from './Testimonial.module.css'
 
 
-function Testomonial() {
+function Testimonial() {
+  
   return (
     <div>
       <div className={styles.box}>
@@ -20,4 +21,4 @@ function Testomonial() {
   )
 }
 
-export default Testomonial;
+export default Testimonial;
