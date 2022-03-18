@@ -9,7 +9,7 @@ export default function DashboardPortfolio() {
 
     return (
         <>
-            <BackgroundSearch color={'#fff'} head={'Time and time again, Mosh\'s students praise his ability to break down complex topics into simple, digestible'} src={'/backgrounds/dashboardBg7.jpg'} />
+            <BackgroundSearch color={'#fff'} head={'Time and time again, Mosh\'s students praise his ability to break down complex topics into simple, digestible'} src={'/backgrounds/dashboardBg6.jpg'} />
             <Container maxWidth={'lg'}>
                 Dashboard portfolio
             </Container>
