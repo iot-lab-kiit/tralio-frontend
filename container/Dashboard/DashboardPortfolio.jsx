@@ -7,7 +7,7 @@ export default function DashboardPortfolio() {
 
     return (
         <>
-            <BackgroundSearch color={'#fff'} head={'Time and time again, Moshes students praise his ability to break down complex topics into simple, digestible'} src={'/backgrounds/dashboardBg1.jpg'} />
+            <BackgroundSearch color={'#6a6a6a'} head={'Time and time again, Moshes students praise his ability to break down complex topics into simple, digestible'} src={'/backgrounds/dashboardBg1.jpg'} />
             <Container maxWidth={'lg'}>
                 Dashboard portfolio
             </Container>
