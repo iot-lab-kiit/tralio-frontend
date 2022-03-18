@@ -1,56 +1,87 @@
-.structure {
-  padding: 2rem 8rem;
+.feature_start {
+  padding: 5rem 0 2rem;
+  font-family: "Nunito Sans";
 }
-.details {
-  text-align: left;
+.testimonial_start {
+  font-family: "Nunito Sans";
 }
-.details > p {
-  margin: 0.5rem 0;
-  text-align: justify;
+.feature_start h2,
+.testimonial_start h2 {
+  font-size: 2.1rem;
+  margin: 0.5rem;
 }
-.details > h2 {
-  margin: 0.8rem 0;
+.feature_start p {
+  font-size: 1rem;
+  margin: 0.5rem;
 }
-.dash {
-  border-top: 3px solid black;
-  width: 5rem;
-}
-.profBox{
+.feature_start,
+.profBox,
+.testimonial_start {
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* margin: 2rem; */
+  text-align: center;
+}
+.profBox {
   padding: 2rem 0 7rem;
 }
-.bt{
+.bt {
   display: flex;
-  padding: 0.6vw 1.8vw;
-  font-size: 1.2vw;
-  border-radius: 0.5rem;
-  background-color: #458FF6;
+  padding: 0.9rem 1.8rem;
+  font-size: 1.15rem;
+  border: 2px solid #458ff6;
+  border-radius: 0.2rem;
+  background-color: #458ff6;
   color: white;
-  font-family: 'Mulish';
+  cursor: pointer;
+}
+.bt:hover {
+  background-color: white;
+  color: #458ff6;
 }
 .profile {
   font-family: "Mulish";
-  color: #49494A;
+  color: #49494a;
   font-weight: 700;
- font-size: 40px;
-  /* line-height: 56px; */
-  /* text-align: center;  */
+  font-size: 2.2em;
 }
-@media (max-width: 900px) {
-  .structure {
-    padding: 1rem 1rem;
-    text-align: center;
+.testimonial {
+  background-color: #e9f4ff;
+  padding: 3rem;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+@media screen and (max-width: 900px) {
+  .feature_start h2,
+  .testimonial_start h2 {
+    font-size: 1.6rem;
   }
-  .img {
-    width: 15rem;
+  .feature_start p {
+    font-size: 0.9rem;
   }
-  .details {
-    text-align: center;
+  .profile {
+    font-size: 1.7em;
   }
-  .dash {
-    display: none;
+  .bt {
+    padding: 0.7rem 1.5rem;
+    font-size: 1em;
+  }
+}
+@media (max-width: 600px) {
+  .feature_start h2,
+  .testimonial_start h2 {
+    font-size: 1.5rem;
+  }
+  .profBox {
+    padding: 1.5rem 0 5rem;
+  }
+  .bt {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.8em;
+  }
+  .profile {
+    font-size: 1.4em;
   }
 }

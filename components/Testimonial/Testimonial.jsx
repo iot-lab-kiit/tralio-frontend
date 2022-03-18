@@ -1,7 +1,11 @@
 function Testomonial() {
+  
   return (
-    <div>Testomonial Design</div>
-  )
+    <div>
+      <h2>Auto Play Testimonial</h2>
+      
+    </div>
+  );
 }
 
 export default Testomonial;

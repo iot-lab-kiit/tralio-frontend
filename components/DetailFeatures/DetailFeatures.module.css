@@ -1,32 +1,65 @@
-.App {
+.Feature {
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
+.left_feature,
+.right_feature {
+  font-family: 'Nunito Sans';
+  width: 45%;
+}
+.left_feature {
+  padding: 1rem 1rem 0 0;
+}
+.right_feature {
+  padding: 1rem 0 0 1rem;
+}
+.left_feature h2,
+.right_feature h2,
+.left_feature > p,
+.right_feature p {
+  margin: 0.2em 0;
+}
+.ImgFeature {
+  width: 10%;
+}
+@media screen and (max-width: 900px) {
+  .left_feature h2,
+  .right_feature h2 {
+    font-size: 1.1em;
+  }
+  .left_feature p,
+  .right_feature p {
+    font-size: 0.9em;
+  }
+
+  .dash {
+    width: 3rem;
+  }
+
+  .ImgFeature {
+    width: 13%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Feature {
+    padding: 0;
+    flex-direction: column;
     text-align: center;
   }
-.Feature {
-    text-align: left;
-    padding: 1rem 1.5rem;
-  
+  .left_feature,
+  .right_feature {
+    width: 100%;
+    padding: 0.5rem 1rem;
   }
-  .ImgFeature{
-    width: 48px;
-    height: 48px;
+  .left_feature h2,
+  .right_feature h2 {
+    font-size: 1.12em;
   }
-  @media screen and (max-width:374px) {
-    .Feature {
-      padding: 0.5rem 0.5rem;
-      width: 18rem;
-    }
-    .ImgFeature {
-      width: 48px;
-      height: 48px;
-    }
+  .ImgFeature {
+    width: 12%;
+    margin: 0 auto;
   }
-  @media screen and (min-width:375px) {
-    .Feature {
-      padding: 1rem 0.75rem;
-      width: 21rem;
-    }
-    .ImgFeature {
-      width: 60px;
-      height: 60px;
-    }
-  } 
+}
