@@ -45,6 +45,7 @@ function HomePage() {
       return (
         <div key={id+1029029}>
           <DetailSummary
+            id={id}
             images={images}
             heading={heading}
             description={description}
