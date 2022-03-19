@@ -1,5 +1,6 @@
 import styles from "./HomePage.module.css";
 import { useState } from "react";
+import Head from 'next/head'
 import DetailSummary from "../../components/DetailSummary/DetailSummary";
 import { HomeDetailSummary } from "../../TralioAPI/DetailSummary";
 import DetailFeatures from "../../components/DetailFeatures/DetailFeatures";
@@ -42,9 +43,8 @@ function HomePage() {
   const PropsDetailSummary = HomeDetailSummary.map(
     ({ id, images, heading, description }) => {
       return (
-        <div>
+        <div key={id+1029029}>
           <DetailSummary
-            id={id}
             images={images}
             heading={heading}
             description={description}
@@ -57,9 +57,8 @@ function HomePage() {
   const PropsDetailFeature = HomeDetailFeature.map(
     ({ id, left_icon,  left_heading, left_description, right_icon, right_heading, right_description,}) => {
       return (
-        <div>
+        <div key={id+90990}>
           <DetailFeatures
-            id={id}
             leftImages={left_icon}
             leftHeading={left_heading}
             leftDescription={left_description}
@@ -75,6 +74,9 @@ function HomePage() {
 
   return (
     <div>
+      <Head>
+        <title>Tralio</title>
+      </Head>
       <TopLandingScreen />
       <Container maxWidth="lg">{PropsDetailSummary}</Container>
       <div className={styles.testimonial}>

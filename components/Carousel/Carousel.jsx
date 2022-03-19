@@ -32,9 +32,8 @@ function Carousel() {
   const propsTestimonial = TestimonialDetail.map(
     ({ avtar, description, name, designation }, index) => {
       return (
-        <div>
+        <div key={index + 1092973}>
           <Testimonial
-            id={index}
             avtar={avtar}
             description={description}
             name={name}

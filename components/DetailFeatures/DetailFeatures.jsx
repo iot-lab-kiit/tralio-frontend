@@ -5,7 +5,7 @@ import Image from "next/image";
 function DetailFeatures(props) {
   return (
     <>
-      <div className={styles.Feature} key={props.id}>
+      <div className={styles.Feature}>
         <div className={styles.left_feature}>
           <div className={styles.ImgFeature}>
           <Image

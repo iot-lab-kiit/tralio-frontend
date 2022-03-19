@@ -8,7 +8,6 @@ function DetailSummary(props) {
     <Grid
       container
       className={style.structure}
-      key={props.id}
       justifyContent="space-between"
       alignItems="center"
       columnSpacing={{ xs: 0, sm: 8 }}
