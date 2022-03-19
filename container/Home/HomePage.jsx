@@ -79,16 +79,18 @@ function HomePage() {
         <title>Tralio</title>
       </Head>
       <TopLandingScreen />
-      <Container maxWidth="lg">{PropsDetailSummary}</Container>
+      <Container maxWidth="lg" className={styles.increase_padding}>
+        {PropsDetailSummary}
+      </Container>
       <div className={styles.testimonial}>
         <div className={styles.testimonial_start}>
           <Container>
-          <h2>A better way to build your resume</h2>
+            <h2>A better way to build your resume</h2>
           </Container>
         </div>
         <Carousel />
       </div>
-      <Container>
+      <Container className={styles.increase_padding}>
         <div className={styles.feature_start}>
           <h2>A better way to build your resume</h2>
           <p>
