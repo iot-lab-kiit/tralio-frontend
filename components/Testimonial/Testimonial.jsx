@@ -3,18 +3,18 @@ import dp from '../../public/images/Testimonial/dp.svg'
 import styles from './Testimonial.module.css'
 
 
-function Testimonial() {
+function Testimonial(props) {
   
   return (
     <div>
       <div className={styles.box}>
         <div className={styles.img}>
-          <Image src={dp} alt="Pic" />
+          <Image src={props.avtar} alt="Pic" width={70} height={70}/>
         </div>
         <div className={styles.content}>
-          <p>Our dedicated patient engagement app and web portal allow you to access information.portal allow you to access information.</p>
-          <h5>NAME</h5>
-          <h4>CEO OF TRALIO</h4>
+          <p>{props.description}</p>
+          <h5>{props.name}</h5>
+          <h4>{props.designation}</h4>
         </div>
       </div>
     </div>

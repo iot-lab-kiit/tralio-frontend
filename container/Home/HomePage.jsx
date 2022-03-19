@@ -11,7 +11,8 @@ import Login from "../../container/Login/Login";
 import SignUp from "../../container/SignUp/SignUp";
 import ForgotPassword from "../../container/ForgotPassword/ForgotPassword";
 import { HomeDetailFeature } from "../../TralioAPI/DetailFeature";
-import topCarousel from "../../components/Carousel/Carousel"
+import Carousel from "../../components/Carousel/Carousel";
+
 //Material UI
 import { Box, Container } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
@@ -83,8 +84,8 @@ function HomePage() {
         <div className={styles.testimonial_start}>
           <h2>A better way to build your resume</h2>
         </div>
-        {/* <Testomonial /> */}<topCarousel />
-
+        <Carousel />
+        {/* <Testomonial /> */}
       </div>
       <Container>
         <div className={styles.feature_start}>
