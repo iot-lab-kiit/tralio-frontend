@@ -10,12 +10,10 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import {createStyles, makeStyles} from '@mui/styles';
-import Avatar from "@mui/material/Avatar";
 import Link from "../Layouts/Link"
 import Image from "next/image";
 import Logo from "../../public/images/Logos/logo.svg";
 import LogoWhite from "../../public/images/Logos/logoWhite.svg";
-import {ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper, Typography} from "@mui/material";
 import MenuButton from "../MenuButton/MenuButton";
 import {useRouter} from "next/router";
 

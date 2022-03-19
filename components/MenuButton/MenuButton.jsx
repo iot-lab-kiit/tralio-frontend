@@ -1,6 +1,5 @@
 import React from 'react';
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
@@ -11,6 +10,7 @@ import {useRouter} from "next/router";
 export default function MenuButton({setDashboardPage}) {
 
     const Router = useRouter();
+    const path = Router.pathname;
 
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
@@ -24,7 +24,6 @@ export default function MenuButton({setDashboardPage}) {
         setOpen((prevOpen) => !prevOpen);
     };
     const handleCloseMenu = (event) => {
-        // if (user.role === 1) setAnchorEl(null);
         if (anchorRef.current && anchorRef.current.contains(event?.target)) {
             return;
         }
@@ -51,6 +50,9 @@ export default function MenuButton({setDashboardPage}) {
                             <ClickAwayListener onClickAway={handleCloseMenu}>
                                 <MenuList autoFocusItem={open}>
                                     <MenuItem onClick={() => {
+                                        if(path !== '/') {
+                                            Router.push('/');
+                                        }
                                         setDashboardPage(3);
                                     }}>
                                         <AccountCircleIcon />

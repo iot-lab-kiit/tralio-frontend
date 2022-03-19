@@ -5,8 +5,6 @@ import LandingNavbar from "../Navbar/LandingNavbar";
 import Navbar from "../Navbar/Navbar";
 import {useRouter} from "next/router";
 import Footer from "../Footer/Footer";
-import Dashboard from "../../container/Dashboard/Dashboard";
-import HomePage from "../../container/Home/HomePage";
 
 const CustomLayout = ({ children, setDashboardPage }) => {
 
@@ -23,7 +21,7 @@ const CustomLayout = ({ children, setDashboardPage }) => {
 
     return (
         <>
-            {!isLoggedIn ? <LandingNavbar /> : path === '/' ? <DashboardNavbar setDashboardPage={setDashboardPage} /> : <Navbar />}
+            {!isLoggedIn ? <LandingNavbar  /> : path === '/' ? <DashboardNavbar setDashboardPage={setDashboardPage} /> : <Navbar setDashboardPage={setDashboardPage} />}
 
             {/*if ur components are going inside navbar then insert <Box mt={8}/> before it*/}
             <Box width={'100%'}>

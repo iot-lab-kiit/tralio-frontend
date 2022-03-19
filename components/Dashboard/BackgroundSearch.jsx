@@ -6,13 +6,13 @@ import Container from "@mui/material/Container";
 
 export default function BackgroundSearch({head, src, color}) {
 
-    const index = [
-        { title: 'group1' },
-        { title: 'group2' },
-        { title: 'group3' },
-        { title: 'group4' },
-        { title: 'group5' }
-    ];
+    // const index = [
+    //     { title: 'group1' },
+    //     { title: 'group2' },
+    //     { title: 'group3' },
+    //     { title: 'group4' },
+    //     { title: 'group5' }
+    // ];
 
 
     return (
@@ -64,7 +64,6 @@ export default function BackgroundSearch({head, src, color}) {
                             {/*        />*/}
                             {/*    )}*/}
                             {/*/>*/}
-
                             <Box color={color} fontSize={{lg: '15px', md: '15px', sm: '13x', xs: '13px'}} mt={2}>
                                 Suggested: business, mobile, office, programming, sports, gaming, marketing, more
                             </Box>

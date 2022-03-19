@@ -19,7 +19,7 @@ export default function DashboardDefault({setDashboardPage}) {
             <Container maxWidth={'lg'}>
                 {/*flexDirection={{lg: 'row', md: 'row', sm: 'row', xs: 'column'}}*/}
                 <Box mt={7} width={'100%'} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
-                    <CustomButton id={'Update Data'} image={<EditIcon Portfolio />} onClick={() => {setDashboardPage(4)}} />
+                    <CustomButton id={'Update Data'} image={<EditIcon />} onClick={() => {setDashboardPage(4)}} />
                     <CustomButton id={'Add Post'} image={<AddIcon />} onClick={() => {window.location.href = '/add-post'}} />
                     <Hidden mdDown>
                         <CustomButton id={'Check Task'} image={<TimelineIcon />} />

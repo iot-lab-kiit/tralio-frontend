@@ -3,10 +3,10 @@ import AppBar from "@mui/material/AppBar";
 import Box from '@mui/material/Box';
 import Hidden from '@mui/material/Hidden';
 import IconButton from '@mui/material/IconButton';
-import Avatar from "@mui/material/Avatar";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import MenuButton from "../MenuButton/MenuButton";
 
-const Navbar = () => {
+const Navbar = ({setDashboardPage}) => {
 
     // const [onTop, setOnTop] = useState(true);
     // const navRef = useRef();
@@ -49,7 +49,9 @@ const Navbar = () => {
                             </Box>
                         </Hidden>
                     </Box>
-                    <Avatar>K</Avatar>
+                    <Hidden mdDown>
+                        <MenuButton setDashboardPage={setDashboardPage} />
+                    </Hidden>
                 </Box>
             </AppBar>
         </>
