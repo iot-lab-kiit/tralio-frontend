@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.slick-dots li button {
+  text-indent: -999999999999999999999999999999px;
+}

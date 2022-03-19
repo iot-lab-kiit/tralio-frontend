@@ -1,12 +1,11 @@
 .box{
     font-family: 'Mulish';
     display: block;
-    margin: 10px;
-    width: 25%;
+    margin: 3.5rem 1rem;
     text-align: center;
     color: #1C1C1D;
     font-size: 1.1rem;
-    /* padding: rem 2rem; */
+    background-color: white;
 }
 .img{
     display: inline-block;
