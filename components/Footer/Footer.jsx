@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import footerData from "./footerData";
 import Hidden from "@mui/material/Hidden";
+import Divider from "@mui/material/Divider";
 
 
 const Footer = () => {
@@ -27,9 +28,12 @@ const Footer = () => {
                         <Typography sx={{fontSize: "20px", fontWeight: "500"}}>{e.title}</Typography>
                     </AccordionSummary>
                     {e.content.map((data) => (
-                        <AccordionDetails key={data.head} sx={{pl: 5}}>
-                            <Typography>{data.head}</Typography>
-                        </AccordionDetails>
+                        <>
+                            <AccordionDetails key={data.head} sx={{pl: 4, pb: 1, color: '#e2e2e2'}}>
+                                <Typography>{data.head}</Typography>
+                            </AccordionDetails>
+                            <Divider sx={{mb: 1}} />
+                        </>
                     ))}
 
                 </Accordion>
