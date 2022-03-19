@@ -5,10 +5,38 @@ import Grid from "@mui/material/Grid";
 import Link from "../Layouts/Link";
 import Logo from "/public/images/Logos/logo.svg";
 import Image from "next/image";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import footerData from "./footerData";
+import Hidden from "@mui/material/Hidden";
+
 
 const Footer = () => {
-  const generateFooter = (e) => {
+    const mobileFooter = (e) => {
+        return (
+            <Grid key={"footer " + e.title} item sm={12} md={2} xs={12}>
+                <Accordion sx={{background: 'transparent', boxShadow: '0', color: '#fff'}}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                    >
+                        <Typography sx={{fontSize: "20px", fontWeight: "500"}}>{e.title}</Typography>
+                    </AccordionSummary>
+                    {e.content.map((data) => (
+                        <AccordionDetails key={data.head} sx={{pl: 5}}>
+                            <Typography>{data.head}</Typography>
+                        </AccordionDetails>
+                    ))}
+
+                </Accordion>
+            </Grid>
+        )
+    }
+    const generateFooter = (e) => {
     return (
       <>
         <Grid key={"footer " + e.title} item sm={12} md={2} xs={12}>
@@ -81,11 +109,24 @@ const Footer = () => {
                   Trafalgar provides progressive, and affordable healthcare,
                   accessible on mobile and online for everyone
                 </Box>
-                <Box mt={3}>©Trafalgar PTY LTD 2020. All rights reserved</Box>
+                  <Hidden mdDown>
+                      <Box mt={3}>©Trafalgar PTY LTD 2020. All rights reserved</Box>
+                  </Hidden>
+                  <Hidden mdUp>
+                      <Box mt={5} />
+                  </Hidden>
               </Box>
             </Grid>
-            {footerData.map(generateFooter)}
+              <Hidden mdDown>
+                  {footerData.map(generateFooter)}
+              </Hidden>
+              <Hidden mdUp>
+                  {footerData.map(mobileFooter)}
+              </Hidden>
           </Grid>
+            <Hidden mdUp>
+                <Box mt={3} textAlign={'center'}>©Trafalgar PTY LTD 2020. All rights reserved</Box>
+            </Hidden>
         </Container>
       </Box>
     </>
