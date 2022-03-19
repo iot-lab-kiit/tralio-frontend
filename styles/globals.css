@@ -15,6 +15,9 @@ a {
   box-sizing: border-box;
 }
 
-.slick-dots li button {
-  text-indent: -999999999999999999999999999999px;
+.slick-dots li button:before {
+  display:none
+}
+.slick-prev:before, .slick-next:before{
+  display:none;
 }

@@ -1,8 +1,5 @@
 import styles from "./HomePage.module.css";
-import { test, registerUser } from "../../TralioAPI/tralio";
 import { useState } from "react";
-import registerForm from "../../TralioAPI/registerForm";
-import Testomonial from "../../components/Testimonial/Testimonial";
 import DetailSummary from "../../components/DetailSummary/DetailSummary";
 import { HomeDetailSummary } from "../../TralioAPI/DetailSummary";
 import DetailFeatures from "../../components/DetailFeatures/DetailFeatures";
@@ -82,10 +79,11 @@ function HomePage() {
       <Container maxWidth="lg">{PropsDetailSummary}</Container>
       <div className={styles.testimonial}>
         <div className={styles.testimonial_start}>
+          <Container>
           <h2>A better way to build your resume</h2>
+          </Container>
         </div>
         <Carousel />
-        {/* <Testomonial /> */}
       </div>
       <Container>
         <div className={styles.feature_start}>

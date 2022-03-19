@@ -48,10 +48,7 @@
 }
 .testimonial {
   background-color: #e9f4ff;
-  padding: 3rem;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
+  padding: 3rem 0;
 }
 
 @media screen and (max-width: 900px) {
@@ -85,4 +82,7 @@
   .profile {
     font-size: 1.4em;
   }
+  .testimonial {
+  padding: 2rem 0;
+}
 }
