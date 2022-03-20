@@ -1,14 +1,17 @@
 .feature_start {
-  padding: 5rem 0 2rem;
+  padding: 2rem 0 2rem;
   font-family: "Nunito Sans";
 }
 .testimonial_start {
   font-family: "Nunito Sans";
 }
-.feature_start h2,
-.testimonial_start h2 {
+.feature_start h2{
   font-size: 2.1rem;
   margin: 0.5rem;
+}
+.testimonial_start h2{
+    font-size: 2.1rem;
+    padding: 2rem 0.5rem;
 }
 .feature_start p {
   font-size: 1rem;
@@ -47,10 +50,7 @@
 }
 .testimonial {
   background-color: #e9f4ff;
-  padding: 3rem;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
+  padding: 1rem 1rem 3rem;
 }
 .increase_padding{
   padding: 5rem 0;
@@ -75,7 +75,10 @@
 @media (max-width: 600px) {
   .feature_start h2,
   .testimonial_start h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+  }
+  .testimonial_start h2{
+    padding: 1rem 0;
   }
   .profBox {
     padding: 1.5rem 0 5rem;
@@ -87,13 +90,10 @@
   .profile {
     font-size: 1.4em;
   }
-<<<<<<< HEAD
-  .testimonial {
-  padding: 2rem 0;
-}
-.increase_padding{
-  padding: 2rem 0;
-}
-=======
->>>>>>> parent of 917728b (HomePage Completed)
+  .increase_padding{
+    padding: 2rem 0;
+  }
+  .testimonial{
+    padding: 1rem;
+  }
 }

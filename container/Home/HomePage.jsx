@@ -88,7 +88,6 @@ function HomePage() {
           <h2>A better way to build your resume</h2>
         </div>
         <Carousel />
-        {/* <Testomonial /> */}
       </div>
       <Container className={styles.increase_padding}>
         <div className={styles.feature_start}>
