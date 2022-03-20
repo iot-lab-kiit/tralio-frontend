@@ -1,13 +1,13 @@
-import React from 'react'
-import { useState  } from 'react';
-import Image from 'next/image'
-import SideImage from '../../public/images/mainSidePic.svg'
+import React from "react";
+import { useState } from "react";
+import Image from "next/image";
+import SideImage from "../../public/images/mainSidePic.svg";
 import Login from "../../container/Login/Login";
 import SignUp from "../../container/SignUp/SignUp";
 import ForgotPassword from "../../container/ForgotPassword/ForgotPassword";
-import styles from './TopLandingScreen.module.css'
+import styles from "./TopLandingScreen.module.css";
 
-import{ Box , Container}from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import { createStyles, makeStyles } from "@mui/styles";
 
@@ -21,47 +21,49 @@ const useStyles = makeStyles(() =>
 );
 
 function TopLandingScreen() {
-   const classes = useStyles();
+  const classes = useStyles();
 
-   const [pop, setPop] = useState(false);
+  const [pop, setPop] = useState(false);
 
-   const handleClick = (event) => {
-     setPop(true);
-   };
+  const handleClick = (event) => {
+    setPop(true);
+  };
 
-   const handleClose = () => {
-     setPop(false);
-   };
+  const handleClose = () => {
+    setPop(false);
+  };
   return (
     <div className={styles.bg_color}>
-    <Container className={styles.bg}>
-      <div className={styles.leftText}>
-        <div>
-          <h1 className={styles.heading}>Lorem Ipsum Emet IoT Web</h1>
-          <p className={styles.desc}>
-            Trafalgar provides progressive, and affordable healthcare,
-            accessible on mobile and online for everyone
-          </p>
-          <button href="#" className={styles.bt} onClick={handleClick}>
-            Join Us &rarr;
-          </button>
-          <Dialog
-            open={pop}
-            onClose={handleClose}
-            BackdropProps={{
-              classes: {
-                root: classes.backDrop,
-              },
-            }}>
-            <Pop />
-          </Dialog>
+      <Container>
+        <div className={styles.bg}>
+          <div className={styles.leftText}>
+            <div>
+              <h1 className={styles.heading}>Lorem Ipsum Emet IoT Web</h1>
+              <p className={styles.desc}>
+                Trafalgar provides progressive, and affordable healthcare,
+                accessible on mobile and online for everyone
+              </p>
+              <button href="#" className={styles.bt} onClick={handleClick}>
+                Join Us &rarr;
+              </button>
+              <Dialog
+                open={pop}
+                onClose={handleClose}
+                BackdropProps={{
+                  classes: {
+                    root: classes.backDrop,
+                  },
+                }}>
+                <Pop />
+              </Dialog>
+            </div>
+          </div>
+          <div className={styles.imgSize}>
+            <Image src={SideImage} alt="Pic" width={650} height={650} />
+          </div>
         </div>
-      </div>
-      <div className={styles.imgSize}>
-        <Image src={SideImage} alt="Pic" width={650} height={650} />
-      </div>
       </Container>
-      </div>
+    </div>
   );
 }
 const Pop = () => {
@@ -95,4 +97,4 @@ const Pop = () => {
     </>
   );
 };
-export default TopLandingScreen
+export default TopLandingScreen;
