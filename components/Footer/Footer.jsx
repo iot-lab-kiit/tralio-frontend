@@ -18,7 +18,7 @@ import {
 const Footer = () => {
   const generateMobileFooter = (e) => {
     return (
-      <Grid key={"footer " + e.title} item sm={12} md={2} xs={12}>
+      <Grid key={"footer mobile" + e.title} item sm={12} md={2} xs={12}>
         <Accordion
           sx={{ background: "transparent", boxShadow: "0", color: "#fff" }}
         >
@@ -32,15 +32,14 @@ const Footer = () => {
             </Typography>
           </AccordionSummary>
           {e.content.map((data) => (
-            <>
+            <Box key={data.head}>
               <AccordionDetails
-                key={data.head}
                 sx={{ pl: 4, pb: 1, color: "#e2e2e2" }}
               >
                 <Typography>{data.head}</Typography>
               </AccordionDetails>
               <Divider sx={{ mb: 1 }} />
-            </>
+            </Box>
           ))}
         </Accordion>
       </Grid>
@@ -48,7 +47,7 @@ const Footer = () => {
   };
   const generateDesktopFooter = (e) => {
     return (
-      <Grid key={"footer " + e.title} item sm={12} md={2} xs={12}>
+      <Grid key={"footer Desktop" + e.title} item sm={12} md={2} xs={12}>
         <Box
           display={"flex"}
           flexDirection={"column"}
@@ -66,7 +65,7 @@ const Footer = () => {
           >
             {e.content.map((data) => (
               <Link
-                key={data.head}
+                key={"Footer data" + data.head}
                 underline="hover"
                 color="inherit"
                 href={data.href}
