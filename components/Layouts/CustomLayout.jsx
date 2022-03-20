@@ -6,18 +6,10 @@ import Navbar from "../Navbar/Navbar";
 import {useRouter} from "next/router";
 import Footer from "../Footer/Footer";
 
-const CustomLayout = ({ children, setDashboardPage }) => {
+const CustomLayout = ({ children, setDashboardPage, isLoggedIn }) => {
 
     const Router = useRouter();
     const path = Router.pathname;
-
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    useEffect(() => {
-        if (localStorage.getItem("access-token")) {
-            setIsLoggedIn(true);
-        }
-    }, []);
 
     return (
         <>

@@ -8,15 +8,21 @@ import globalStyles from '../styles/globals.css'
 export default function MyApp(props) {
 
     const { Component, pageProps } = props;
-    const [loading, setLoading] = useState(false);
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    useEffect(() => {
+        if (localStorage.getItem("access-token")) {
+            setIsLoggedIn(true);
+        }
+    }, []);
 
     const [dashboardPage,setDashboardPage] = useState(0);
 
     return (
         <>
             <SnackbarProvider>
-                <CustomLayout setDashboardPage={setDashboardPage}>
-                    <Component dashboardPage={dashboardPage} setDashboardPage={setDashboardPage} {...pageProps} />
+                <CustomLayout isLoggedIn={isLoggedIn} setDashboardPage={setDashboardPage}>
+                    <Component isLoggedIn={isLoggedIn} dashboardPage={dashboardPage} setDashboardPage={setDashboardPage} {...pageProps} />
                 </CustomLayout>
             </SnackbarProvider>
         </>

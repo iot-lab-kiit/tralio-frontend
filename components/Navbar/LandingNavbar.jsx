@@ -7,10 +7,8 @@ import Link from "../Layouts/Link"
 import Logo from "/public/images/Logos/logo.svg"
 import Image from "next/image";
 import Dialog from "@mui/material/Dialog";
-import Login from "../../container/Login/Login";
-import SignUp from "../../container/SignUp/SignUp";
 import {createStyles, makeStyles} from "@mui/styles";
-import ForgotPassword from "../../container/ForgotPassword/ForgotPassword";
+import Pop from "../LoginSignupPop/LoginSignupPop";
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -79,7 +77,7 @@ const LandingNavbar = () => {
                                 },
                             }}
                         >
-                            <Pop />
+                            <Pop initial={0} />
                         </Dialog>
                     </Box>
                 </Container>
@@ -87,31 +85,5 @@ const LandingNavbar = () => {
         </>
     );
 };
-
-const Pop = () => {
-
-    const [currentStage , setCurrentStage] = useState(0);
-
-    return(
-        <>
-            <Box width={'100%'} height={'100%'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                <Box zIndex={1} width={'500px'} bgcolor={'white'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} pt={6} pb={6}>
-                    {
-                        currentStage === 0 &&
-                        <Login setCurrentStage={setCurrentStage} />
-                    }
-                    {
-                        currentStage === 1 &&
-                        <SignUp setCurrentStage={setCurrentStage} />
-                    }
-                    {
-                        currentStage === -1 &&
-                        <ForgotPassword setCurrentStage={setCurrentStage} />
-                    }
-                </Box>
-            </Box>
-        </>
-    )
-}
 
 export default LandingNavbar;
