@@ -1,4 +1,3 @@
-import React from "react";
 import Slider from "react-slick";
 import { TestimonialDetail } from "../../TralioAPI/Testimonial";
 import Testimonial from "../Testimonial/Testimonial";
