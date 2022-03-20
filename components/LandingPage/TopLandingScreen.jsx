@@ -57,7 +57,7 @@ function TopLandingScreen() {
         </div>
       </div>
       <div className={styles.imgSize}>
-        <Image src={SideImage} alt="Pic" width={650} height={650} layout="intrinsic"/>
+        <Image src={SideImage} alt="Pic" width={650} height={650} />
       </div>
     </div>
     // <div className={styles.bg}>
