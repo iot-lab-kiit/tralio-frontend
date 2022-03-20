@@ -1,7 +1,8 @@
-
+.bg_color{
+    background-color: #e9f4ff;
+}
 .bg {
   margin: 0 auto;
-  background-color: #e9f4ff;
   padding: 0.8rem;
   display: flex;
   align-items: center;

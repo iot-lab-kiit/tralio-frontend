@@ -7,7 +7,7 @@ import SignUp from "../../container/SignUp/SignUp";
 import ForgotPassword from "../../container/ForgotPassword/ForgotPassword";
 import styles from './TopLandingScreen.module.css'
 
-import Box from "@mui/material/Box";
+import{ Box , Container}from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import { createStyles, makeStyles } from "@mui/styles";
 
@@ -33,7 +33,8 @@ function TopLandingScreen() {
      setPop(false);
    };
   return (
-    <div className={styles.bg}>
+    <div className={styles.bg_color}>
+    <Container className={styles.bg}>
       <div className={styles.leftText}>
         <div>
           <h1 className={styles.heading}>Lorem Ipsum Emet IoT Web</h1>
@@ -59,28 +60,8 @@ function TopLandingScreen() {
       <div className={styles.imgSize}>
         <Image src={SideImage} alt="Pic" width={650} height={650} />
       </div>
-    </div>
-    // <div className={styles.bg}>
-    //     <div className={styles.container}>
-    //         <div className={styles.box1}>
-    //             <div className={styles.heading}>
-    //                 Lorem Ipsum Emet IoT Web
-    //             </div>
-    //             <div className={styles.descMain}>
-    //                 <p className={styles.desc}>
-    //                     Trafalgar provides progressive, and affordable
-    //                     healthcare, accessible on mobile and online
-    //                     for everyone
-    //                 </p>
-    //             </div>
-    //             <button href="#" className={styles.bt}>Join Us &rarr;</button>
-    //         </div>
-
-    // <div className={styles.box2}>
-    //     <Image src={SideImage} alt="Pic" className={styles.imgSize} />
-    // </div>
-    //     </div>
-    // </div>
+      </Container>
+      </div>
   );
 }
 const Pop = () => {
