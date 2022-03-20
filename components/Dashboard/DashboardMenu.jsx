@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -13,8 +13,8 @@ export default function DashboardMenu({setCurrentStage}) {
     const Router = useRouter();
     const [value, setValue] = useState('Filter');
 
-    const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef(null);
+    const [open, setOpen] = useState(false);
+    const anchorRef = useRef(null);
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
