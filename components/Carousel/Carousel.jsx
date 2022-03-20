@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { TestimonialDetail } from "../../TralioAPI/Testimonial";
 import Testimonial from "../Testimonial/Testimonial";
 import Container from "@mui/material/Container";
+
 function Carousel() {
   const settings = {
     dots: true,
