@@ -1,13 +1,9 @@
-import React from "react";
 import { useState } from "react";
 import Image from "next/image";
 import SideImage from "../../public/images/mainSidePic.svg";
-import Login from "../../container/Login/Login";
-import SignUp from "../../container/SignUp/SignUp";
-import ForgotPassword from "../../container/ForgotPassword/ForgotPassword";
 import styles from "./TopLandingScreen.module.css";
-
-import { Box, Container } from "@mui/material";
+import Pop from "../LoginSignupPop/LoginSignupPop";
+import { Container } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import { createStyles, makeStyles } from "@mui/styles";
 
@@ -25,7 +21,7 @@ function TopLandingScreen() {
 
   const [pop, setPop] = useState(false);
 
-  const handleClick = (event) => {
+  const handleClick = () => {
     setPop(true);
   };
 
@@ -34,7 +30,7 @@ function TopLandingScreen() {
   };
   return (
     <div className={styles.bg_color}>
-      <Container>
+      <Container maxWidth={"lg"}>
         <div className={styles.bg}>
           <div className={styles.leftText}>
             <div>
@@ -54,7 +50,7 @@ function TopLandingScreen() {
                     root: classes.backDrop,
                   },
                 }}>
-                <Pop />
+                <Pop initial={1}/>
               </Dialog>
             </div>
           </div>
@@ -66,35 +62,5 @@ function TopLandingScreen() {
     </div>
   );
 }
-const Pop = () => {
-  const [currentStage, setCurrentStage] = useState(1);
 
-  return (
-    <>
-      <Box
-        width={"100%"}
-        height={"100%"}
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}>
-        <Box
-          zIndex={1}
-          width={"500px"}
-          bgcolor={"white"}
-          display={"flex"}
-          flexDirection={"column"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          pt={6}
-          pb={6}>
-          {currentStage === 0 && <Login setCurrentStage={setCurrentStage} />}
-          {currentStage === 1 && <SignUp setCurrentStage={setCurrentStage} />}
-          {currentStage === -1 && (
-            <ForgotPassword setCurrentStage={setCurrentStage} />
-          )}
-        </Box>
-      </Box>
-    </>
-  );
-};
 export default TopLandingScreen;
