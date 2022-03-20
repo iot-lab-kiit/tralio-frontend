@@ -1,4 +1,4 @@
-export const HomeDetailSummary = [
+const homeDetailSummary = [
   {
     id: 0,
     images: "/images/DetailSummary/res1.svg",
@@ -21,3 +21,5 @@ export const HomeDetailSummary = [
       "Your first resume is entirely for free and it will be free of watermarks. There are no premium-only options and you can download your resume for free, as many times you like.",
   },
 ];
+
+export default homeDetailSummary;

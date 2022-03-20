@@ -1,23 +1,23 @@
-import styles from "./HomePage.module.css";
-import { test, registerUser } from "../../TralioAPI/tralio";
-import { useState } from "react";
 import Head from "next/head";
-import DetailSummary from "../../components/DetailSummary/DetailSummary";
-import { HomeDetailSummary } from "../../TralioAPI/DetailSummary";
+import { useState } from "react";
+import styles from "./HomePage.module.css";
+
+// Components
+import Pop from "../../components/LoginSignupPop/LoginSignupPop";
 import DetailFeatures from "../../components/DetailFeatures/DetailFeatures";
+import DetailSummary from "../../components/DetailSummary/DetailSummary";
 import TopLandingScreen from "../../components/LandingPage/TopLandingScreen";
-import Login from "../../container/Login/Login";
-import SignUp from "../../container/SignUp/SignUp";
-import ForgotPassword from "../../container/ForgotPassword/ForgotPassword";
-import { HomeDetailFeature } from "../../TralioAPI/DetailFeature";
+
+// Data Utilities
+import homeDetailSummary from "../../TralioAPI/DetailSummary";
+import homeDetailFeature from "../../TralioAPI/homeDetailFeature";
+
 import Carousel from "../../components/Carousel/Carousel";
 
 //Material UI
-import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import { createStyles, makeStyles } from "@mui/styles";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -41,38 +41,41 @@ function HomePage() {
     setPop(false);
   };
 
-  const PropsDetailSummary = HomeDetailSummary.map(
-    ({ id, images, heading, description }) => {
-      return (
-        <div key={id+1029029}>
-          <DetailSummary
-            id={id}
-            images={images}
-            heading={heading}
-            description={description}
-          />
-        </div>
-      );
-    }
-  );
+  const generateHomeDetailSummary = ({ id, images, heading, description }) => {
+    return (
+      <div key={"Home Summary " + id}>
+        <DetailSummary
+          id={id}
+          images={images}
+          heading={heading}
+          description={description}
+        />
+      </div>
+    );
+  };
 
-  const PropsDetailFeature = HomeDetailFeature.map(
-    ({ id, left_icon,  left_heading, left_description, right_icon, right_heading, right_description,}) => {
-      return (
-        <div key={id+90990}>
-          <DetailFeatures
-            leftImages={left_icon}
-            leftHeading={left_heading}
-            leftDescription={left_description}
-            rightImages={right_icon}
-            rightHeading={right_heading}
-            rightDescription={right_description}
-          />
-        </div>
-      );
-    }
-  );
-
+  const generateHomeDetailFeature = ({
+    id,
+    left_icon,
+    left_heading,
+    left_description,
+    right_icon,
+    right_heading,
+    right_description,
+  }) => {
+    return (
+      <div key={"Home Feature" + id}>
+        <DetailFeatures
+          leftImages={left_icon}
+          leftHeading={left_heading}
+          leftDescription={left_description}
+          rightImages={right_icon}
+          rightHeading={right_heading}
+          rightDescription={right_description}
+        />
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -81,7 +84,7 @@ function HomePage() {
       </Head>
       <TopLandingScreen />
       <Container maxWidth="lg" className={styles.increase_padding}>
-        {PropsDetailSummary}
+        {homeDetailSummary.map(generateHomeDetailSummary)}
       </Container>
       <div className={styles.testimonial}>
         <div className={styles.testimonial_start}>
@@ -96,7 +99,7 @@ function HomePage() {
             More flexible than templates, easier than using a word processor
           </p>
         </div>
-        {PropsDetailFeature}
+        {homeDetailFeature.map(generateHomeDetailFeature)}
         <div className={styles.profBox}>
           <p className={styles.profile}>Flourish your profile online</p>
           <button href="#" className={styles.bt} onClick={handleClick}>
@@ -109,45 +112,14 @@ function HomePage() {
               classes: {
                 root: classes.backDrop,
               },
-            }}>
-            <Pop />
+            }}
+          >
+            <Pop initial={1} />
           </Dialog>
         </div>
       </Container>
     </div>
   );
 }
-
-const Pop = () => {
-  const [currentStage, setCurrentStage] = useState(1);
-
-  return (
-    <>
-      <Box
-        width={"100%"}
-        height={"100%"}
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}>
-        <Box
-          zIndex={1}
-          width={"500px"}
-          bgcolor={"white"}
-          display={"flex"}
-          flexDirection={"column"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          pt={6}
-          pb={6}>
-          {currentStage === 0 && <Login setCurrentStage={setCurrentStage} />}
-          {currentStage === 1 && <SignUp setCurrentStage={setCurrentStage} />}
-          {currentStage === -1 && (
-            <ForgotPassword setCurrentStage={setCurrentStage} />
-          )}
-        </Box>
-      </Box>
-    </>
-  );
-};
 
 export default HomePage;
