@@ -1,6 +1,7 @@
 import styles from "./HomePage.module.css";
+import { test, registerUser } from "../../TralioAPI/tralio";
 import { useState } from "react";
-import Head from 'next/head'
+import Head from "next/head";
 import DetailSummary from "../../components/DetailSummary/DetailSummary";
 import { HomeDetailSummary } from "../../TralioAPI/DetailSummary";
 import DetailFeatures from "../../components/DetailFeatures/DetailFeatures";
@@ -84,11 +85,10 @@ function HomePage() {
       </Container>
       <div className={styles.testimonial}>
         <div className={styles.testimonial_start}>
-          <Container>
-            <h2>A better way to build your resume</h2>
-          </Container>
+          <h2>A better way to build your resume</h2>
         </div>
         <Carousel />
+        {/* <Testomonial /> */}
       </div>
       <Container className={styles.increase_padding}>
         <div className={styles.feature_start}>

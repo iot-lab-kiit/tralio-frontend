@@ -47,7 +47,10 @@
 }
 .testimonial {
   background-color: #e9f4ff;
-  padding: 3rem 0;
+  padding: 3rem;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
 }
 .increase_padding{
   padding: 5rem 0;
@@ -84,10 +87,13 @@
   .profile {
     font-size: 1.4em;
   }
+<<<<<<< HEAD
   .testimonial {
   padding: 2rem 0;
 }
 .increase_padding{
   padding: 2rem 0;
 }
+=======
+>>>>>>> parent of 917728b (HomePage Completed)
 }

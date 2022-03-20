@@ -28,25 +28,79 @@
     margin: 0.5rem;
     color: #0A66C2;
 }
-@media screen and (max-width: 600px)
-{
-    .box{
-         margin: 3.5rem 0.3rem;
-    }
-    .img{
-        width:40%;
-    }
-    .content{
-        padding:0.5rem;
 
+
+
+
+
+
+
+
+
+
+
+
+/*.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #E9F4FF;
 }
-.content h5{
-    font-size: 1rem;
+
+.box{
+    width: 23rem;
+    /* min-height: 18rem;  */
+    /* background-color: #977272; */
+    /* display: flex; */
+    /* align-items: center; */
+    /* flex-direction: column; */
+    /* margin: 4rem; */
+/* } */
+
+/* .head{ */
+    /* height: 6rem; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* position: relative; */
+    /* position: absolute; */
+    /* bottom: 1rem; */
+/* } */
+
+/* .img{ */
+    /* border: 0.5rem solid #E9F4FF; */
+    /* position: absolute; */
+    /* width: 9rem; */
+    /* height: 9rem; */
+    /* border-radius: 50%; */
+    /* bottom: -4rem; */
+/* } */
+/* 
+.main{
+    padding: 1rem 1.5rem;
+    text-align: center;
+    background-color: #a0c4e9;
+    margin: 2rem;
+
+} */
+/* 
+.text1{
+    font-family: 'Mulish';
+    color: #1C1C1D;
+    font-weight: 300;
+    line-height: 1.4rem;
 }
-.content h4{
-    font-size: 0.6rem;
+
+.text2{
+    font-family: 'Mulish';
+    color: #153666;
+    font-weight: 400;
+    line-height: 3rem 0 0 0;
 }
-.content p{
-    font-size: 0.7rem;
-}
-}
+
+.text3{
+    font-family: 'Mulish';
+    color: #c2440a;
+    /* line-height: 0.1rem; */
+    /* font-weight: 300; */
+/* } */
