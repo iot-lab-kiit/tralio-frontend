@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import Box from "@mui/material/Box";
 import {Autocomplete, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";

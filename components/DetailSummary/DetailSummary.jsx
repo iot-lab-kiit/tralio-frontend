@@ -1,4 +1,4 @@
-import React from "react";
+
 import style from "./DetailSummary.module.css";
 import Grid from "@mui/material/Grid";
 

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Box from '@mui/material/Box';
 import Link from "../../components/Layouts/Link";
 import Image from "next/image";

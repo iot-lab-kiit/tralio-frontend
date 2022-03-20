@@ -4,7 +4,7 @@ import BackgroundSearch from "../../components/Dashboard/BackgroundSearch";
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import TimelineIcon from '@mui/icons-material/Timeline';
-import React, {useState} from "react";
+import {useState} from "react";
 import CustomButton from "../../components/Dashboard/CustomButton";
 import Hidden from "@mui/material/Hidden";
 import DashboardMenu from "../../components/Dashboard/DashboardMenu";
