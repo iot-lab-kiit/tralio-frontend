@@ -11,10 +11,12 @@ import {FormControl, InputLabel, MenuItem, OutlinedInput, Select} from "@mui/mat
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import {useRouter} from "next/router";
 
 export default function SignUp({ setCurrentStage }) {
 
     const [user, setUser] = useState({});
+    const Router = useRouter();
     const { enqueueSnackbar } = useSnackbar();
 
     const isUserPayloadValid = (userPayload) => {
@@ -59,9 +61,11 @@ export default function SignUp({ setCurrentStage }) {
             // Checking if the response is an error
             if (response.status >= 200 && response.status < 300) {
                 const newUser = await response.json();
+                localStorage.setItem("access-token", newUser.token)
                 enqueueSnackbar('User Successfully Registered', {
                     variant: 'success',
                 });
+                Router.reload();
                 // Further actions you want to perform after successful registration
             } else {
                 const resError = await response.json();
