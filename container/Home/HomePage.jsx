@@ -1,110 +1,142 @@
-import styles from "./HomePage.module.css";
-import { test, registerUser } from "../../TralioAPI/tralio";
+import Head from "next/head";
 import { useState } from "react";
-import registerForm from "../../TralioAPI/registerForm";
-import Testomonial from "../../components/Testimonial/Testimonial";
+import styles from "./HomePage.module.css";
+
+// Components
+import Pop from "../../components/LoginSignupPop/LoginSignupPop";
+import DetailFeatures from "../../components/DetailFeatures/DetailFeatures";
+import DetailSummary from "../../components/DetailSummary/DetailSummary";
+import TopLandingScreen from "../../components/LandingPage/TopLandingScreen";
+
+// Data Utilities
+import homeDetailSummary from "../../TralioAPI/DetailSummary";
+import homeDetailFeature from "../../TralioAPI/homeDetailFeature";
+
+import Carousel from "../../components/Carousel/Carousel";
 
 //Material UI
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+import { Container } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import { createStyles, makeStyles } from "@mui/styles";
+import Button from "@mui/material/Button";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+const useStyles = makeStyles(() =>
+  createStyles({
+    backDrop: {
+      backdropFilter: "blur(3px)",
+      backgroundColor: "rgba(0,0,30,0.4)",
+    },
+  })
+);
 
 function HomePage() {
-  const [user, setUser] = useState({});
-  const [registrationModal, setRegistrationModal] = useState(false);
-  const [modalHeading, setModalHeading] = useState("");
-  const [modalMessage, setModalMessage] = useState("");
+  const classes = useStyles();
 
-  const handleSomeAPIOperation = async () => {
-    const response = await test();
-    console.log(response);
-    return response;
+  const [pop, setPop] = useState(false);
+
+  const handleClick = (event) => {
+    setPop(true);
   };
 
-  const handleUserInfo = (e) => {
-    const { name, value } = e.target;
-    setUser({
-      ...user,
-      [name]: value,
-    });
+  const handleClose = () => {
+    setPop(false);
   };
 
-  const handleRegistrationModal = () => {
-    setRegistrationModal(false);
-  };
-
-  const generateSignUpForm = (input) => {
+  const generateHomeDetailSummary = ({ id, images, heading, description }) => {
     return (
-      <div className={styles.form} key={input.name}>
-        <input
-          type={input.type}
-          name={input.name}
-          placeholder={input.placeholder}
-          value={input.value}
-          onChange={handleUserInfo}
+      <Container maxWidth={'lg'} key={"Home Summary " + id}>
+        <DetailSummary
+          id={id}
+          images={images}
+          heading={heading}
+          description={description}
+        />
+      </Container>
+    );
+  };
+
+  const generateHomeDetailFeature = ({
+    id,
+    left_icon,
+    left_heading,
+    left_description,
+    right_icon,
+    right_heading,
+    right_description,
+  }) => {
+    return (
+      <div key={"Home Feature" + id}>
+        <DetailFeatures
+          leftImages={left_icon}
+          leftHeading={left_heading}
+          leftDescription={left_description}
+          rightImages={right_icon}
+          rightHeading={right_heading}
+          rightDescription={right_description}
         />
       </div>
     );
   };
 
-  const handleRegistration = async () => {
-    const response = await registerUser(user);
-
-    // Checking if the response is an error
-    if (response.status >= 200 && response.status < 300) {
-      const newUser = await response.json();
-      
-      setRegistrationModal(true);
-      setModalHeading(response.statusText);
-      setModalMessage("User Successfully Registered");
-      // Further actions you want to perform after successful registration
-    } else {
-      const resError = await response.json();
-      setRegistrationModal(true);
-      setModalHeading(response.statusText);
-      setModalMessage(resError.error.message);
-    }
-  };
-
-
   return (
     <div>
-      <h1>Home Page</h1>
-
-      {registerForm.map(generateSignUpForm)}
-    
-
-      <button onClick={handleRegistration}>Register</button>
-
-      <button onClick={handleSomeAPIOperation}>Test API</button>
-      <Testomonial />
-      <Modal
-        open={registrationModal}
-        onClose={handleRegistrationModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {modalHeading}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {modalMessage}
-          </Typography>
-        </Box>
-      </Modal>
+      <Head>
+        <title>Tralio</title>
+        <link
+        rel="stylesheet"
+        type="text/css"
+        charSet="utf-8"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+      />
+      </Head>
+      <TopLandingScreen />
+      <Container maxWidth="lg" className={styles.increase_padding}>
+        {homeDetailSummary.map(generateHomeDetailSummary)}
+      </Container>
+      <div className={styles.testimonial}>
+        <div className={styles.testimonial_start}>
+          <h2>A better way to build your resume</h2>
+        </div>
+        <Carousel />
+      </div>
+      <Container className={styles.increase_padding}>
+        <div className={styles.feature_start}>
+          <h2>A better way to build your resume</h2>
+          <p>
+            More flexible than templates, easier than using a word processor
+          </p>
+        </div>
+        {homeDetailFeature.map(generateHomeDetailFeature)}
+        <div className={styles.profBox}>
+          <p className={styles.profile}>Flourish your profile online</p>
+            <Button
+                variant={'contained'}
+                onClick={handleClick}
+                sx={{
+                    padding: {lg: '10px 44px', md: '10px 44px', sm: '5px 34px', sx: '5px 27px'},
+                    background: '#1981FF',
+                }}
+            >
+                Build Now
+            </Button>
+          <Dialog
+            open={pop}
+            onClose={handleClose}
+            BackdropProps={{
+              classes: {
+                root: classes.backDrop,
+              },
+            }}
+          >
+            <Pop initial={1} />
+          </Dialog>
+        </div>
+      </Container>
     </div>
   );
 }

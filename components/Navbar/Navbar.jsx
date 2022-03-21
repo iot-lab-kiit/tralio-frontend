@@ -1,33 +1,32 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AppBar from "@mui/material/AppBar";
 import Box from '@mui/material/Box';
 import Hidden from '@mui/material/Hidden';
 import IconButton from '@mui/material/IconButton';
-import Avatar from "@mui/material/Avatar";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import MenuButton from "../MenuButton/MenuButton";
 
-const Navbar = () => {
+const Navbar = ({setDashboardPage}) => {
 
-    const [onTop, setOnTop] = useState(true);
-    const navRef = useRef();
-
-    useEffect(() => {
-        const position = navRef.current.offsetTop;
-        window.onscroll = function () {
-            if (window.pageYOffset > position) {
-                setOnTop(false);
-            } else {
-                setOnTop(true);
-            }
-        };
-    });
+    // const [onTop, setOnTop] = useState(true);
+    // const navRef = useRef();
+    //
+    // useEffect(() => {
+    //     const position = navRef.current.offsetTop;
+    //     window.onscroll = function () {
+    //         if (window.pageYOffset > position) {
+    //             setOnTop(false);
+    //         } else {
+    //             setOnTop(true);
+    //         }
+    //     };
+    // });
 
     return (
         <>
             <AppBar
                 color={'transparent'}
-                ref={navRef}
-                elevation={!onTop ? 4 : 0}
+                elevation={1}
                 position="fixed"
             >
                 <Box
@@ -35,12 +34,14 @@ const Navbar = () => {
                     justifyContent={'space-between'}
                     alignItems={'center'}
                     p={1}
-                    bgcolor={!onTop ? '#317CEB' : ''}
-                    color={!onTop ? '#FFF' : '#317CEB'}
+                    bgcolor={'#317CEB'}
+                    color={'#FFF'}
                 >
-                    <Box display={'flex'} alignItems={'center'} sx={{cursor: 'pointer'}}>
+                    <Box display={'flex'} alignItems={'center'} sx={{cursor: 'pointer'}} onClick={() => {
+                        window.location.href = '/';
+                    }}>
                         <IconButton>
-                            <ArrowBackIcon sx={{color: !onTop ? '#FFF' : '#317CEB'}} />
+                            <ArrowBackIcon sx={{color: '#FFF'}} />
                         </IconButton>
                         <Hidden mdDown>
                             <Box ml={1} fontSize={'20px'} fontWeight={600}>
@@ -48,7 +49,9 @@ const Navbar = () => {
                             </Box>
                         </Hidden>
                     </Box>
-                    <Avatar>K</Avatar>
+                    <Hidden mdDown>
+                        <MenuButton setDashboardPage={setDashboardPage} />
+                    </Hidden>
                 </Box>
             </AppBar>
         </>

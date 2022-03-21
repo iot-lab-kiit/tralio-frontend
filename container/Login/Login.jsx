@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Box from '@mui/material/Box';
 import Link from "../../components/Layouts/Link";
 import Image from "next/image";
@@ -12,15 +12,26 @@ import Apple from "../../public/images/Logos/appleLogo.svg";
 import Linkedin from "../../public/images/Logos/linkedInLogo.svg";
 import Github from "../../public/images/Logos/githubLogo.svg";
 import Hidden from "@mui/material/Hidden";
+import LoginIcons from '../../components/LoginIcons/LoginIcons';
+import {useSnackbar} from "notistack";
+import {useRouter} from "next/router";
 
 
 export default function Login ({ setCurrentStage }) {
 
+    const Router = useRouter();
+    const { enqueueSnackbar } = useSnackbar();
+
+    const handleLogin = () => {
+        localStorage.setItem("access-token", "test-access-token")
+        enqueueSnackbar('Login successful', {
+            variant: 'success',
+        });
+        Router.reload();
+    }
+
     return (
         <>
-            {/*<Box component={Link} noLinkStyle href="/" width={'120px'} height={'41px'} mb={2}>*/}
-            {/*    <Image src={Logo} alt={'logo'} />*/}
-            {/*</Box>*/}
             <Box fontSize={'15px'}>
                 Welcome Back
             </Box>
@@ -35,38 +46,29 @@ export default function Login ({ setCurrentStage }) {
                 <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} flexDirection={{lg: 'row', md: 'row', sm: 'row', xs: 'column'}} width={'100%'} mb={1}>
                     <FormControlLabel control={<Checkbox />} label="Remember me" />
                     <Hidden smDown>
-                        <Link underline="hover" color="inherit" href={'/'} sx={{}}>
-                            {'Forgot password?'}
-                        </Link>
+                        <Box color="#458FF6" sx={{cursor: 'pointer'}} onClick={() => {
+                            setCurrentStage(-1);
+                        }}>
+                            {'Forgot Password?'}
+                        </Box>
                     </Hidden>
                 </Box>
-                <Button variant={'contained'} sx={{width: '100%'}}>
+                <Button variant={'contained'} sx={{width: '100%'}} onClick={handleLogin}>
                     Login
                 </Button>
                 <Hidden smUp>
                     <Box mt={1} />
-                    <Link underline="hover" color="#458FF6" href={'/'}>
-                        {'Forgot password?'}
-                    </Link>
+                    <Box color="#458FF6" sx={{cursor: 'pointer'}} onClick={() => {
+                        setCurrentStage(-1);
+                    }}>
+                        {'Forgot Password?'}
+                    </Box>
                 </Hidden>
                 <Box mt={2}/>
                 <Divider orientation="horizontal" flexItem>
                     OR
                 </Divider>
-                <Box display={'flex'} justifyContent={'space-around'} alignItems={'center'} width={'100%'} mt={2} pl={4} pr={4}>
-                    <Box component={Link} noLinkStyle href="/" width={'25px'} height={'25px'}>
-                        <Image src={Google} alt={'logo'} />
-                    </Box>
-                    <Box component={Link} noLinkStyle href="/" width={'25px'} height={'25px'} mt={-1}>
-                        <Image src={Apple} alt={'logo'} />
-                    </Box>
-                    <Box component={Link} noLinkStyle href="/" width={'25px'} height={'25px'}>
-                        <Image src={Linkedin} alt={'logo'} />
-                    </Box>
-                    <Box component={Link} noLinkStyle href="/" width={'25px'} height={'25px'}>
-                        <Image src={Github} alt={'logo'} />
-                    </Box>
-                </Box>
+                <LoginIcons />
             </Box>
             <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2}>
                 <Box>

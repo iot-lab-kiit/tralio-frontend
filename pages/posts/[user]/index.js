@@ -1,4 +1,4 @@
-import React from "react";
+
 import getConfig from "next/config";
 const { publicRuntimeConfig } = getConfig();
 const { API_URL, apiVersion } = publicRuntimeConfig;
