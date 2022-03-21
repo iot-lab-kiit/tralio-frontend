@@ -32,31 +32,19 @@ function Carousel() {
   const propsTestimonial = TestimonialDetail.map(
     ({ avtar, description, name, designation }, index) => {
       return (
-        <div key={index + 1092973}>
-          <Testimonial
-            avtar={avtar}
-            description={description}
-            name={name}
-            designation={designation}
-          />
-        </div>
+        <Testimonial
+          key={"Carousel " + index}
+          avtar={avtar}
+          description={description}
+          name={name}
+          designation={designation}
+        />
       );
     }
   );
 
   return (
     <Container>
-      <link
-        rel="stylesheet"
-        type="text/css"
-        charset="UTF-8"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
-      />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
-      />
       <Slider {...settings}>{propsTestimonial}</Slider>
     </Container>
   );
