@@ -85,7 +85,7 @@ function HomePage() {
         <link
         rel="stylesheet"
         type="text/css"
-        charset="UTF-8"
+        charSet="utf-8"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
       />
       <link
