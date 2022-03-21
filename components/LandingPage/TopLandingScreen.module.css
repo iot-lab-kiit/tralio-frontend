@@ -9,7 +9,6 @@
   font-family: "Mulish";
 }
 .imgSize {
-  padding: 0 1rem 0 10rem;
   width: 50%;
 }
 .bt {
@@ -41,7 +40,6 @@
 }
 @media screen and (max-width: 1200px) {
   .imgSize {
-    padding: 0;
     width: 49%;
   }
 }
