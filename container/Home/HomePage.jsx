@@ -18,6 +18,7 @@ import Carousel from "../../components/Carousel/Carousel";
 import { Container } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import { createStyles, makeStyles } from "@mui/styles";
+import Button from "@mui/material/Button";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -43,14 +44,14 @@ function HomePage() {
 
   const generateHomeDetailSummary = ({ id, images, heading, description }) => {
     return (
-      <div key={"Home Summary " + id}>
+      <Container maxWidth={'lg'} key={"Home Summary " + id}>
         <DetailSummary
           id={id}
           images={images}
           heading={heading}
           description={description}
         />
-      </div>
+      </Container>
     );
   };
 
@@ -102,9 +103,16 @@ function HomePage() {
         {homeDetailFeature.map(generateHomeDetailFeature)}
         <div className={styles.profBox}>
           <p className={styles.profile}>Flourish your profile online</p>
-          <button href="#" className={styles.bt} onClick={handleClick}>
-            Join Now
-          </button>
+            <Button
+                variant={'contained'}
+                onClick={handleClick}
+                sx={{
+                    padding: {lg: '10px 44px', md: '10px 44px', sm: '5px 34px', sx: '5px 27px'},
+                    background: '#1981FF',
+                }}
+            >
+                Build Now
+            </Button>
           <Dialog
             open={pop}
             onClose={handleClose}

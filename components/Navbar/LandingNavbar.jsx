@@ -53,34 +53,32 @@ const LandingNavbar = () => {
                 elevation={0}
                 position="absolute"
             >
-                <Container maxWidth={'lg'}>
-                    <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} pt={1} pb={1}>
-                        <Box component={Link} noLinkStyle href="/" width={'120px'} height={'41px'}>
-                            <Image src={Logo} alt={'logo'} />
-                        </Box>
-                        <Button
-                            variant={'contained'}
-                            onClick={handleClick}
-                            sx={{
-                                padding: {lg: '5px 44px', md: '5px 44px', sm: '5px 34px', sx: '5px 27px'},
-                                background: '#1981FF',
-                            }}
-                        >
-                            Login
-                        </Button>
-                        <Dialog
-                            open={pop}
-                            onClose={handleClose}
-                            BackdropProps={{
-                                classes: {
-                                    root: classes.backDrop,
-                                },
-                            }}
-                        >
-                            <Pop initial={0} />
-                        </Dialog>
+                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} p={1}>
+                    <Box component={Link} noLinkStyle href="/" width={'120px'} height={'41px'}>
+                        <Image src={Logo} alt={'logo'} />
                     </Box>
-                </Container>
+                    <Button
+                        variant={'contained'}
+                        onClick={handleClick}
+                        sx={{
+                            padding: {lg: '5px 44px', md: '5px 44px', sm: '5px 34px', sx: '5px 27px'},
+                            background: '#1981FF',
+                        }}
+                    >
+                        Login
+                    </Button>
+                    <Dialog
+                        open={pop}
+                        onClose={handleClose}
+                        BackdropProps={{
+                            classes: {
+                                root: classes.backDrop,
+                            },
+                        }}
+                    >
+                        <Pop initial={0} />
+                    </Dialog>
+                </Box>
             </AppBar>
         </>
     );

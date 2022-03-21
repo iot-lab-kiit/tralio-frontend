@@ -6,6 +6,7 @@ import Pop from "../LoginSignupPop/LoginSignupPop";
 import { Container } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import { createStyles, makeStyles } from "@mui/styles";
+import Button from "@mui/material/Button";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -39,9 +40,16 @@ function TopLandingScreen() {
                 Trafalgar provides progressive, and affordable healthcare,
                 accessible on mobile and online for everyone
               </p>
-              <button href="#" className={styles.bt} onClick={handleClick}>
+              <Button
+                  variant={'contained'}
+                  onClick={handleClick}
+                  sx={{
+                    padding: {lg: '5px 37px', md: '5px 37px', sm: '5px 30px', sx: '5px 27px'},
+                    background: '#1981FF',
+                  }}
+              >
                 Join Us &rarr;
-              </button>
+              </Button>
               <Dialog
                 open={pop}
                 onClose={handleClose}
