@@ -20,7 +20,9 @@ import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import { useRouter } from "next/router";
 
 export default function SignUp({ setCurrentStage }) {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+      "userGender": "",
+  });
   const Router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -136,15 +138,16 @@ export default function SignUp({ setCurrentStage }) {
             <Select
               name="userGender"
               input={<OutlinedInput label="Gender" />}
+              value={user.userGender}
               onChange={handleGenderChange}
             >
-              <MenuItem key="male" value="male">
+              <MenuItem key="male" value="Male">
                 Male
               </MenuItem>
-              <MenuItem key="female" value="female">
+              <MenuItem key="female" value="Female">
                 Female
               </MenuItem>
-              <MenuItem key="other" value="other">
+              <MenuItem key="other" value="Other">
                 Other
               </MenuItem>
             </Select>
