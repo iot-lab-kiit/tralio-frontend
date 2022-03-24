@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import LoginIcons from "../../components/LoginIcons/LoginIcons";
 import registerForm from "../../TralioAPI/registerForm";
-import { registerUser, test } from "../../TralioAPI/tralio";
+
 import { useSnackbar } from "notistack";
 import {
   FormControl,

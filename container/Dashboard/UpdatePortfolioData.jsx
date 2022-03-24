@@ -117,9 +117,9 @@ export default function UpdatePortfolioData() {
       console.log(portfolioData);
   };
   
-  const generateSignUpForm = (input) => {
+  const generateFields = (input) => {
     return (
-      <Box key={"Signup " + input.name} width={"100%"}>
+      <Box key={{btn} + input.name} width={"100%"}>
         <TextField
           fullWidth
           name={input.name}
@@ -135,7 +135,7 @@ export default function UpdatePortfolioData() {
 
   const generatePortfolioButtons = (buttonName) => {
     return (
-      <Box sx={{ py: 1, textAlign: "center" }}>
+      <Box key={ "button" + {buttonName} }sx={{ py: 1, textAlign: "center" }}>
         <Button
           variant="contained"
           sx={{
@@ -194,14 +194,14 @@ export default function UpdatePortfolioData() {
           }}>
           <h1>{btn}</h1>
           {btn == "Education"
-            ? portfolioFields.Education.map(generateSignUpForm)
+            ? portfolioFields.Education.map(generateFields)
             : btn == "Skills"
-            ? portfolioFields.Skills.map(generateSignUpForm)
+            ? portfolioFields.Skills.map(generateFields)
             : btn == "Projects"
-            ? portfolioFields.Projects.map(generateSignUpForm)
+            ? portfolioFields.Projects.map(generateFields)
             : btn == "Experience"
-            ? portfolioFields.Experience.map(generateSignUpForm)
-            : portfolioFields.Profile.map(generateSignUpForm)}
+            ? portfolioFields.Experience.map(generateFields)
+            : portfolioFields.Profile.map(generateFields)}
         </Grid>
         <Grid xs={5} sm={2} sx={{ textAlign: "center" }}>
           <Box mt="80vh">
