@@ -8,7 +8,7 @@ export default function AddPost() {
   const editorRef = useRef(null);
   const [initial, setInitial] = useState("Write Something");
    const log = () => {
-       console.log(editorRef.current.getContent())
+       console.log(editorRef.current.getContent().innerHTML(editorRef.current))
      }
   return (
     <>
@@ -20,8 +20,8 @@ export default function AddPost() {
           value={initial}
           onEditorChange={(content) => setInitial(content)}
           init={{
-            selector: "textarea",
-            height: 500,
+            selector: "#textarea",
+            height: 300,
             image_dimensions: true,
             plugins: [
               "advlist autolink lists link image charmap print preview anchor",
