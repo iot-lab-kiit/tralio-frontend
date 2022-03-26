@@ -21,7 +21,7 @@ export default function Otp ({setCurrentStage}) {
     }, [time]);
 
     const handleOtp = () => {
-        if(OTP === '0000'){
+        if(OTP === '000000'){
             localStorage.setItem("access-token", "test-access-token");
             enqueueSnackbar("User Successfully Registered", {
                 variant: "success",
@@ -48,15 +48,15 @@ export default function Otp ({setCurrentStage}) {
                     inputStyle={{
                         color: 'black',
                         backgroundColor: '#F2F2F2',
-                        width: 45,
-                        height: 60,
+                        width: 35,
+                        height: 50,
                         borderRadius: '10px',
                         border: `1px solid #317CEB`,
                         outline: 'none',
                     }}
                     isDisabled={false}
                     isInputNum={true}
-                    numInputs={4}
+                    numInputs={6}
                     onChange={(otp) => {
                         setOTP(otp);
                     }}
