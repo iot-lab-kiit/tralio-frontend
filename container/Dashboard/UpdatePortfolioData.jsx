@@ -9,6 +9,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Dialog,
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -17,11 +18,23 @@ import { TextField } from "@mui/material";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
+import { createStyles, makeStyles } from "@mui/styles";
+import Hidden from "@mui/material/Hidden";
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    backDrop: {
+      backdropFilter: "blur(3px)",
+      backgroundColor: "rgba(0,0,30,0.4)",
+    },
+  })
+);
 
 export default function UpdatePortfolioData() {
+  const classes = useStyles();
   const [portfolioData, setPortfolioData] = useState({});
   const [inputList, setInputList] = useState([{}]);
-
+  const [pop, setPop] = useState(false);
   const [educationIndexes, setEducationIndexes] = useState([]);
   const [educationCounter, setEducationCounter] = useState(0);
 
@@ -136,6 +149,7 @@ export default function UpdatePortfolioData() {
   };
   function handleChange(btnName) {
     setbtn(btnName);
+    setPop(false);
   }
   const handleUserInfo = (e) => {
     const { name, value } = e.target;
@@ -265,7 +279,7 @@ export default function UpdatePortfolioData() {
         <Button
           variant="contained"
           sx={{
-            width: { md: 200, xs: 100 },
+            width: { md: 150, xs: 110 },
             p: 1,
           }}
           onClick={() => handleChange(buttonName)}>
@@ -324,16 +338,67 @@ export default function UpdatePortfolioData() {
     }
     console.log(projectsIndexes);
   };
+
+  const handleDialogOpen = (event) => {
+    setPop(true);
+  };
+
   return (
     <>
-      <Container>
+      <Hidden smDown>
         <Box
           mt={8}
           display={"flex"}
           flexWrap={"wrap"}
-          justifyContent={"space-around"}>
+          justifyContent={"center"}>
           {portfolioButtons.map(generatePortfolioButtons)}
         </Box>
+      </Hidden>
+      <Container>
+        <Hidden smUp>
+          <Box mt={8} />
+          <Button
+            variant={"contained"}
+            onClick={handleDialogOpen}
+            sx={{
+              padding: {
+                lg: "5px 44px",
+                md: "5px 44px",
+                sm: "5px 34px",
+                sx: "5px 27px",
+              },
+              background: "#1981FF",
+            }}>
+            Portfolio Fields
+          </Button>
+          <Dialog
+            open={pop}
+            BackdropProps={{
+              classes: {
+                root: classes.backDrop,
+              },
+            }}>
+            <Box
+              width={"100%"}
+              height={"100%"}
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}>
+              <Box
+                zIndex={1}
+                width={"500px"}
+                bgcolor={"white"}
+                display={"flex"}
+                flexWrap={"wrap"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                pt={6}
+                pb={6}>
+                {portfolioButtons.map(generatePortfolioButtons)}
+              </Box>
+            </Box>
+          </Dialog>
+        </Hidden>
         <Box
           sx={{
             p: 2,
