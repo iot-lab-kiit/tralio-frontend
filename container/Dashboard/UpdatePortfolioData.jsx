@@ -54,7 +54,7 @@ export default function UpdatePortfolioData() {
     "Projects",
     "Experience",
   ];
-  const [btn, setbtn] = useState("Education");
+  const [btn, setbtn] = useState("Profile");
   const portfolioFields = {
     Profile: [
       {
@@ -339,7 +339,7 @@ export default function UpdatePortfolioData() {
     console.log(projectsIndexes);
   };
 
-  const handleDialogOpen = (event) => {
+  const handleDialogOpen = () => {
     setPop(true);
   };
 
