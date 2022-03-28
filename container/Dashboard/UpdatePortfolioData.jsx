@@ -13,6 +13,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Grid,
 } from "@mui/material";
 import { TextField } from "@mui/material";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -47,12 +48,27 @@ export default function UpdatePortfolioData() {
   const [skillsIndexes, setSkillsIndexes] = useState([]);
   const [skillsCounter, setSkillsCounter] = useState(0);
 
+  const [coursesIndexes, setCoursesIndexes] = useState([]);
+  const [coursesCounter, setCoursesCounter] = useState(0);
+
+  const [organisationIndexes, setOrganisationIndexes] = useState([]);
+  const [organisationCounter, setOrganisationCounter] = useState(0);
+
+  const [interestIndexes, setInterestIndexes] = useState([]);
+  const [interestCounter, setInterestCounter] = useState(0);
+
+  const [awardIndexes, setAwardIndexes] = useState([]);
+  const [awardCounter, setAwardCounter] = useState(0);
   const portfolioButtons = [
     "Profile",
     "Education",
     "Skills",
     "Projects",
     "Experience",
+    "Courses",
+    "Organisation",
+    "Interest",
+    "Award",
   ];
   const [btn, setbtn] = useState("Profile");
   const portfolioFields = {
@@ -71,6 +87,16 @@ export default function UpdatePortfolioData() {
         type: "text",
         name: "Last Name",
         placeholder: "Last Name",
+        validation: {
+          required: true,
+          minLength: 3,
+          maxLength: 20,
+        },
+      },
+      {
+        type: "text",
+        name: "Bio",
+        placeholder: "Bio",
         validation: {
           required: true,
           minLength: 3,
@@ -146,6 +172,74 @@ export default function UpdatePortfolioData() {
         placeholder: "Country",
       },
     ],
+    Courses: [
+      {
+        type: "text",
+        name: "Course Title",
+        placeholder: "Course Title",
+      },
+      {
+        type: "text",
+        name: "Institution",
+        placeholder: "Institution",
+      },
+      {
+        type: "text",
+        name: "City",
+        placeholder: "City",
+      },
+      {
+        type: "text",
+        name: "Country",
+        placeholder: "Country",
+      },
+    ],
+    Organisation: [
+      {
+        type: "text",
+        name: "Organisation",
+        placeholder: "Organisation",
+      },
+      {
+        type: "text",
+        name: "Position",
+        placeholder: "Position",
+      },
+      {
+        type: "text",
+        name: "City",
+        placeholder: "City",
+      },
+      {
+        type: "text",
+        name: "Country",
+        placeholder: "Country",
+      },
+    ],
+    Interest: [
+      {
+        type: "text",
+        name: "Interest",
+        placeholder: "Interest",
+      },
+      {
+        type: "text",
+        name: "Additional Information",
+        placeholder: "Additional Information",
+      },
+    ],
+    Award: [
+      {
+        type: "text",
+        name: "Award",
+        placeholder: "Award",
+      },
+      {
+        type: "text",
+        name: "Issuer",
+        placeholder: "Issuer",
+      },
+    ],
   };
   function handleChange(btnName) {
     setbtn(btnName);
@@ -174,6 +268,13 @@ export default function UpdatePortfolioData() {
     console.log(portfolioData);
   };
 
+  const handleChangeIssueDate = (newDate) => {
+    setPortfolioData({
+      ...portfolioData,
+      issueDate: newDate,
+    });
+    console.log(portfolioData);
+  };
   const generateStartEndDate = () => {
     return (
       <Box
@@ -218,6 +319,34 @@ export default function UpdatePortfolioData() {
       </Box>
     );
   };
+  const generateDate = () => {
+    return (
+      <Box
+        display={"flex"}
+        flexDirection={{ md: "row", xs: "column" }}
+        width={"100%"}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DatePicker
+            fullWidth
+            views={["year", "month"]}
+            label="Date"
+            value={portfolioData.issueDate}
+            minDate={new Date("2012-03-01")}
+            maxDate={new Date("2023-06-01")}
+            onChange={handleChangeIssueDate}
+            renderInput={(params) => (
+              <TextField
+                fullWidth
+                sx={{ pr: { md: 1, xs: 0 }, py: { md: 0, xs: 1 } }}
+                {...params}
+                helperText={null}
+              />
+            )}
+          />
+        </LocalizationProvider>
+      </Box>
+    );
+  };
   const generateFields = (input) => {
     return (
       <Box key={{ btn } + input.name} width={"100%"}>
@@ -225,22 +354,8 @@ export default function UpdatePortfolioData() {
           fullWidth
           name={input.name}
           label={input.name}
-          variant="outlined"
-          type={input.type}
-          onChange={handleUserInfo}
-        />
-        <Box mt={2} />
-      </Box>
-    );
-  };
-  const generateFieldsBio = () => {
-    return (
-      <Box width={"100%"}>
-        <TextField
-          fullWidth
           id="outlined-textarea"
-          label="Bio"
-          placeholder="Bio"
+          type={input.type}
           multiline
           onChange={handleUserInfo}
         />
@@ -279,7 +394,7 @@ export default function UpdatePortfolioData() {
         <Button
           variant="contained"
           sx={{
-            width: { md: 150, xs: 110 },
+            width: 150,
             p: 1,
           }}
           onClick={() => handleChange(buttonName)}>
@@ -335,6 +450,32 @@ export default function UpdatePortfolioData() {
         ...prevSkillsIndexes,
         skillsCounter,
       ]);
+    } else if (btn == "Courses") {
+      setCoursesCounter((prevCoursesCounter) => prevCoursesCounter + 1);
+      setCoursesIndexes((prevCoursesIndexes) => [
+        ...prevCoursesIndexes,
+        coursesCounter,
+      ]);
+    } else if (btn == "Organisation") {
+      setOrganisationCounter(
+        (prevOrganisationCounter) => prevOrganisationCounter + 1
+      );
+      setOrganisationIndexes((prevOrganisationIndexes) => [
+        ...prevOrganisationIndexes,
+        organisationCounter,
+      ]);
+    } else if (btn == "Interest") {
+      setInterestCounter((prevInterestCounter) => prevInterestCounter + 1);
+      setInterestIndexes((prevInterestIndexes) => [
+        ...prevInterestIndexes,
+        interestCounter,
+      ]);
+    } else if (btn == "Award") {
+      setAwardCounter((prevAwardCounter) => prevAwardCounter + 1);
+      setAwardIndexes((prevAwardIndexes) => [
+        ...prevAwardIndexes,
+        awardCounter,
+      ]);
     }
     console.log(projectsIndexes);
   };
@@ -343,132 +484,186 @@ export default function UpdatePortfolioData() {
     setPop(true);
   };
 
+  const handleDialogClose = () => {
+    setPop(false);
+  };
+  const AddSaveButton = () => {
+    return (
+      <Box sx={{ my: 3 }}>
+        {btn == "Education" ||
+        btn == "Projects" ||
+        btn == "Experience" ||
+        btn == "Courses" ||
+        btn == "Organisation" ||
+        btn == "Interest" ||
+        btn == "Award" ? (
+          <Button sx={{ mr: 2 }} variant="contained" onClick={handleAddClick}>
+            Add
+          </Button>
+        ) : (
+          <Box />
+        )}
+        <Button variant="contained" onClick={handleSave}>
+          Save
+        </Button>
+      </Box>
+    );
+  };
   return (
     <>
-      <Hidden smDown>
-        <Box
-          mt={8}
-          display={"flex"}
-          flexWrap={"wrap"}
-          justifyContent={"center"}>
-          {portfolioButtons.map(generatePortfolioButtons)}
-        </Box>
-      </Hidden>
-      <Container>
-        <Hidden smUp>
-          <Box mt={8} />
-          <Button
-            variant={"contained"}
-            onClick={handleDialogOpen}
-            sx={{
-              padding: {
-                lg: "5px 44px",
-                md: "5px 44px",
-                sm: "5px 34px",
-                sx: "5px 27px",
-              },
-              background: "#1981FF",
-            }}>
-            Portfolio Fields
-          </Button>
-          <Dialog
-            open={pop}
-            BackdropProps={{
-              classes: {
-                root: classes.backDrop,
-              },
-            }}>
+      <Grid display={"flex"} justifyContent={"space-between"}>
+        <Grid xs={0} sm={3} md={2}>
+          <Hidden smDown>
             <Box
-              width={"100%"}
-              height={"100%"}
+              mt={12}
               display={"flex"}
-              justifyContent={"center"}
-              alignItems={"center"}>
-              <Box
-                zIndex={1}
-                width={"500px"}
-                bgcolor={"white"}
-                display={"flex"}
-                flexWrap={"wrap"}
-                justifyContent={"center"}
-                alignItems={"center"}
-                pt={6}
-                pb={6}>
-                {portfolioButtons.map(generatePortfolioButtons)}
-              </Box>
+              flexDirection={"column"}
+              justifyContent={"center"}>
+              {portfolioButtons.map(generatePortfolioButtons)}
             </Box>
-          </Dialog>
-        </Hidden>
-        <Box
-          sx={{
-            p: 2,
-          }}>
-          <Box display={"flex"} justifyContent={"space-between"}>
-            <h1>{btn}</h1>
-            <Box sx={{ my: 3 }}>
+          </Hidden>
+        </Grid>
+        <Grid mt={8} xs={12} sm={9} md={10}>
+          <Container>
+            <Hidden smUp>
+              <Box display={"flex"} justifyContent={"space-between"}>
+                <Button
+                  variant={"contained"}
+                  onClick={handleDialogOpen}
+                  sx={{
+                    padding: {
+                      lg: "5px 44px",
+                      md: "5px 44px",
+                      sm: "5px 34px",
+                      sx: "5px 27px",
+                    },
+                    my: 3,
+                    background: "#1981FF",
+                  }}>
+                  Portfolio Fields
+                </Button>
+                {AddSaveButton()}
+              </Box>
+              <Dialog
+                open={pop}
+                onClose={handleDialogClose}
+                BackdropProps={{
+                  classes: {
+                    root: classes.backDrop,
+                  },
+                }}>
+                <Box
+                  width={"100%"}
+                  height={"100%"}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}>
+                  <Box
+                    zIndex={1}
+                    width={"500px"}
+                    bgcolor={"white"}
+                    display={"flex"}
+                    flexWrap={"wrap"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    pt={6}
+                    pb={6}>
+                    {portfolioButtons.map(generatePortfolioButtons)}
+                  </Box>
+                </Box>
+              </Dialog>
+            </Hidden>
+            <Box
+              sx={{
+                p: 2,
+              }}>
+              <Box display={"flex"} justifyContent={"space-between"}>
+                <h1>{btn}</h1>
+                <Hidden smDown>{AddSaveButton()}</Hidden>
+              </Box>
+              {portfolioFields[btn].map(generateFields)}
+              <Box mt={2} />
               {btn == "Education" ||
               btn == "Projects" ||
               btn == "Experience" ||
-              btn == "Skills" ? (
-                <Button
-                  sx={{ mr: 2 }}
-                  variant="contained"
-                  onClick={handleAddClick}>
-                  Add
-                </Button>
-              ) : (
-                <Box />
-              )}
-              <Button variant="contained" onClick={handleSave}>
-                Save
-              </Button>
+              btn == "Courses" ||
+              btn == "Organisation"
+                ? generateStartEndDate()
+                : btn == "Skills"
+                ? skillSelectGenerateFields()
+                : btn == "Award"
+                ? generateDate()
+                : ""}
+              <Box mt={4} />
+
+              {btn == "Education"
+                ? educationIndexes.map((index) => (
+                    <Box key={index}>
+                      <Box mt={4} />
+                      {portfolioFields[btn].map(generateFields)}
+                      {generateStartEndDate()}
+                    </Box>
+                  ))
+                : btn == "Projects"
+                ? projectsIndexes.map((index) => (
+                    <Box key={index}>
+                      <Box mt={4} />
+                      {portfolioFields[btn].map(generateFields)}
+                      {generateStartEndDate()}
+                    </Box>
+                  ))
+                : btn == "Experience"
+                ? experienceIndexes.map((index) => (
+                    <Box key={index}>
+                      <Box mt={4} />
+                      {portfolioFields[btn].map(generateFields)}
+                      {generateStartEndDate()}
+                    </Box>
+                  ))
+                : btn == "Skills"
+                ? skillsIndexes.map((index) => (
+                    <Box key={index}>
+                      <Box mt={4} />
+                      {portfolioFields[btn].map(generateFields)}{" "}
+                      {skillSelectGenerateFields()}
+                    </Box>
+                  ))
+                : btn == "Courses"
+                ? coursesIndexes.map((index) => (
+                    <Box key={index}>
+                      <Box mt={4} />
+                      {portfolioFields[btn].map(generateFields)}{" "}
+                      {generateStartEndDate()}
+                    </Box>
+                  ))
+                : btn == "Organisation"
+                ? organisationIndexes.map((index) => (
+                    <Box key={index}>
+                      <Box mt={4} />
+                      {portfolioFields[btn].map(generateFields)}{" "}
+                      {generateStartEndDate()}
+                    </Box>
+                  ))
+                : btn == "Interest"
+                ? interestIndexes.map((index) => (
+                    <Box key={index}>
+                      <Box mt={4} />
+                      {portfolioFields[btn].map(generateFields)}
+                    </Box>
+                  ))
+                : btn == "Award"
+                ? awardIndexes.map((index) => (
+                    <Box key={index}>
+                      <Box mt={4} />
+                      {portfolioFields[btn].map(generateFields)}
+                      {generateDate()}
+                    </Box>
+                  ))
+                : ""}
             </Box>
-          </Box>
-          {portfolioFields[btn].map(generateFields)}
-          <Box mt={2} />
-          {btn == "Profile"
-            ? generateFieldsBio()
-            : btn == "Education" || btn == "Projects" || btn == "Experience"
-            ? generateStartEndDate()
-            : btn == "Skills"
-            ? skillSelectGenerateFields()
-            : portfolioFields[btn].map(generateFields)}
-          <Box mt={4} />
-          {btn == "Education"
-            ? educationIndexes.map((index) => (
-                <Box key={index}>
-                  <Box mt={4} />
-                  {portfolioFields[btn].map(generateFields)}{" "}
-                  {generateStartEndDate()}
-                </Box>
-              ))
-            : btn == "Projects"
-            ? projectsIndexes.map((index) => (
-                <Box key={index}>
-                  <Box mt={4} />
-                  {portfolioFields[btn].map(generateFields)}{" "}
-                  {generateStartEndDate()}
-                </Box>
-              ))
-            : btn == "Experience"
-            ? experienceIndexes.map((index) => (
-                <Box key={index}>
-                  <Box mt={4} />
-                  {portfolioFields[btn].map(generateFields)}{" "}
-                  {generateStartEndDate()}
-                </Box>
-              ))
-            : btn == "Skills"
-            ? skillsIndexes.map((index) => (
-                <Box key={index}>
-                  <Box mt={4} />
-                  {portfolioFields[btn].map(generateFields)}{" "}
-                  {skillSelectGenerateFields()}
-                </Box>
-              ))
-            : ""}
-        </Box>
-      </Container>
+          </Container>
+        </Grid>
+      </Grid>
     </>
   );
 }
