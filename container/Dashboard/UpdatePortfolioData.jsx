@@ -79,7 +79,7 @@ export default function UpdatePortfolioData() {
     setPop(false);
   }
 
-  const handleUserInfo = (e) => {
+  const handlePortfolioDataChange = (e) => {
     const { name, value } = e.target;
     setPortfolioData({
       ...portfolioData,
@@ -94,81 +94,6 @@ export default function UpdatePortfolioData() {
     });
   };
 
-  const generateStartEndDate = () => {
-    return (
-      <Box
-        display={"flex"}
-        flexDirection={{ md: "row", xs: "column" }}
-        width={"100%"}
-      >
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            fullWidth
-            views={["year", "month"]}   
-            label="Start Date"
-            value={portfolioData.startDate}
-            minDate={new Date("2012-03-01")}
-            maxDate={new Date("2023-06-01")}
-            onChange={(date) => handleDateChange(date, "startDate")}
-            renderInput={(params) => (
-              <TextField
-                fullWidth
-                sx={{ pr: { md: 1, xs: 0 }, py: { md: 0, xs: 1 } }}
-                {...params}
-                helperText={null}
-              />
-            )}
-          />
-          <DatePicker
-            views={["year", "month"]}
-            label="End Date"
-            name="endDate"
-            minDate={new Date("2012-03-01")}
-            maxDate={new Date("2023-06-01")}
-            onChange={handleDateChange}
-            renderInput={(params) => (
-              <TextField
-                fullWidth
-                sx={{ pl: { md: 1, xs: 0 }, py: { md: 0, xs: 2 } }}
-                {...params}
-                helperText={null}
-              />
-            )}
-          />
-        </LocalizationProvider>
-      </Box>
-    );
-  };
-  const generateDate = () => {
-    return (
-      <Box
-        display={"flex"}
-        flexDirection={{ md: "row", xs: "column" }}
-        width={"100%"}
-      >
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            fullWidth
-            views={["year", "month"]}
-            label="Date"
-            name="issueDate"
-            value={portfolioData.issueDate}
-            minDate={new Date("2012-03-01")}
-            maxDate={new Date("2023-06-01")}
-            onChange={handleDateChange}
-            renderInput={(params) => (
-              <TextField
-                fullWidth
-                sx={{ pr: { md: 1, xs: 0 }, py: { md: 0, xs: 1 } }}
-                {...params}
-                helperText={null}
-              />
-            )}
-          />
-        </LocalizationProvider>
-      </Box>
-    );
-  };
   const generateFields = (input) => {
     console.log(input);
     if (input.type === "text") {
@@ -181,7 +106,7 @@ export default function UpdatePortfolioData() {
             id="outlined-textarea"
             type={input.type}
             multiline
-            onChange={handleUserInfo}
+            onChange={handlePortfolioDataChange}
           />
           <Box mt={2} />
         </Box>
@@ -243,7 +168,7 @@ export default function UpdatePortfolioData() {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Select Skills Level"
-            onChange={handleUserInfo}
+            onChange={handlePortfolioDataChange}
           >
             <MenuItem value={"Novice"}>Novice</MenuItem>
             <MenuItem value={"Beginner"}>Beginner</MenuItem>
