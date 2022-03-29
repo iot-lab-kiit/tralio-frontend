@@ -17,7 +17,10 @@ import {
   Grid,
 } from "@mui/material";
 
-import {portfolioFields, portfolioButtons} from "../../TralioAPI/portfolioForm";
+import {
+  portfolioFields,
+  portfolioButtons,
+} from "../../TralioAPI/portfolioForm";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
@@ -35,7 +38,7 @@ const useStyles = makeStyles(() =>
 
 export default function UpdatePortfolioData() {
   const classes = useStyles();
-  
+
   const [portfolioData, setPortfolioData] = useState({});
 
   const [inputList, setInputList] = useState([{}]);
@@ -64,19 +67,18 @@ export default function UpdatePortfolioData() {
   const [awardIndexes, setAwardIndexes] = useState([]);
   const [awardCounter, setAwardCounter] = useState(0);
 
-  const [portfolioFormName, setPortfolioForm] = useState("Profile");
+  const [portfolioFormName, setPortfolioFormName] = useState("Profile");
   const [currentPortfolioForm, setCurrentPortfolioForm] = useState(
     portfolioFields["Profile"]
   );
 
   function handleCurrentPortfolioForm(formName) {
+    
     setCurrentPortfolioForm(portfolioFields[formName]);
-  }
-
-  function handleChange(btnName) {
-    setPortfolioForm(btnName);
+    setPortfolioFormName(btnName);
     setPop(false);
   }
+
   const handleUserInfo = (e) => {
     const { name, value } = e.target;
     setPortfolioData({
@@ -102,7 +104,7 @@ export default function UpdatePortfolioData() {
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             fullWidth
-            views={["year", "month"]}
+            views={["year", "month"]}   
             label="Start Date"
             value={portfolioData.startDate}
             minDate={new Date("2012-03-01")}
@@ -168,11 +170,11 @@ export default function UpdatePortfolioData() {
     );
   };
   const generateFields = (input) => {
-      if (input.type === "text") {
-
-        return (
+    console.log(input);
+    if (input.type === "text") {
+      return (
         <Box key={{ portfolioFormName } + input.name} width={"100%"}>
-            <TextField
+          <TextField
             fullWidth
             name={input.name}
             label={input.name}
@@ -180,40 +182,54 @@ export default function UpdatePortfolioData() {
             type={input.type}
             multiline
             onChange={handleUserInfo}
-            />
-            <Box mt={2} />
+          />
+          <Box mt={2} />
         </Box>
-        );
-      }
-    else if (input.type === "date") {
-        return (
-            <Box
-              display={"flex"}
-              flexDirection={{ md: "row", xs: "column" }}
-              width={"100%"}
-            >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
+      );
+    } else if (input.type === "date") {
+      return (
+        <Box
+          display={"flex"}
+          flexDirection={{ md: "row", xs: "column" }}
+          width={"100%"}
+        >
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              fullWidth
+              views={["year", "month"]}
+              label="Start Date"
+              value={portfolioData.startDate}
+              minDate={new Date("2012-03-01")}
+              maxDate={new Date("2023-06-01")}
+              onChange={(date) => handleDateChange(date, "startDate")}
+              renderInput={(params) => (
+                <TextField
                   fullWidth
-                  views={["year", "month"]}
-                  label="Date"
-                  name="issueDate"
-                  value={portfolioData.issueDate}
-                  minDate={new Date("2012-03-01")}
-                  maxDate={new Date("2023-06-01")}
-                  onChange={handleDateChange}
-                  renderInput={(params) => (
-                    <TextField
-                      fullWidth
-                      sx={{ pr: { md: 1, xs: 0 }, py: { md: 0, xs: 1 } }}
-                      {...params}
-                      helperText={null}
-                    />
-                  )}
+                  sx={{ pr: { md: 1, xs: 0 }, py: { md: 0, xs: 1 } }}
+                  {...params}
+                  helperText={null}
                 />
-              </LocalizationProvider>
-            </Box>
-          );
+              )}
+            />
+            <DatePicker
+              views={["year", "month"]}
+              label="End Date"
+              name="endDate"
+              minDate={new Date("2012-03-01")}
+              maxDate={new Date("2023-06-01")}
+              onChange={handleDateChange}
+              renderInput={(params) => (
+                <TextField
+                  fullWidth
+                  sx={{ pl: { md: 1, xs: 0 }, py: { md: 0, xs: 2 } }}
+                  {...params}
+                  helperText={null}
+                />
+              )}
+            />
+          </LocalizationProvider>
+        </Box>
+      );
     }
   };
   const skillSelectGenerateFields = () => {
@@ -252,7 +268,7 @@ export default function UpdatePortfolioData() {
             width: 150,
             p: 1,
           }}
-          onClick={() => handleChange(buttonName)}
+          onClick={() => handleCurrentPortfolioForm(buttonName)}
         >
           {buttonName}
         </Button>
@@ -276,7 +292,9 @@ export default function UpdatePortfolioData() {
       );
     }
   };
-
+  const handleDialogClose = () => {
+    setPop(false);
+  };
   const handleAddClick = () => {
     setInputList([...inputList, portfolioData]);
     setPortfolioData("");
@@ -339,7 +357,6 @@ export default function UpdatePortfolioData() {
   const handleDialogOpen = () => {
     setPop(true);
   };
-
 
   const AddSaveButton = () => {
     return (
@@ -442,88 +459,10 @@ export default function UpdatePortfolioData() {
                 <Hidden smDown>{AddSaveButton()}</Hidden>
               </Box>
               {currentPortfolioForm.map(generateFields)}
-              {/* <Box mt={2} />
-              {portfolioFormName == "Education" ||
-              portfolioFormName == "Projects" ||
-              portfolioFormName == "Experience" ||
-              portfolioFormName == "Courses" ||
-              portfolioFormName == "Organisation"
-                ? generateStartEndDate()
-                : portfolioFormName == "Skills"
-                ? skillSelectGenerateFields()
-                : portfolioFormName == "Award"
-                ? generateDate()
-                : ""} */}
-              <Box mt={4} />
-
-              {/* {portfolioFormName == "Education"
-                ? educationIndexes.map((index) => (
-                    <Box key={index}>
-                      <Box mt={4} />
-                      {portfolioFields[portfolioFormName].map(generateFields)}
-                      {generateStartEndDate()}
-                    </Box>
-                  ))
-                : portfolioFormName == "Projects"
-                ? projectsIndexes.map((index) => (
-                    <Box key={index}>
-                      <Box mt={4} />
-                      {portfolioFields[portfolioFormName].map(generateFields)}
-                      {generateStartEndDate()}
-                    </Box>
-                  ))
-                : portfolioFormName == "Experience"
-                ? experienceIndexes.map((index) => (
-                    <Box key={index}>
-                      <Box mt={4} />
-                      {portfolioFields[portfolioFormName].map(generateFields)}
-                      {generateStartEndDate()}
-                    </Box>
-                  ))
-                : portfolioFormName == "Skills"
-                ? skillsIndexes.map((index) => (
-                    <Box key={index}>
-                      <Box mt={4} />
-                      {portfolioFields[portfolioFormName].map(generateFields)}{" "}
-                      {skillSelectGenerateFields()}
-                    </Box>
-                  ))
-                : portfolioFormName == "Courses"
-                ? coursesIndexes.map((index) => (
-                    <Box key={index}>
-                      <Box mt={4} />
-                      {portfolioFields[portfolioFormName].map(generateFields)}{" "}
-                      {generateStartEndDate()}
-                    </Box>
-                  ))
-                : portfolioFormName == "Organisation"
-                ? organisationIndexes.map((index) => (
-                    <Box key={index}>
-                      <Box mt={4} />
-                      {portfolioFields[portfolioFormName].map(generateFields)}{" "}
-                      {generateStartEndDate()}
-                    </Box>
-                  ))
-                : portfolioFormName == "Interest"
-                ? interestIndexes.map((index) => (
-                    <Box key={index}>
-                      <Box mt={4} />
-                      {portfolioFields[portfolioFormName].map(generateFields)}
-                    </Box>
-                  ))
-                : portfolioFormName == "Award"
-                ? awardIndexes.map((index) => (
-                    <Box key={index}>
-                      <Box mt={4} />
-                      {portfolioFields[portfolioFormName].map(generateFields)}
-                      {generateDate()}
-                    </Box>
-                  ))
-                : ""} */}
             </Box>
           </Container>
         </Grid>
-      </Grid>
+      </Grid>   
     </>
   );
 }

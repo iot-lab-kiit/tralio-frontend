@@ -72,6 +72,7 @@ const portfolioFields = {
       {
         type: "date",
         name: "End Date",
+        placeholder: "End Date",
       }
     ],
     Skills: [
