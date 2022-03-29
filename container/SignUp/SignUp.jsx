@@ -164,11 +164,17 @@ export default function SignUp({ setCurrentStage }) {
         </Box>
         <Box mt={3} />
         <Button
-          onClick={handleRegistration}
+          // onClick={handleRegistration}
           variant={"contained"}
+          onClick={() => {
+            setCurrentStage(2);
+            enqueueSnackbar('OTP sent successfully', {
+              variant: 'success',
+            });
+          }}
           sx={{ width: "100%" }}
         >
-          Sign Up
+          Get OTP
         </Button>
         <Box mt={2} />
         <Divider orientation="horizontal" flexItem>
