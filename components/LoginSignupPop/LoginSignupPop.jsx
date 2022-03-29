@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Login from "../../container/Login/Login";
 import SignUp from "../../container/SignUp/SignUp";
 import ForgotPassword from "../../container/ForgotPassword/ForgotPassword";
+import Otp from "../../container/Otp/Otp";
 
 const Pop = ({initial}) => {
 
@@ -19,6 +20,10 @@ const Pop = ({initial}) => {
                     {
                         currentStage === 1 &&
                         <SignUp setCurrentStage={setCurrentStage} />
+                    }
+                    {
+                        currentStage === 2 &&
+                        <Otp setCurrentStage={setCurrentStage} />
                     }
                     {
                         currentStage === -1 &&
