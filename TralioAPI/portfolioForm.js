@@ -75,12 +75,7 @@ const portfolioFields = {
       placeholder: "Country",
     },
     {
-      type: "date",
-      name: "Start Date",
-      placeholder: "Start Date",
-    },
-    {
-      type: "date",
+      type: "dual-date",
       name: "End Date",
       placeholder: "End Date",
     },

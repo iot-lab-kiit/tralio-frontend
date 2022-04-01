@@ -20,10 +20,13 @@ import { createStyles, makeStyles } from "@mui/styles";
 
 // MUI imports for Date Support
 import {
-  AdapterDateFns,
+  // AdapterDateFns,
   DatePicker,
   LocalizationProvider,
-} from "@mui/lab/AdapterDateFns";
+} from "@mui/lab";
+
+// Adding AdapterDateFns creates an error, Why ??? I don't know, hence alag se import hai
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
 // Portfolio Forms Template
 import {
@@ -95,7 +98,7 @@ export default function UpdatePortfolioData() {
           <Box mt={2} />
         </Box>
       );
-    } else if (input.type === "date") {
+    } else if (input.type === "dual-date") {
       return (
         <Box
           key={generateKey(portfolioFormName + input.name)}
@@ -216,7 +219,7 @@ export default function UpdatePortfolioData() {
   const handleDialogClose = () => {
     setPop(false);
   };
-  
+
   const handleAddClick = () => {
     
     tempPortfolioFields[portfolioFormName] = tempPortfolioFields[
