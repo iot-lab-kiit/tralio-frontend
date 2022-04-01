@@ -32,7 +32,6 @@ import {
   addFeature
 } from "../../TralioAPI/portfolioForm";
 
-
 const useStyles = makeStyles(() =>
   createStyles({
     backDrop: {
@@ -213,9 +212,11 @@ export default function UpdatePortfolioData() {
       );
     }
   };
+
   const handleDialogClose = () => {
     setPop(false);
   };
+  
   const handleAddClick = () => {
     
     tempPortfolioFields[portfolioFormName] = tempPortfolioFields[
