@@ -10,6 +10,16 @@ const portfolioButtons = [
   "Award",
 ];
 
+const addFeature = [
+  "Education",
+  "Projects",
+  "Experience",
+  "Courses",
+  "Organisation",
+  "Interest",
+  "Award",
+];
+
 const portfolioFields = {
   Profile: [
     {
@@ -187,4 +197,4 @@ const portfolioFields = {
   ],
 };
 
-export { portfolioFields, portfolioButtons };
+export { portfolioFields, portfolioButtons, addFeature };

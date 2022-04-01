@@ -29,8 +29,8 @@ import {
 import {
   portfolioFields,
   portfolioButtons,
+  addFeature
 } from "../../TralioAPI/portfolioForm";
-
 
 
 const useStyles = makeStyles(() =>
@@ -43,30 +43,17 @@ const useStyles = makeStyles(() =>
 );
 
 export default function UpdatePortfolioData() {
-  const classes = useStyles();
 
-  const [portfolioData, setPortfolioData] = useState({});
+  const classes = useStyles();
 
   const [pop, setPop] = useState(false);
 
+  const [portfolioData, setPortfolioData] = useState({});
   const [portfolioFormName, setPortfolioFormName] = useState("Profile");
-
   const tempPortfolioFields = portfolioFields;
   const [currentPortfolioForm, setCurrentPortfolioForm] = useState(
     tempPortfolioFields["Profile"]
   );
-
-  const [counters, setCounters] = useState({});
-
-  const addFeature = [
-    "Education",
-    "Projects",
-    "Experience",
-    "Courses",
-    "Organisation",
-    "Interest",
-    "Award",
-  ];
 
   const generateKey = (pre) => {
     return `${pre}_${new Date().getTime()}_${Math.random() * 1000000}`;
@@ -230,28 +217,12 @@ export default function UpdatePortfolioData() {
     setPop(false);
   };
   const handleAddClick = () => {
-    console.log("porfolioFormName", portfolioFormName);
-    console.log("temp Portfolio", tempPortfolioFields);
-
-    // tempPortfolioFields[portfolioFormName] = [
-    //   ...tempPortfolioFields[portfolioFormName],
-    //   portfolioFields[portfolioFormName],
-    // ];
-
+    
     tempPortfolioFields[portfolioFormName] = tempPortfolioFields[
       portfolioFormName
     ].concat(portfolioFields[portfolioFormName]);
-    console.log("temp Portfolio", tempPortfolioFields[portfolioFormName]);
 
     setCurrentPortfolioForm(tempPortfolioFields[portfolioFormName]);
-
-    // if (portfolioFormName == "Education") {
-    //   setEducationCounter((prevEducationCounter) => prevEducationCounter + 1);
-    //   setEducationIndexes((prevEducationIndexes) => [
-    //     ...prevEducationIndexes,
-    //     educationCounter,
-    //   ]);
-    // }
   };
 
   const handleDialogOpen = () => {
