@@ -48,7 +48,7 @@ export default function UpdatePortfolioData() {
 
   const [portfolioFormName, setPortfolioFormName] = useState("Profile");
 
-  const tempPortfolioFields = portfolioFields
+  const tempPortfolioFields = portfolioFields;
   const [currentPortfolioForm, setCurrentPortfolioForm] = useState(
     tempPortfolioFields["Profile"]
   );
@@ -65,8 +65,12 @@ export default function UpdatePortfolioData() {
     "Award",
   ];
 
+  const generateKey = (pre) => {
+    return `${pre}_${new Date().getTime()}_${Math.random()*1000000}`;
+  };
+
   function handleCurrentPortfolioForm(formName) {
-    setCurrentPortfolioForm(portfolioFields[formName]);
+    setCurrentPortfolioForm(tempPortfolioFields[formName]);
     setPortfolioFormName(formName);
     setPop(false);
   }
@@ -87,10 +91,9 @@ export default function UpdatePortfolioData() {
   };
 
   const generateFields = (input) => {
-    console.log(input);
     if (input.type === "text") {
       return (
-        <Box key={{ portfolioFormName } + input.name} width={"100%"}>
+        <Box key={generateKey(portfolioFormName + input.name)} width={"100%"}>
           <TextField
             fullWidth
             name={input.name}
@@ -106,7 +109,7 @@ export default function UpdatePortfolioData() {
     } else if (input.type === "date") {
       return (
         <Box
-          key={{ portfolioFormName } + input.name}
+          key={generateKey(portfolioFormName + input.name)}
           display={"flex"}
           flexDirection={{ md: "row", xs: "column" }}
           width={"100%"}
@@ -157,7 +160,7 @@ export default function UpdatePortfolioData() {
       );
     } else if (input.type === "select") {
       return (
-        <Box key={{ portfolioFormName } + input.name} width={"100%"}>
+        <Box key={generateKey(portfolioFormName + input.name)} width={"100%"}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">
               {input.placeholder}
@@ -169,7 +172,7 @@ export default function UpdatePortfolioData() {
               onChange={handlePortfolioDataChange}
             >
               {input.options.map((option, index) => (
-                <MenuItem key={"Skills Option " + index} value={option}>
+                <MenuItem key={generateKey("Skills Option " + index)} value={option}>
                   {option}
                 </MenuItem>
               ))}
@@ -180,34 +183,11 @@ export default function UpdatePortfolioData() {
       );
     }
   };
-  const skillSelectGenerateFields = () => {
-    return (
-      <Box width={"100%"}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">
-            Select Skill Level
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="Select Skills Level"
-            onChange={handlePortfolioDataChange}
-          >
-            <MenuItem value={"Novice"}>Novice</MenuItem>
-            <MenuItem value={"Beginner"}>Beginner</MenuItem>
-            <MenuItem value={"Skillful"}>Skillful</MenuItem>
-            <MenuItem value={"Experienced"}>Experienced</MenuItem>
-            <MenuItem value={"Expert"}>Expert</MenuItem>
-          </Select>
-        </FormControl>
-        <Box mt={2} />
-      </Box>
-    );
-  };
+
   const generatePortfolioButtons = (buttonName) => {
     return (
       <Box
-        key={"button" + { buttonName }}
+        key={generateKey("button" +  buttonName )}
         sx={{ py: 1, mx: 1, textAlign: "center" }}
       >
         <Button
@@ -244,23 +224,28 @@ export default function UpdatePortfolioData() {
     setPop(false);
   };
   const handleAddClick = () => {
-    console.log("Iinitial",currentPortfolioForm)
-    const counterName = portfolioFormName.toLowerCase()+"Counter"
-    setCurrentPortfolioForm(
-        ...currentPortfolioForm,
-        portfolioFields[portfolioFormName]
-      
-    )
+    console.log("porfolioFormName", portfolioFormName);
+    console.log("temp Portfolio", tempPortfolioFields);
 
-    console.log("Final",currentPortfolioForm)
-    
-    if (portfolioFormName == "Education") {
-      setEducationCounter((prevEducationCounter) => prevEducationCounter + 1);
-      setEducationIndexes((prevEducationIndexes) => [
-        ...prevEducationIndexes,
-        educationCounter,
-      ]);
-    } 
+    // tempPortfolioFields[portfolioFormName] = [
+    //   ...tempPortfolioFields[portfolioFormName],
+    //   portfolioFields[portfolioFormName],
+    // ];
+
+    tempPortfolioFields[portfolioFormName] = tempPortfolioFields[
+      portfolioFormName
+    ].concat(portfolioFields[portfolioFormName]);
+    console.log("temp Portfolio", tempPortfolioFields[portfolioFormName]);
+
+    setCurrentPortfolioForm(tempPortfolioFields[portfolioFormName]);
+
+    // if (portfolioFormName == "Education") {
+    //   setEducationCounter((prevEducationCounter) => prevEducationCounter + 1);
+    //   setEducationIndexes((prevEducationIndexes) => [
+    //     ...prevEducationIndexes,
+    //     educationCounter,
+    //   ]);
+    // }
   };
 
   const handleDialogOpen = () => {
