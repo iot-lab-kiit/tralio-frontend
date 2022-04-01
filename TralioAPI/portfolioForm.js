@@ -76,8 +76,14 @@ const portfolioFields = {
     },
     {
       type: "dual-date",
-      name: "End Date",
-      placeholder: "End Date",
+      date1 : {
+        name : "startDate",
+        placeholder: "Start Date"
+      },
+      date2 : {
+        name : "endDate",
+        placeholder: "End Date"
+      }
     },
   ],
   Skills: [

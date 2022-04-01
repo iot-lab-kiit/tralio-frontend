@@ -13,7 +13,7 @@ import {
   Dialog,
   TextField,
   Grid,
-  Hidden
+  Hidden,
 } from "@mui/material";
 
 import { createStyles, makeStyles } from "@mui/styles";
@@ -25,14 +25,15 @@ import {
   LocalizationProvider,
 } from "@mui/lab";
 
-// Adding AdapterDateFns creates an error, Why ??? I don't know, hence alag se import hai
+// todo: Adding AdapterDateFns in above import creates an error,
+// Why ??? I don't know, hence alag se import hai
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
 // Portfolio Forms Template
 import {
   portfolioFields,
   portfolioButtons,
-  addFeature
+  addFeature,
 } from "../../TralioAPI/portfolioForm";
 
 const useStyles = makeStyles(() =>
@@ -44,15 +45,17 @@ const useStyles = makeStyles(() =>
   })
 );
 
-export default function UpdatePortfolioData() {
+// Declared outside the function to avoid re-initialization
+const tempPortfolioFields = JSON.parse(JSON.stringify(portfolioFields));
 
+export default function UpdatePortfolioData() {
   const classes = useStyles();
 
   const [pop, setPop] = useState(false);
 
   const [portfolioData, setPortfolioData] = useState({});
   const [portfolioFormName, setPortfolioFormName] = useState("Profile");
-  const tempPortfolioFields = portfolioFields;
+
   const [currentPortfolioForm, setCurrentPortfolioForm] = useState(
     tempPortfolioFields["Profile"]
   );
@@ -82,6 +85,31 @@ export default function UpdatePortfolioData() {
     });
   };
 
+  const generateDateField = (dateSettings) => {
+    return (
+      <DatePicker
+        fullWidth
+        views={["year", "month"]}
+        label={dateSettings.placeholder}
+        value={portfolioData.startDate}
+        minDate={new Date("2012-03-01")}
+        maxDate={new Date("2023-06-01")}
+        onChange={(date) => handleDateChange(date, dateSettings.name)}
+        renderInput={(params) => (
+          <TextField
+            fullWidth
+            sx={{
+              pr: { md: 1, xs: 0 },
+              py: { md: 0, xs: 1 },
+            }}
+            {...params}
+            helperText={null}
+          />
+        )}
+      />
+    );
+  };
+  
   const generateFields = (input) => {
     if (input.type === "text") {
       return (
@@ -107,47 +135,10 @@ export default function UpdatePortfolioData() {
           width={"100%"}
         >
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              fullWidth
-              views={["year", "month"]}
-              label="Start Date"
-              value={portfolioData.startDate}
-              minDate={new Date("2012-03-01")}
-              maxDate={new Date("2023-06-01")}
-              onChange={(date) => handleDateChange(date, "startDate")}
-              renderInput={(params) => (
-                <TextField
-                  fullWidth
-                  sx={{
-                    pr: { md: 1, xs: 0 },
-                    py: { md: 0, xs: 1 },
-                  }}
-                  {...params}
-                  helperText={null}
-                />
-              )}
-            />
-            <DatePicker
-              fullWidth
-              views={["year", "month"]}
-              label="End Date"
-              name="endDate"
-              minDate={new Date("2012-03-01")}
-              maxDate={new Date("2023-06-01")}
-              onChange={handleDateChange}
-              renderInput={(params) => (
-                <TextField
-                  fullWidth
-                  sx={{
-                    pl: { md: 1, xs: 0 },
-                    py: { md: 0, xs: 2 },
-                  }}
-                  {...params}
-                  helperText={null}
-                />
-              )}
-            />
+            {generateDateField(input.date1)}
+            {generateDateField(input.date2)}
           </LocalizationProvider>
+          <Box mt={2} />
         </Box>
       );
     } else if (input.type === "select") {
@@ -221,7 +212,6 @@ export default function UpdatePortfolioData() {
   };
 
   const handleAddClick = () => {
-    
     tempPortfolioFields[portfolioFormName] = tempPortfolioFields[
       portfolioFormName
     ].concat(portfolioFields[portfolioFormName]);
@@ -249,6 +239,7 @@ export default function UpdatePortfolioData() {
       </Box>
     );
   };
+
   return (
     <Grid container display={"flex"} justifyContent={"space-between"}>
       <Grid item xs={0} sm={3} md={2}>
