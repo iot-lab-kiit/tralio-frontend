@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { userPortfolio } from "../../TralioAPI/tralio";
 
+// MUI Material Basic Components
 import {
   Box,
   Container,
@@ -11,21 +12,26 @@ import {
   Select,
   Dialog,
   TextField,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   Grid,
+  Hidden
 } from "@mui/material";
 
+import { createStyles, makeStyles } from "@mui/styles";
+
+// MUI imports for Date Support
+import {
+  AdapterDateFns,
+  DatePicker,
+  LocalizationProvider,
+} from "@mui/lab/AdapterDateFns";
+
+// Portfolio Forms Template
 import {
   portfolioFields,
   portfolioButtons,
 } from "../../TralioAPI/portfolioForm";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
-import { createStyles, makeStyles } from "@mui/styles";
-import Hidden from "@mui/material/Hidden";
+
+
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -41,10 +47,7 @@ export default function UpdatePortfolioData() {
 
   const [portfolioData, setPortfolioData] = useState({});
 
-  const [inputList, setInputList] = useState([{}]);
   const [pop, setPop] = useState(false);
-  const [educationIndexes, setEducationIndexes] = useState([]);
-  const [educationCounter, setEducationCounter] = useState(0);
 
   const [portfolioFormName, setPortfolioFormName] = useState("Profile");
 
@@ -66,7 +69,7 @@ export default function UpdatePortfolioData() {
   ];
 
   const generateKey = (pre) => {
-    return `${pre}_${new Date().getTime()}_${Math.random()*1000000}`;
+    return `${pre}_${new Date().getTime()}_${Math.random() * 1000000}`;
   };
 
   function handleCurrentPortfolioForm(formName) {
@@ -172,7 +175,10 @@ export default function UpdatePortfolioData() {
               onChange={handlePortfolioDataChange}
             >
               {input.options.map((option, index) => (
-                <MenuItem key={generateKey("Skills Option " + index)} value={option}>
+                <MenuItem
+                  key={generateKey("Skills Option " + index)}
+                  value={option}
+                >
                   {option}
                 </MenuItem>
               ))}
@@ -187,7 +193,7 @@ export default function UpdatePortfolioData() {
   const generatePortfolioButtons = (buttonName) => {
     return (
       <Box
-        key={generateKey("button" +  buttonName )}
+        key={generateKey("button" + buttonName)}
         sx={{ py: 1, mx: 1, textAlign: "center" }}
       >
         <Button
