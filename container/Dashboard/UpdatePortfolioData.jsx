@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { userPortfolio } from "../../TralioAPI/tralio";
 
+// MUI Material Basic Components
 import {
   Box,
   Container,
@@ -11,21 +12,26 @@ import {
   Select,
   Dialog,
   TextField,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   Grid,
+  Hidden
 } from "@mui/material";
 
+import { createStyles, makeStyles } from "@mui/styles";
+
+// MUI imports for Date Support
+import {
+  AdapterDateFns,
+  DatePicker,
+  LocalizationProvider,
+} from "@mui/lab/AdapterDateFns";
+
+// Portfolio Forms Template
 import {
   portfolioFields,
   portfolioButtons,
+  addFeature
 } from "../../TralioAPI/portfolioForm";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
-import { createStyles, makeStyles } from "@mui/styles";
-import Hidden from "@mui/material/Hidden";
+
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -37,36 +43,20 @@ const useStyles = makeStyles(() =>
 );
 
 export default function UpdatePortfolioData() {
+
   const classes = useStyles();
 
-  const [portfolioData, setPortfolioData] = useState({});
-
-  const [inputList, setInputList] = useState([{}]);
   const [pop, setPop] = useState(false);
-  const [educationIndexes, setEducationIndexes] = useState([]);
-  const [educationCounter, setEducationCounter] = useState(0);
 
+  const [portfolioData, setPortfolioData] = useState({});
   const [portfolioFormName, setPortfolioFormName] = useState("Profile");
-
   const tempPortfolioFields = portfolioFields;
   const [currentPortfolioForm, setCurrentPortfolioForm] = useState(
     tempPortfolioFields["Profile"]
   );
 
-  const [counters, setCounters] = useState({});
-
-  const addFeature = [
-    "Education",
-    "Projects",
-    "Experience",
-    "Courses",
-    "Organisation",
-    "Interest",
-    "Award",
-  ];
-
   const generateKey = (pre) => {
-    return `${pre}_${new Date().getTime()}_${Math.random()*1000000}`;
+    return `${pre}_${new Date().getTime()}_${Math.random() * 1000000}`;
   };
 
   function handleCurrentPortfolioForm(formName) {
@@ -172,7 +162,10 @@ export default function UpdatePortfolioData() {
               onChange={handlePortfolioDataChange}
             >
               {input.options.map((option, index) => (
-                <MenuItem key={generateKey("Skills Option " + index)} value={option}>
+                <MenuItem
+                  key={generateKey("Skills Option " + index)}
+                  value={option}
+                >
                   {option}
                 </MenuItem>
               ))}
@@ -187,7 +180,7 @@ export default function UpdatePortfolioData() {
   const generatePortfolioButtons = (buttonName) => {
     return (
       <Box
-        key={generateKey("button" +  buttonName )}
+        key={generateKey("button" + buttonName)}
         sx={{ py: 1, mx: 1, textAlign: "center" }}
       >
         <Button
@@ -224,28 +217,12 @@ export default function UpdatePortfolioData() {
     setPop(false);
   };
   const handleAddClick = () => {
-    console.log("porfolioFormName", portfolioFormName);
-    console.log("temp Portfolio", tempPortfolioFields);
-
-    // tempPortfolioFields[portfolioFormName] = [
-    //   ...tempPortfolioFields[portfolioFormName],
-    //   portfolioFields[portfolioFormName],
-    // ];
-
+    
     tempPortfolioFields[portfolioFormName] = tempPortfolioFields[
       portfolioFormName
     ].concat(portfolioFields[portfolioFormName]);
-    console.log("temp Portfolio", tempPortfolioFields[portfolioFormName]);
 
     setCurrentPortfolioForm(tempPortfolioFields[portfolioFormName]);
-
-    // if (portfolioFormName == "Education") {
-    //   setEducationCounter((prevEducationCounter) => prevEducationCounter + 1);
-    //   setEducationIndexes((prevEducationIndexes) => [
-    //     ...prevEducationIndexes,
-    //     educationCounter,
-    //   ]);
-    // }
   };
 
   const handleDialogOpen = () => {
