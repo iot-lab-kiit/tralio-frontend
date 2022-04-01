@@ -46,36 +46,28 @@ export default function UpdatePortfolioData() {
   const [educationIndexes, setEducationIndexes] = useState([]);
   const [educationCounter, setEducationCounter] = useState(0);
 
-  const [projectsIndexes, setProjectsIndexes] = useState([]);
-  const [projectsCounter, setProjectsCounter] = useState(0);
-
-  const [experienceIndexes, setExperienceIndexes] = useState([]);
-  const [experienceCounter, setExperienceCounter] = useState(0);
-
-  const [skillsIndexes, setSkillsIndexes] = useState([]);
-  const [skillsCounter, setSkillsCounter] = useState(0);
-
-  const [coursesIndexes, setCoursesIndexes] = useState([]);
-  const [coursesCounter, setCoursesCounter] = useState(0);
-
-  const [organisationIndexes, setOrganisationIndexes] = useState([]);
-  const [organisationCounter, setOrganisationCounter] = useState(0);
-
-  const [interestIndexes, setInterestIndexes] = useState([]);
-  const [interestCounter, setInterestCounter] = useState(0);
-
-  const [awardIndexes, setAwardIndexes] = useState([]);
-  const [awardCounter, setAwardCounter] = useState(0);
-
   const [portfolioFormName, setPortfolioFormName] = useState("Profile");
+
+  const tempPortfolioFields = portfolioFields
   const [currentPortfolioForm, setCurrentPortfolioForm] = useState(
-    portfolioFields["Profile"]
+    tempPortfolioFields["Profile"]
   );
 
+  const [counters, setCounters] = useState({});
+
+  const addFeature = [
+    "Education",
+    "Projects",
+    "Experience",
+    "Courses",
+    "Organisation",
+    "Interest",
+    "Award",
+  ];
+
   function handleCurrentPortfolioForm(formName) {
-    
     setCurrentPortfolioForm(portfolioFields[formName]);
-    setPortfolioFormName(btnName);
+    setPortfolioFormName(formName);
     setPop(false);
   }
 
@@ -114,6 +106,7 @@ export default function UpdatePortfolioData() {
     } else if (input.type === "date") {
       return (
         <Box
+          key={{ portfolioFormName } + input.name}
           display={"flex"}
           flexDirection={{ md: "row", xs: "column" }}
           width={"100%"}
@@ -130,13 +123,17 @@ export default function UpdatePortfolioData() {
               renderInput={(params) => (
                 <TextField
                   fullWidth
-                  sx={{ pr: { md: 1, xs: 0 }, py: { md: 0, xs: 1 } }}
+                  sx={{
+                    pr: { md: 1, xs: 0 },
+                    py: { md: 0, xs: 1 },
+                  }}
                   {...params}
                   helperText={null}
                 />
               )}
             />
             <DatePicker
+              fullWidth
               views={["year", "month"]}
               label="End Date"
               name="endDate"
@@ -146,13 +143,39 @@ export default function UpdatePortfolioData() {
               renderInput={(params) => (
                 <TextField
                   fullWidth
-                  sx={{ pl: { md: 1, xs: 0 }, py: { md: 0, xs: 2 } }}
+                  sx={{
+                    pl: { md: 1, xs: 0 },
+                    py: { md: 0, xs: 2 },
+                  }}
                   {...params}
                   helperText={null}
                 />
               )}
             />
           </LocalizationProvider>
+        </Box>
+      );
+    } else if (input.type === "select") {
+      return (
+        <Box key={{ portfolioFormName } + input.name} width={"100%"}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">
+              {input.placeholder}
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label={input.placeholder}
+              onChange={handlePortfolioDataChange}
+            >
+              {input.options.map((option, index) => (
+                <MenuItem key={"Skills Option " + index} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <Box mt={2} />
         </Box>
       );
     }
@@ -221,62 +244,23 @@ export default function UpdatePortfolioData() {
     setPop(false);
   };
   const handleAddClick = () => {
-    setInputList([...inputList, portfolioData]);
-    setPortfolioData("");
+    console.log("Iinitial",currentPortfolioForm)
+    const counterName = portfolioFormName.toLowerCase()+"Counter"
+    setCurrentPortfolioForm(
+        ...currentPortfolioForm,
+        portfolioFields[portfolioFormName]
+      
+    )
+
+    console.log("Final",currentPortfolioForm)
+    
     if (portfolioFormName == "Education") {
       setEducationCounter((prevEducationCounter) => prevEducationCounter + 1);
       setEducationIndexes((prevEducationIndexes) => [
         ...prevEducationIndexes,
         educationCounter,
       ]);
-    } else if (portfolioFormName == "Projects") {
-      setProjectsCounter((prevProjectsCounter) => prevProjectsCounter + 1);
-      setProjectsIndexes((prevProjectsIndexes) => [
-        ...prevProjectsIndexes,
-        projectsCounter,
-      ]);
-    } else if (portfolioFormName == "Experience") {
-      setExperienceCounter(
-        (prevExperienceCounter) => prevExperienceCounter + 1
-      );
-      setExperienceIndexes((prevExperienceIndexes) => [
-        ...prevExperienceIndexes,
-        experienceCounter,
-      ]);
-    } else if (portfolioFormName == "Skills") {
-      setSkillsCounter((prevSkillsCounter) => prevSkillsCounter + 1);
-      setSkillsIndexes((prevSkillsIndexes) => [
-        ...prevSkillsIndexes,
-        skillsCounter,
-      ]);
-    } else if (portfolioFormName == "Courses") {
-      setCoursesCounter((prevCoursesCounter) => prevCoursesCounter + 1);
-      setCoursesIndexes((prevCoursesIndexes) => [
-        ...prevCoursesIndexes,
-        coursesCounter,
-      ]);
-    } else if (portfolioFormName == "Organisation") {
-      setOrganisationCounter(
-        (prevOrganisationCounter) => prevOrganisationCounter + 1
-      );
-      setOrganisationIndexes((prevOrganisationIndexes) => [
-        ...prevOrganisationIndexes,
-        organisationCounter,
-      ]);
-    } else if (portfolioFormName == "Interest") {
-      setInterestCounter((prevInterestCounter) => prevInterestCounter + 1);
-      setInterestIndexes((prevInterestIndexes) => [
-        ...prevInterestIndexes,
-        interestCounter,
-      ]);
-    } else if (portfolioFormName == "Award") {
-      setAwardCounter((prevAwardCounter) => prevAwardCounter + 1);
-      setAwardIndexes((prevAwardIndexes) => [
-        ...prevAwardIndexes,
-        awardCounter,
-      ]);
-    }
-    console.log(projectsIndexes);
+    } 
   };
 
   const handleDialogOpen = () => {
@@ -286,13 +270,7 @@ export default function UpdatePortfolioData() {
   const AddSaveButton = () => {
     return (
       <Box sx={{ my: 3 }}>
-        {portfolioFormName == "Education" ||
-        portfolioFormName == "Projects" ||
-        portfolioFormName == "Experience" ||
-        portfolioFormName == "Courses" ||
-        portfolioFormName == "Organisation" ||
-        portfolioFormName == "Interest" ||
-        portfolioFormName == "Award" ? (
+        {addFeature.includes(portfolioFormName) ? (
           <Button sx={{ mr: 2 }} variant="contained" onClick={handleAddClick}>
             Add
           </Button>
@@ -306,88 +284,86 @@ export default function UpdatePortfolioData() {
     );
   };
   return (
-    <>
-      <Grid display={"flex"} justifyContent={"space-between"}>
-        <Grid xs={0} sm={3} md={2}>
-          <Hidden smDown>
-            <Box
-              mt={12}
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-            >
-              {portfolioButtons.map(generatePortfolioButtons)}
-            </Box>
-          </Hidden>
-        </Grid>
-        <Grid mt={8} xs={12} sm={9} md={10}>
-          <Container>
-            <Hidden smUp>
-              <Box display={"flex"} justifyContent={"space-between"}>
-                <Button
-                  variant={"contained"}
-                  onClick={handleDialogOpen}
-                  sx={{
-                    padding: {
-                      lg: "5px 44px",
-                      md: "5px 44px",
-                      sm: "5px 34px",
-                      sx: "5px 27px",
-                    },
-                    my: 3,
-                    background: "#1981FF",
-                  }}
-                >
-                  Portfolio Fields
-                </Button>
-                {AddSaveButton()}
-              </Box>
-              <Dialog
-                open={pop}
-                onClose={handleDialogClose}
-                BackdropProps={{
-                  classes: {
-                    root: classes.backDrop,
+    <Grid display={"flex"} justifyContent={"space-between"}>
+      <Grid xs={0} sm={3} md={2}>
+        <Hidden smDown>
+          <Box
+            mt={12}
+            display={"flex"}
+            flexDirection={"column"}
+            justifyContent={"center"}
+          >
+            {portfolioButtons.map(generatePortfolioButtons)}
+          </Box>
+        </Hidden>
+      </Grid>
+      <Grid mt={8} xs={12} sm={9} md={10}>
+        <Container>
+          <Hidden smUp>
+            <Box display={"flex"} justifyContent={"space-between"}>
+              <Button
+                variant={"contained"}
+                onClick={handleDialogOpen}
+                sx={{
+                  padding: {
+                    lg: "5px 44px",
+                    md: "5px 44px",
+                    sm: "5px 34px",
+                    sx: "5px 27px",
                   },
+                  my: 3,
+                  background: "#1981FF",
                 }}
               >
-                <Box
-                  width={"100%"}
-                  height={"100%"}
-                  display={"flex"}
-                  justifyContent={"center"}
-                  alignItems={"center"}
-                >
-                  <Box
-                    zIndex={1}
-                    width={"500px"}
-                    bgcolor={"white"}
-                    display={"flex"}
-                    flexWrap={"wrap"}
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    pt={6}
-                    pb={6}
-                  >
-                    {portfolioButtons.map(generatePortfolioButtons)}
-                  </Box>
-                </Box>
-              </Dialog>
-            </Hidden>
-            <Box
-              sx={{
-                p: 2,
+                Portfolio Fields
+              </Button>
+              {AddSaveButton()}
+            </Box>
+            <Dialog
+              open={pop}
+              onClose={handleDialogClose}
+              BackdropProps={{
+                classes: {
+                  root: classes.backDrop,
+                },
               }}
             >
-              <Box display={"flex"} justifyContent={"space-between"}>
-                <h1>{portfolioFormName}</h1>
-                <Hidden smDown>{AddSaveButton()}</Hidden>
+              <Box
+                width={"100%"}
+                height={"100%"}
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+              >
+                <Box
+                  zIndex={1}
+                  width={"500px"}
+                  bgcolor={"white"}
+                  display={"flex"}
+                  flexWrap={"wrap"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  pt={6}
+                  pb={6}
+                >
+                  {portfolioButtons.map(generatePortfolioButtons)}
+                </Box>
               </Box>
-              {currentPortfolioForm.map(generateFields)}
+            </Dialog>
+          </Hidden>
+          <Box
+            sx={{
+              p: 2,
+            }}
+          >
+            <Box display={"flex"} justifyContent={"space-between"}>
+              <h1>{portfolioFormName}</h1>
+              <Hidden smDown>{AddSaveButton()}</Hidden>
             </Box>
-          </Container>
-        </Grid>
-      </Grid>   
-    </>
+            {currentPortfolioForm.map(generateFields)}
+          </Box>
+        </Container>
+      </Grid>
+    </Grid>
   );
 }
