@@ -74,7 +74,9 @@ export default function UpdatePortfolioData() {
     const { name, value } = e.target;
     setPortfolioData({
       ...portfolioData,
-      [name]: value,
+      [portfolioFormName]: {
+        ...portfolioData[portfolioFormName],
+      },
     });
   };
 
@@ -83,6 +85,11 @@ export default function UpdatePortfolioData() {
       ...portfolioData,
       [name]: newDate,
     });
+  };
+
+  const assembleGenerateFields = (dataFields) => {
+    console.log("Test data", dataFields);
+    return <>{dataFields.map(generateFields)}</>;
   };
 
   const generateDateField = (dateSettings) => {
@@ -109,7 +116,7 @@ export default function UpdatePortfolioData() {
       />
     );
   };
-  
+
   const generateFields = (input) => {
     if (input.type === "text") {
       return (
@@ -317,7 +324,9 @@ export default function UpdatePortfolioData() {
               <h1>{portfolioFormName}</h1>
               <Hidden smDown>{AddSaveButton()}</Hidden>
             </Box>
-            {currentPortfolioForm.map(generateFields)}
+            {currentPortfolioForm.map((dataFields) =>
+              dataFields.map(generateFields)
+            )}
           </Box>
         </Container>
       </Grid>
