@@ -47,6 +47,7 @@ const useStyles = makeStyles(() =>
 
 // Declared outside the function to avoid re-initialization
 const tempPortfolioFields = JSON.parse(JSON.stringify(portfolioFields));
+let currentIndex = 1;
 
 export default function UpdatePortfolioData() {
   const classes = useStyles();
@@ -74,10 +75,10 @@ export default function UpdatePortfolioData() {
     const { name, value } = e.target;
     setPortfolioData({
       ...portfolioData,
-      [portfolioFormName]: {
-        ...portfolioData[portfolioFormName],
-      },
-    });
+      [name]: value
+    })
+
+    
   };
 
   const handleDateChange = (newDate, name) => {
@@ -85,11 +86,6 @@ export default function UpdatePortfolioData() {
       ...portfolioData,
       [name]: newDate,
     });
-  };
-
-  const assembleGenerateFields = (dataFields) => {
-    console.log("Test data", dataFields);
-    return <>{dataFields.map(generateFields)}</>;
   };
 
   const generateDateField = (dateSettings) => {
@@ -118,16 +114,18 @@ export default function UpdatePortfolioData() {
   };
 
   const generateFields = (input) => {
+    const fieldName = input.name + String(currentIndex);
     if (input.type === "text") {
       return (
         <Box key={generateKey(portfolioFormName + input.name)} width={"100%"}>
           <TextField
             fullWidth
-            name={input.name}
-            label={input.name}
+            autoFocus
+            name={fieldName}
+            label={input.placeholder}
+            value={portfolioData[fieldName]}
             id="outlined-textarea"
-            type={input.type}
-            multiline
+            type="text"
             onChange={handlePortfolioDataChange}
           />
           <Box mt={2} />
@@ -224,6 +222,8 @@ export default function UpdatePortfolioData() {
     ].concat(portfolioFields[portfolioFormName]);
 
     setCurrentPortfolioForm(tempPortfolioFields[portfolioFormName]);
+
+    console.log("data", portfolioData)
   };
 
   const handleDialogOpen = () => {
@@ -324,8 +324,10 @@ export default function UpdatePortfolioData() {
               <h1>{portfolioFormName}</h1>
               <Hidden smDown>{AddSaveButton()}</Hidden>
             </Box>
-            {currentPortfolioForm.map((dataFields) =>
-              dataFields.map(generateFields)
+            {currentPortfolioForm.map((dataFields, index) => {
+              currentIndex = index+1
+              return dataFields.map(generateFields)
+            }
             )}
           </Box>
         </Container>
