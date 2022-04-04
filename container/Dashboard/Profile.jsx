@@ -32,7 +32,7 @@ export default function Profile(props) {
               onClick={() => {
                 window.location.href = "/settings";
               }}>
-              EDIT <EditIcon sx={{ ml: 1 }} fontSize="small" />
+              Settings <EditIcon sx={{ ml: 1 }} fontSize="small" />
             </Button>
           </Box>
           <Box p={{ xs: 2, md: 8 }} width={"100%"}>
