@@ -117,7 +117,7 @@ export default function UpdatePortfolioData() {
     const fieldName = input.name + String(currentIndex);
     if (input.type === "text") {
       return (
-        <Box key={fieldName`${pre}_${new Date().getTime()}_${Math.random() * 1000000}`} width={"100%"}>
+        <Box key={fieldName} width={"100%"}>
           <TextField
             fullWidth
             name={fieldName}
