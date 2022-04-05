@@ -117,10 +117,9 @@ export default function UpdatePortfolioData() {
     const fieldName = input.name + String(currentIndex);
     if (input.type === "text") {
       return (
-        <Box key={generateKey(portfolioFormName + input.name)} width={"100%"}>
+        <Box key={fieldName`${pre}_${new Date().getTime()}_${Math.random() * 1000000}`} width={"100%"}>
           <TextField
             fullWidth
-            autoFocus
             name={fieldName}
             label={input.placeholder}
             value={portfolioData[fieldName]}
@@ -134,7 +133,7 @@ export default function UpdatePortfolioData() {
     } else if (input.type === "dual-date") {
       return (
         <Box
-          key={generateKey(portfolioFormName + input.name)}
+          key={fieldName}
           display={"flex"}
           flexDirection={{ md: "row", xs: "column" }}
           width={"100%"}
@@ -148,7 +147,7 @@ export default function UpdatePortfolioData() {
       );
     } else if (input.type === "select") {
       return (
-        <Box key={generateKey(portfolioFormName + input.name)} width={"100%"}>
+        <Box key={fieldName} width={"100%"}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">
               {input.placeholder}
@@ -161,7 +160,7 @@ export default function UpdatePortfolioData() {
             >
               {input.options.map((option, index) => (
                 <MenuItem
-                  key={generateKey("Skills Option " + index)}
+                  key={fieldName+ "Skills Option " + index}
                   value={option}
                 >
                   {option}
