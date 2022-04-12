@@ -54,7 +54,17 @@ export default function UpdatePortfolioData() {
 
   const [pop, setPop] = useState(false);
 
-  const [portfolioData, setPortfolioData] = useState({});
+  const [portfolioData, setPortfolioData] = useState({
+    Profile:{},
+    Educations: {},
+    Skills: {},
+    Projects: {},
+    Experiences: {},
+    Courses: {},
+    Organisations: {},
+    Interests: {},
+    Awards: {},
+  });
   const [portfolioFormName, setPortfolioFormName] = useState("Profile");
 
   const [currentPortfolioForm, setCurrentPortfolioForm] = useState(
@@ -75,10 +85,11 @@ export default function UpdatePortfolioData() {
     const { name, value } = e.target;
     setPortfolioData({
       ...portfolioData,
-      [name]: value
-    })
-
-    
+      [portfolioFormName]: {
+        ...portfolioData[portfolioFormName],
+        [name]: value
+      }
+    })    
   };
 
   const handleDateChange = (newDate, name) => {
@@ -122,7 +133,7 @@ export default function UpdatePortfolioData() {
             fullWidth
             name={fieldName}
             label={input.placeholder}
-            value={portfolioData[fieldName]}
+            value={portfolioData[portfolioFormName][fieldName]}
             id="outlined-textarea"
             type="text"
             onChange={handlePortfolioDataChange}
