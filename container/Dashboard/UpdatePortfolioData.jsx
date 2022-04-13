@@ -47,6 +47,7 @@ const useStyles = makeStyles(() =>
 
 // Declared outside the function to avoid re-initialization
 const tempPortfolioFields = JSON.parse(JSON.stringify(portfolioFields));
+let currentIndex = 1;
 
 export default function UpdatePortfolioData() {
   const classes = useStyles();
@@ -74,8 +75,10 @@ export default function UpdatePortfolioData() {
     const { name, value } = e.target;
     setPortfolioData({
       ...portfolioData,
-      [name]: value,
-    });
+      [name]: value
+    })
+
+    
   };
 
   const handleDateChange = (newDate, name) => {
@@ -109,18 +112,19 @@ export default function UpdatePortfolioData() {
       />
     );
   };
-  
+
   const generateFields = (input) => {
+    const fieldName = input.name + String(currentIndex);
     if (input.type === "text") {
       return (
-        <Box key={generateKey(portfolioFormName + input.name)} width={"100%"}>
+        <Box key={fieldName} width={"100%"}>
           <TextField
             fullWidth
-            name={input.name}
-            label={input.name}
+            name={fieldName}
+            label={input.placeholder}
+            value={portfolioData[fieldName]}
             id="outlined-textarea"
-            type={input.type}
-            multiline
+            type="text"
             onChange={handlePortfolioDataChange}
           />
           <Box mt={2} />
@@ -129,7 +133,7 @@ export default function UpdatePortfolioData() {
     } else if (input.type === "dual-date") {
       return (
         <Box
-          key={generateKey(portfolioFormName + input.name)}
+          key={fieldName}
           display={"flex"}
           flexDirection={{ md: "row", xs: "column" }}
           width={"100%"}
@@ -143,7 +147,7 @@ export default function UpdatePortfolioData() {
       );
     } else if (input.type === "select") {
       return (
-        <Box key={generateKey(portfolioFormName + input.name)} width={"100%"}>
+        <Box key={fieldName} width={"100%"}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">
               {input.placeholder}
@@ -156,7 +160,7 @@ export default function UpdatePortfolioData() {
             >
               {input.options.map((option, index) => (
                 <MenuItem
-                  key={generateKey("Skills Option " + index)}
+                  key={fieldName+ "Skills Option " + index}
                   value={option}
                 >
                   {option}
@@ -217,6 +221,8 @@ export default function UpdatePortfolioData() {
     ].concat(portfolioFields[portfolioFormName]);
 
     setCurrentPortfolioForm(tempPortfolioFields[portfolioFormName]);
+
+    console.log("data", portfolioData)
   };
 
   const handleDialogOpen = () => {
@@ -317,7 +323,11 @@ export default function UpdatePortfolioData() {
               <h1>{portfolioFormName}</h1>
               <Hidden smDown>{AddSaveButton()}</Hidden>
             </Box>
-            {currentPortfolioForm.map(generateFields)}
+            {currentPortfolioForm.map((dataFields, index) => {
+              currentIndex = index+1
+              return dataFields.map(generateFields)
+            }
+            )}
           </Box>
         </Container>
       </Grid>
