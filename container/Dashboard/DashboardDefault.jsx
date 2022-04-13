@@ -19,7 +19,7 @@ export default function DashboardDefault({setDashboardPage}) {
 
     return (
         <>
-            <BackgroundSearch color={'#fff'} head={'The best free stock photos, royalty free images & videos shared by creators.'} src={'/backgrounds/dashboardBg3.jpg'} />
+            <BackgroundSearch color={'#fff'} head={'The best way to foresee the future is to make it happen.'} src={'/backgrounds/dashboardBg3.jpg'} />
             <Container maxWidth={'lg'}>
                 {/*flexDirection={{lg: 'row', md: 'row', sm: 'row', xs: 'column'}}*/}
                 <Box mt={7} width={'100%'} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>

@@ -11,7 +11,7 @@ function DetailFeatures(props) {
             src={props.leftImages}
             alt={props.leftHeading}
             width={45}
-            height={40}
+            height={45}
           />
           </div>
           <h2>{props.leftHeading}</h2>
@@ -23,7 +23,7 @@ function DetailFeatures(props) {
             src={props.rightImages}
             alt={props.rightHeading}
             width={45}
-            height={40}
+            height={45}
           />
           </div>
           <h2>{props.rightHeading}</h2>

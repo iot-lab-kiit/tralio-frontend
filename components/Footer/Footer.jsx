@@ -88,49 +88,45 @@ const Footer = () => {
       }}
       color={"#FFF"}
       p={{ lg: 6, md: 5, sm: 4, xs: 1 }}
-      width={"100%"}
-    >
+      width={"100%"}>
       <Container maxWidth={"lg"}>
         <Grid container spacing={0}>
-          <Grid item sm={12} md={6} xs={12}>
+          <Grid item xs={12}>
             <Box
               mt={{ lg: 5, md: 3, sm: 2, xs: 2 }}
               textAlign={{
-                lg: "left",
-                md: "left",
-                sm: "center",
                 xs: "center",
-              }}
-            >
+              }}>
               <Box
                 component={Link}
                 noLinkStyle
                 href="/"
                 width={"120px"}
-                height={"41px"}
-              >
+                height={"41px"}>
                 <Image src={Logo} alt={"logo"} />
               </Box>
               <Box pr={{ lg: 6, md: 5, sm: 0, xs: 0 }} mt={1}>
-                Trafalgar provides progressive, and affordable healthcare,
+                Tralio provides progressive, and affordable healthcare,
                 accessible on mobile and online for everyone
               </Box>
-              <Hidden mdDown>
-                <Box mt={3}>©Trafalgar PTY LTD 2020. All rights reserved</Box>
-              </Hidden>
-              <Hidden mdUp>
+              {/* <Hidden mdDown> */}
+                <Box mt={3}>
+                  Coded with ❤ and ☕ by IoT LAB, KIIT
+                </Box>
+              {/* </Hidden> */}
+              {/* <Hidden mdUp>
                 <Box mt={5} />
-              </Hidden>
+              </Hidden> */}
             </Box>
           </Grid>
-          <Hidden mdDown>{footerData.map(generateDesktopFooter)}</Hidden>
-          <Hidden mdUp>{footerData.map(generateMobileFooter)}</Hidden>
+          {/* <Hidden mdDown>{footerData.map(generateDesktopFooter)}</Hidden>
+          <Hidden mdUp>{footerData.map(generateMobileFooter)}</Hidden> */}
         </Grid>
-        <Hidden mdUp>
+        {/* <Hidden mdUp>
           <Box mt={3} textAlign={"center"}>
             ©Trafalgar PTY LTD 2020. All rights reserved
           </Box>
-        </Hidden>
+        </Hidden> */}
       </Container>
     </Box>
   );

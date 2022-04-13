@@ -22,7 +22,9 @@ a {
 .slick-next:before {
   display: none;
 }
-
+.slick-slide {
+  height: 440px;
+}
 /* width */
 ::-webkit-scrollbar {
   width: 7px;
@@ -36,6 +38,30 @@ a {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(233,244,255,1) 0%, rgba(117,21,2,0.9009978991596639) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(233, 244, 255, 1) 0%,
+    rgba(117, 21, 2, 0.9009978991596639) 100%
+  );
   border-radius: 10px;
+}
+@media screen and (max-width: 1024px) {
+  .slick-slide {
+    height: 320px;
+  }
+}
+@media screen and (max-width: 850px) {
+  .slick-slide {
+    height: 350px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .slick-slide {
+    height: 220px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .slick-slide {
+    height: 280px;
+  }
 }
