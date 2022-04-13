@@ -13,14 +13,14 @@ const CustomLayout = ({ children, setDashboardPage, isLoggedIn }) => {
 
     return (
         <>
-            {!isLoggedIn ? <LandingNavbar  /> : path === '/' ? <DashboardNavbar setDashboardPage={setDashboardPage} /> : <Navbar setDashboardPage={setDashboardPage} />}
+            {!isLoggedIn ? <LandingNavbar  /> : path === '/' ? <DashboardNavbar setDashboardPage={setDashboardPage} /> :  path === '/portfolio' ? '' : <Navbar setDashboardPage={setDashboardPage} />}
 
             {/*if ur components are going inside navbar then insert <Box mt={8}/> before it*/}
             <Box width={'100%'}>
                 { children }
             </Box>
 
-            <Footer />
+            {path === '/portfolio' ? '' : <Footer />}
         </>
     );
 };
