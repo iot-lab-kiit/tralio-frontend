@@ -1,11 +1,11 @@
 
 import Box from "@mui/material/Box";
+import PortfolioTemplate1 from "../../container/PortfolioTemplate/PortfolioTemplate1";
 
 export default function Portfolio() {
     return (
         <>
-            <Box mt={8} textAlign={'center'}>Portfolio page*</Box>
-            <Box mt={100}/>
+            <PortfolioTemplate1 />
         </>
     );
 }
