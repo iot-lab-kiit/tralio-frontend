@@ -35,19 +35,24 @@ function TopLandingScreen() {
         <div className={styles.bg}>
           <div className={styles.leftText}>
             <div>
-              <h1 className={styles.heading}>Lorem Ipsum Emet IoT Web</h1>
+              <h1 className={styles.heading}>BUILD. SHARE. MANAGE.</h1>
               <p className={styles.desc}>
-                Trafalgar provides progressive, and affordable healthcare,
-                accessible on mobile and online for everyone
+                Design customizable resume portfolios and showcase your skills.
+                Share what you've learned with the rest of the world!
               </p>
               <Button
-                  variant={'contained'}
-                  onClick={handleClick}
-                  sx={{
-                    padding: {lg: '5px 37px', md: '5px 37px', sm: '5px 30px', sx: '5px 27px'},
-                    background: '#1981FF',
-                  }}
-              >
+                variant={"contained"}
+                onClick={handleClick}
+                sx={{
+                  mt:"10px",
+                  padding: {
+                    lg: "5px 37px",
+                    md: "5px 37px",
+                    sm: "5px 30px",
+                    sx: "5px 27px",
+                  },
+                  background: "#1981FF",
+                }}>
                 Join Us &rarr;
               </Button>
               <Dialog
@@ -58,7 +63,7 @@ function TopLandingScreen() {
                     root: classes.backDrop,
                   },
                 }}>
-                <Pop initial={1}/>
+                <Pop initial={1} />
               </Dialog>
             </div>
           </div>

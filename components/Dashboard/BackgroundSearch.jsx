@@ -65,7 +65,7 @@ export default function BackgroundSearch({head, src, color}) {
                             {/*    )}*/}
                             {/*/>*/}
                             <Box color={color} fontSize={{lg: '15px', md: '15px', sm: '13x', xs: '13px'}} mt={2}>
-                                Suggested: business, mobile, office, programming, sports, gaming, marketing, more
+                                Suggested: resume, portfolio, internships, jobs, blogs ...
                             </Box>
                         </Box>
                     </Box>

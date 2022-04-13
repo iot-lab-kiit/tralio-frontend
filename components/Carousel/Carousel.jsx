@@ -9,9 +9,10 @@ function Carousel() {
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay:false,
     speed: 1000,
     autoplaySpeed: 3000,
+    pauseOnHover:true,
     cssEase: "linear",
     responsive: [
       {
@@ -44,7 +45,7 @@ function Carousel() {
   );
 
   return (
-    <Container>
+    <Container >
       <Slider {...settings}>{propsTestimonial}</Slider>
     </Container>
   );
