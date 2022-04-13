@@ -54,5 +54,10 @@ async function dbStatus() {
     return status;
 }
 
+async function userPortfolio(){
+        const url = `api/${apiVersion}/`;
+        const portfolioDetails = await tralioAPI("POST", payload, url);
+        return portfolioDetails;
+}
 export default tralioAPI;
-export { registerUser, loginUser, uploadBlog, test, dbStatus };
+export { registerUser, loginUser, uploadBlog, test, dbStatus, userPortfolio };
