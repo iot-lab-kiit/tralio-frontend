@@ -208,7 +208,7 @@ const DashboardNavbar = ({ setDashboardPage }) => {
               <Box ml={1} />
               <Button
                 onClick={() => {
-                  window.location.href("/settings");
+                  window.location.href="/settings";
                 }}
               >
                 Settings

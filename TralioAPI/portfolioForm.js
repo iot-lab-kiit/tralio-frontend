@@ -1,7 +1,6 @@
 // Portfolio Fields Name following convention of plural form
 // Portfolio Fields name must be same as portfolio Buttons and hence same in addFeature
 
-
 const portfolioButtons = [
   "Profile",
   "Educations",
@@ -17,6 +16,7 @@ const portfolioButtons = [
 const addFeature = [
   "Educations",
   "Projects",
+  "Skills",
   "Experiences",
   "Courses",
   "Organisations",
@@ -29,7 +29,7 @@ const portfolioFields = {
     [
       {
         type: "text",
-        name: "profileFirstName",
+        name: "firstName",
         placeholder: "First Name",
         validation: {
           required: true,
@@ -39,7 +39,7 @@ const portfolioFields = {
       },
       {
         type: "text",
-        name: "profileLastName",
+        name: "lastName",
         placeholder: "Last Name",
         validation: {
           required: true,
@@ -49,7 +49,7 @@ const portfolioFields = {
       },
       {
         type: "text",
-        name: "profileBio",
+        name: "bio",
         placeholder: "Bio",
         validation: {
           required: true,
@@ -63,32 +63,32 @@ const portfolioFields = {
     [
       {
         type: "text",
-        name: "educationDegree",
+        name: "degree",
         placeholder: "Degree",
       },
       {
         type: "text",
-        name: "educationInstitute",
+        name: "school",
         placeholder: "School/ College/ University",
       },
       {
         type: "text",
-        name: "educationCity",
+        name: "city",
         placeholder: "City",
       },
       {
         type: "text",
-        name: "educationCountry",
+        name: "country",
         placeholder: "Country",
       },
       {
         type: "dual-date",
         date1: {
-          name: "educationStartDate",
+          name: "startDate",
           placeholder: "Start Date",
         },
         date2: {
-          name: "educationEndDate",
+          name: "endDate",
           placeholder: "End Date",
         },
       },
@@ -98,17 +98,17 @@ const portfolioFields = {
     [
       {
         type: "text",
-        name: "skillsSkillName",
+        name: "name",
         placeholder: "Skill",
       },
       {
         type: "text",
-        name: "skillsSkillInfo",
+        name: "desc",
         placeholder: "Information/ Sub-skill",
       },
       {
         type: "select",
-        name: "skillsSkillLevel",
+        name: "level",
         placeholder: "Skill Level",
         options: ["Beginner", "Intermediate", "Advanced", "Expert"],
       },
@@ -118,12 +118,12 @@ const portfolioFields = {
     [
       {
         type: "text",
-        name: "projectsTitle",
+        name: "title",
         placeholder: "Project Title",
       },
       {
         type: "text",
-        name: "projectsShortDescription",
+        name: "desc",
         placeholder: "Short Description",
       },
     ],
@@ -132,12 +132,12 @@ const portfolioFields = {
     [
       {
         type: "text",
-        name: "experiencesJobTitle",
+        name: "title",
         placeholder: "Job Title",
       },
       {
         type: "text",
-        name: "experiencesShortDescription",
+        name: "desc",
         placeholder: "Short Description",
       },
     ],
@@ -146,12 +146,12 @@ const portfolioFields = {
     [
       {
         type: "text",
-        name: "coursesTitle",
+        name: "title",
         placeholder: "Course Title",
       },
       {
         type: "text",
-        name: "coursesInstitution",
+        name: "institution",
         placeholder: "Institution",
       },
     ],
@@ -160,22 +160,22 @@ const portfolioFields = {
     [
       {
         type: "text",
-        name: "organisationName",
+        name: "name",
         placeholder: "Organisation",
       },
       {
         type: "text",
-        name: "organisationPosition",
+        name: "position",
         placeholder: "Position",
       },
       {
         type: "text",
-        name: "organisationCity",
+        name: "city",
         placeholder: "City",
       },
       {
         type: "text",
-        name: "organisationCountry",
+        name: "country",
         placeholder: "Country",
       },
     ],
@@ -184,12 +184,12 @@ const portfolioFields = {
     [
       {
         type: "text",
-        name: "interestsName",
+        name: "name",
         placeholder: "Interest",
       },
       {
         type: "text",
-        name: "interestsDescription",
+        name: "desc",
         placeholder: "Additional Information",
       },
     ],
@@ -198,12 +198,12 @@ const portfolioFields = {
     [
       {
         type: "text",
-        name: "awardsName",
+        name: "name",
         placeholder: "Award",
       },
       {
         type: "text",
-        name: "awardIssuer",
+        name: "issuer",
         placeholder: "Issuer",
       },
     ],

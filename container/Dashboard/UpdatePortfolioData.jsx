@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 
 import { createStyles, makeStyles } from "@mui/styles";
-
+import { useSnackbar } from "notistack";
 // MUI imports for Date Support
 import {
   // AdapterDateFns,
@@ -51,10 +51,20 @@ let currentIndex = 1;
 
 export default function UpdatePortfolioData() {
   const classes = useStyles();
-
+  const { enqueueSnackbar } = useSnackbar();
   const [pop, setPop] = useState(false);
 
-  const [portfolioData, setPortfolioData] = useState({});
+  const [portfolioData, setPortfolioData] = useState({
+    Profile: {},
+    Educations: {},
+    Skills: {},
+    Projects: {},
+    Experiences: {},
+    Courses: {},
+    Organisations: {},
+    Interests: {},
+    Awards: {},
+  });
   const [portfolioFormName, setPortfolioFormName] = useState("Profile");
 
   const [currentPortfolioForm, setCurrentPortfolioForm] = useState(
@@ -71,21 +81,26 @@ export default function UpdatePortfolioData() {
     setPop(false);
   }
 
-  const handlePortfolioDataChange = (e) => {
+  const handlePortfolioDataChange = (e, index) => {
     const { name, value } = e.target;
     setPortfolioData({
       ...portfolioData,
-      [name]: value
-    })
-
-    
+      [portfolioFormName]: {
+        ...portfolioData[portfolioFormName],
+        [name]: value,
+      },
+    });
   };
 
   const handleDateChange = (newDate, name) => {
     setPortfolioData({
       ...portfolioData,
-      [name]: newDate,
+      [portfolioFormName]: {
+        ...portfolioData[portfolioFormName],
+        [name]: newDate,
+      },
     });
+    console.log(portfolioData);
   };
 
   const generateDateField = (dateSettings) => {
@@ -94,10 +109,10 @@ export default function UpdatePortfolioData() {
         fullWidth
         views={["year", "month"]}
         label={dateSettings.placeholder}
-        value={portfolioData.startDate}
+        value={portfolioData[portfolioFormName][dateSettings]}
         minDate={new Date("2012-03-01")}
         maxDate={new Date("2023-06-01")}
-        onChange={(date) => handleDateChange(date, dateSettings.name)}
+        onChange={(date) => handleDateChange(date, dateSettings)}
         renderInput={(params) => (
           <TextField
             fullWidth
@@ -135,12 +150,12 @@ export default function UpdatePortfolioData() {
         <Box
           key={fieldName}
           display={"flex"}
+          name={fieldName}
           flexDirection={{ md: "row", xs: "column" }}
-          width={"100%"}
-        >
+          width={"100%"}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            {generateDateField(input.date1)}
-            {generateDateField(input.date2)}
+            {generateDateField(input.date1.name + String(currentIndex))}
+            {generateDateField(input.date2.name + String(currentIndex))}
           </LocalizationProvider>
           <Box mt={2} />
         </Box>
@@ -155,14 +170,13 @@ export default function UpdatePortfolioData() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
+              name={fieldName}
               label={input.placeholder}
-              onChange={handlePortfolioDataChange}
-            >
+              onChange={handlePortfolioDataChange}>
               {input.options.map((option, index) => (
                 <MenuItem
-                  key={fieldName+ "Skills Option " + index}
-                  value={option}
-                >
+                  key={fieldName + "Skills Option " + index}
+                  value={option}>
                   {option}
                 </MenuItem>
               ))}
@@ -178,25 +192,40 @@ export default function UpdatePortfolioData() {
     return (
       <Box
         key={generateKey("button" + buttonName)}
-        sx={{ py: 1, mx: 1, textAlign: "center" }}
-      >
+        sx={{ py: 1, mx: 1, textAlign: "center" }}>
         <Button
           variant="contained"
           sx={{
             width: 150,
             p: 1,
           }}
-          onClick={() => handleCurrentPortfolioForm(buttonName)}
-        >
+          onClick={() => handleCurrentPortfolioForm(buttonName)}>
           {buttonName}
         </Button>
       </Box>
     );
   };
-
-  const handleSave = async () => {
-    console.log(portfolioData);
-    const response = await userPortfolio(portfolioData);
+function portfolioDataAssembler(portfolioData) {
+  const finalResult = {};
+  for (const portfolioFieldKey of Object.keys(portfolioData)) {
+    const result = [];
+    for (const key of Object.keys(portfolioData[portfolioFieldKey])) {
+      const value = portfolioData[portfolioFieldKey][key];
+      const num = key[key.length - 1] - 1;
+      const newKey = key.slice(0, key.length - 1);
+      result[num] = {
+        ...result[num],
+        [newKey]: value,
+      };
+    }
+    finalResult[portfolioFieldKey] = result;
+  }
+  return finalResult;
+}
+  const handleSave = async() => {
+    const finalarray = portfolioDataAssembler(portfolioData);
+    console.log(finalarray);
+    const response = await userPortfolio(finalarray);
     if (response.status >= 200 && response.status < 300) {
       const newData = await response.json();
       console.log(newData);
@@ -214,15 +243,15 @@ export default function UpdatePortfolioData() {
   const handleDialogClose = () => {
     setPop(false);
   };
-
+  
   const handleAddClick = () => {
     tempPortfolioFields[portfolioFormName] = tempPortfolioFields[
       portfolioFormName
     ].concat(portfolioFields[portfolioFormName]);
 
     setCurrentPortfolioForm(tempPortfolioFields[portfolioFormName]);
-
-    console.log("data", portfolioData)
+    console.log(currentPortfolioForm);
+    console.log("data", portfolioData);
   };
 
   const handleDialogOpen = () => {
@@ -254,8 +283,7 @@ export default function UpdatePortfolioData() {
             mt={12}
             display={"flex"}
             flexDirection={"column"}
-            justifyContent={"center"}
-          >
+            justifyContent={"center"}>
             {portfolioButtons.map(generatePortfolioButtons)}
           </Box>
         </Hidden>
@@ -276,8 +304,7 @@ export default function UpdatePortfolioData() {
                   },
                   my: 3,
                   background: "#1981FF",
-                }}
-              >
+                }}>
                 Portfolio Fields
               </Button>
               {AddSaveButton()}
@@ -289,15 +316,13 @@ export default function UpdatePortfolioData() {
                 classes: {
                   root: classes.backDrop,
                 },
-              }}
-            >
+              }}>
               <Box
                 width={"100%"}
                 height={"100%"}
                 display={"flex"}
                 justifyContent={"center"}
-                alignItems={"center"}
-              >
+                alignItems={"center"}>
                 <Box
                   zIndex={1}
                   width={"500px"}
@@ -307,8 +332,7 @@ export default function UpdatePortfolioData() {
                   justifyContent={"center"}
                   alignItems={"center"}
                   pt={6}
-                  pb={6}
-                >
+                  pb={6}>
                   {portfolioButtons.map(generatePortfolioButtons)}
                 </Box>
               </Box>
@@ -317,20 +341,34 @@ export default function UpdatePortfolioData() {
           <Box
             sx={{
               p: 2,
-            }}
-          >
+            }}>
             <Box display={"flex"} justifyContent={"space-between"}>
               <h1>{portfolioFormName}</h1>
               <Hidden smDown>{AddSaveButton()}</Hidden>
             </Box>
             {currentPortfolioForm.map((dataFields, index) => {
-              currentIndex = index+1
-              return dataFields.map(generateFields)
-            }
-            )}
+              currentIndex = index + 1;
+              return dataFields.map(generateFields);
+            })}
           </Box>
         </Container>
       </Grid>
     </Grid>
   );
+}
+export async function getStaticProps(context) {
+  const res = await fetch(
+    `api/${apiVersion}/portfolio/get-single-portfolio/62599a28438d9cc96fea0168`
+  );
+  const data = await res.json();
+  console.log(data);
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {data}, // will be passed to the page component as props
+  };
 }
