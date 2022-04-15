@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import OtpInput from "react-otp-input";
 import {useSnackbar} from "notistack";
 import {useRouter} from "next/router";
+import { verifyOtpAndRegisterUser } from "../../TralioAPI/tralio";
 
 export default function Otp ({setCurrentStage}) {
 
@@ -20,15 +21,61 @@ export default function Otp ({setCurrentStage}) {
         }
     }, [time]);
 
-    const handleOtp = () => {
-        if(OTP === '000000'){
-            localStorage.setItem("access-token", "test-access-token");
-            enqueueSnackbar("User Successfully Registered", {
-                variant: "success",
-            });
-            Router.reload();
+    // const handleOtp = () => {
+    //     if(OTP === '000000'){
+    //         localStorage.setItem("access-token", "test-access-token");
+    //         enqueueSnackbar("User Successfully Registered", {
+    //             variant: "success",
+    //         });
+    //         Router.reload();
+    //     }
+    // }
+
+    const isUserPayloadValid = (userPayload) => {
+      // here we need to verify the input fields
+      if (userPayload.userPassword === userPayload.userConfirmPassword) {
+        delete userPayload.userConfirmPassword;
+        return true;
+      }
+      return false;
+    };
+
+    const handleRegistration = async () => {
+
+      let user = JSON.parse(localStorage.getItem("temp-user-data"));
+      console.log(user);
+      const transid = localStorage.getItem('temp-user-transid');
+      user["transid"] = transid;
+      user["otp"] = OTP;
+      
+      console.log(user);
+      if (isUserPayloadValid(user)) {
+        const response = await verifyOtpAndRegisterUser(user);
+        // Checking if the response is an error
+        if (response.status >= 200 && response.status < 300) {
+          const newUser = await response.json();
+          localStorage.setItem("access-token", newUser.access_token);
+          enqueueSnackbar("User Successfully Registered", {
+            variant: "success",
+          });
+          Router.reload();
+          // Further actions you want to perform after successful registration
+        } else {
+          const resError = await response.json();
+          enqueueSnackbar(
+            resError.error ? resError.error.message : "Something went wrong",
+            {
+              variant: "error",
+            }
+          );
         }
-    }
+      } else {
+        enqueueSnackbar(`Password didn't match`, {
+          variant: "error",
+        });
+        return false;
+      }
+    };
 
     return <>
         <Box width={'100%'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} p={1} pl={{lg: 10, md: 8, sm: 6, xs: 2}}  pr={{lg: 10, md: 8, sm: 6, xs: 2}}>
@@ -84,8 +131,8 @@ export default function Otp ({setCurrentStage}) {
                 </Button>
             </Box>
             <Box mt={3} />
-            <Button variant={'contained'} sx={{width: '100%'}} onClick={handleOtp}>
-                Verify OTP
+            <Button variant={'contained'} sx={{width: '100%'}} onClick={handleRegistration}>
+                Verify and Register
             </Button>
             <Box
                 display={"flex"}

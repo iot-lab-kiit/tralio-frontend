@@ -25,7 +25,7 @@ async function tralioAPI(method, payload, endpointURL) {
     }
 }
 
-async function registerUser(payload) {
+async function verifyOtpAndRegisterUser(payload) {
     const url = `api/${apiVersion}/users/register`;
     const register = await tralioAPI("POST", payload, url);
     return register;
@@ -54,10 +54,16 @@ async function dbStatus() {
     return status;
 }
 
+async function sendOtp(query) {
+    const url = `api/${apiVersion}/emails/send-otp?${query}`;
+    const otp = await tralioAPI("GET", null, url);
+    return otp;
+}
+
 async function userPortfolio(){
         const url = `api/${apiVersion}/`;
         const portfolioDetails = await tralioAPI("POST", payload, url);
         return portfolioDetails;
 }
 export default tralioAPI;
-export { registerUser, loginUser, uploadBlog, test, dbStatus, userPortfolio };
+export { verifyOtpAndRegisterUser, sendOtp, loginUser, uploadBlog, test, dbStatus, userPortfolio };
