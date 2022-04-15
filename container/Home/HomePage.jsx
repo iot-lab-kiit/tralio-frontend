@@ -98,18 +98,15 @@ function HomePage() {
       <Container maxWidth="lg" className={styles.increase_padding}>
         {homeDetailSummary.map(generateHomeDetailSummary)}
       </Container>
-      <div className={styles.testimonial}>
+      <div className={styles.testimonial} >
         <div className={styles.testimonial_start}>
-          <h2>A better way to build your resume</h2>
+          <h2>People who love are services</h2>
         </div>
         <Carousel />
       </div>
       <Container className={styles.increase_padding}>
         <div className={styles.feature_start}>
-          <h2>A better way to build your resume</h2>
-          <p>
-            More flexible than templates, easier than using a word processor
-          </p>
+          <h2>Take a look at what we have to offer </h2>
         </div>
         {homeDetailFeature.map(generateHomeDetailFeature)}
         <div className={styles.profBox}>
