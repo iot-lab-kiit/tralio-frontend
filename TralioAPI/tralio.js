@@ -8,7 +8,7 @@ async function tralioAPI(method, payload, endpointURL) {
             method: method,
             headers: {
                 "Content-Type": "application/json",
-                "access-token": localStorage.getItem("access-token"),
+                "access-token": localStorage.getItem("access_token"),
             },
             body: JSON.stringify(payload),
         });
