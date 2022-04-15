@@ -18,6 +18,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import { useRouter } from "next/router";
+import {sendOtp} from "../../TralioAPI/tralio";
 
 export default function SignUp({ setCurrentStage }) {
   const [user, setUser] = useState({
@@ -25,15 +26,6 @@ export default function SignUp({ setCurrentStage }) {
   });
   const Router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
-
-  const isUserPayloadValid = (userPayload) => {
-    // here we need to verify the input fields
-    if (userPayload.userPassword === userPayload.userConfirmPassword) {
-      delete userPayload.userConfirmPassword;
-      return true;
-    }
-    return false;
-  };
 
   const handleUserInfo = (e) => {
     const { id, value } = e.target;
@@ -58,36 +50,25 @@ export default function SignUp({ setCurrentStage }) {
     });
   };
 
-  const handleRegistration = async () => {
-    console.log(user);
-
-    if (isUserPayloadValid(user)) {
-      const response = await registerUser(user);
-      // Checking if the response is an error
-      if (response.status >= 200 && response.status < 300) {
-        const newUser = await response.json();
-        localStorage.setItem("access-token", newUser.token);
-        enqueueSnackbar("User Successfully Registered", {
-          variant: "success",
-        });
-        Router.reload();
-        // Further actions you want to perform after successful registration
-      } else {
-        const resError = await response.json();
-        enqueueSnackbar(
-          resError.error ? resError.error.message : "Something went wrong",
-          {
-            variant: "error",
-          }
-        );
-      }
+  const handleSendOtp = async() => {
+    const query = `email=${user.userEmail}`;
+    const response = await sendOtp(query);
+    const data = await response.json();
+    const finaluserData = JSON.stringify(user)
+    if (response.status === 200) {
+      localStorage.setItem("temp-user-data", finaluserData);
+      localStorage.setItem("temp-user-transid", data.transid);
+      setCurrentStage(2);
+      enqueueSnackbar('OTP sent successfully', {
+        variant: 'success',
+      });
     } else {
-      enqueueSnackbar(`Password didn't match`, {
+      console.log(response)
+      enqueueSnackbar("Something went wrong", {
         variant: "error",
       });
-      return false;
     }
-  };
+  }
 
   const generateSignUpForm = (input) => {
     return (
@@ -164,14 +145,8 @@ export default function SignUp({ setCurrentStage }) {
         </Box>
         <Box mt={3} />
         <Button
-          // onClick={handleRegistration}
+          onClick={handleSendOtp}
           variant={"contained"}
-          onClick={() => {
-            setCurrentStage(2);
-            enqueueSnackbar('OTP sent successfully', {
-              variant: 'success',
-            });
-          }}
           sx={{ width: "100%" }}
         >
           Get OTP
