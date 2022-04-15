@@ -106,7 +106,7 @@ const Footer = () => {
                 <Image src={Logo} alt={"logo"} />
               </Box>
               <Box pr={{ lg: 6, md: 5, sm: 0, xs: 0 }} mt={1}>
-                Tralio provides progressive, and affordable healthcare,
+                Tralio provides progressive, and affordable,
                 accessible on mobile and online for everyone
               </Box>
               {/* <Hidden mdDown> */}
