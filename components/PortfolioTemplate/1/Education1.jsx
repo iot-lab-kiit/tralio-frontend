@@ -4,6 +4,7 @@ import {Button, Container, Grid} from "@mui/material";
 import Title from "../Title";
 
 export default function Education1({education}) {
+
     return (
         <>
             <Box width={'100%'} bgcolor={'#000'} py={4} sx={{
@@ -19,9 +20,13 @@ export default function Education1({education}) {
                                     <Grid item lg={6} md={6} sm={12} xs={12} key={each.degree}>
                                         <Box width={'100%'} bgcolor={'rgba(255, 255, 255, 0.1)'} p={5} color={'#fff'}>
                                             <Box color={'#ffb44b'} fontWeight={700} fontSize={'25px'} display={'flex'} alignItems={'center'}>
-                                                <Box>{each.startDate}</Box>
+                                                <Box>{each.startDate.split(" ")[1]}</Box>
                                                 <Box>{'-'}</Box>
-                                                <Box>{each.endDate}</Box>
+                                                <Box>
+                                                    {
+                                                        each.endDate.split(" ").length === 1 ? each.endDate.split(" ")[0] : each.endDate.split(" ")[1]
+                                                    }
+                                                </Box>
                                             </Box>
                                             <Box mt={1} fontSize={'25px'} fontWeight={500}>
                                                 {each.degree}

@@ -15,7 +15,7 @@ export default function Work1({experiences}) {
                     <Grid container spacing={4} direction="row" justifyContent="center" alignItems="center">
                         {experiences.map((each) => (
                             <Grid item lg={6} md={6} sm={12} xs={12} key={each.title}>
-                                <Box width={'100%'} bgcolor={'rgba(255, 255, 255, 0.1)'} p={5} color={'#fff'} height={{lg: '310px', md: '310px', sm: '350px', xs: '390px'}} sx={{overflowX: 'scroll'}}>
+                                <Box width={'100%'} bgcolor={'rgba(255, 255, 255, 0.1)'} p={5} color={'#fff'} height={{lg: '300px', md: '300px', sm: '320px', xs: '340px'}} sx={{overflowX: 'scroll'}}>
                                     <Box color={'#ffb44b'} fontWeight={700} fontSize={'25px'}>
                                         {'2018-20'}
                                     </Box>
