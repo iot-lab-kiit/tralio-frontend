@@ -7,7 +7,7 @@ module.exports = {
     
   },
   publicRuntimeConfig: {
-    API_URL: localAPI,
+    API_URL: prodAPI,
     apiVersion: 'v1',
   },
 }
