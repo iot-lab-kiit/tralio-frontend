@@ -55,6 +55,9 @@ export default function Otp ({setCurrentStage}) {
         if (response.status >= 200 && response.status < 300) {
           const newUser = await response.json();
           localStorage.setItem("access-token", newUser.access_token);
+            localStorage.setItem("username", newUser.user.username);
+            localStorage.setItem("firstname", newUser.user.firstname);
+            localStorage.setItem("lastname", newUser.user.lastname);
           enqueueSnackbar("User Successfully Registered", {
             variant: "success",
           });

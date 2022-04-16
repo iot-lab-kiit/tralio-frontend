@@ -36,6 +36,9 @@ export default function Login ({ setCurrentStage }) {
           const loginRes = await response.json();
           console.log("Login User data", loginRes);
           localStorage.setItem("access-token", loginRes.access_token);
+          localStorage.setItem("username", loginRes.user.username);
+          localStorage.setItem("firstname", loginRes.user.firstname);
+          localStorage.setItem("lastname", loginRes.user.lastname);
           enqueueSnackbar("Login Successful", {
             variant: "success",
           });
