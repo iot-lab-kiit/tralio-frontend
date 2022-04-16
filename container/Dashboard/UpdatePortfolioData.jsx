@@ -224,8 +224,9 @@ function portfolioDataAssembler(portfolioData) {
 }
   const handleSave = async() => {
     const finalarray = portfolioDataAssembler(portfolioData);
+    const username = localStorage.getItem("username");
     console.log(finalarray);
-    const response = await userPortfolio(finalarray);
+    const response = await userPortfolio(finalarray, `username=${username}`);
     if (response.status >= 200 && response.status < 300) {
       const newData = await response.json();
       console.log(newData);

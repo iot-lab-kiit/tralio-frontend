@@ -54,16 +54,22 @@ async function dbStatus() {
     return status;
 }
 
+async  function getPortfolioData(query){
+    const url = `api/${apiVersion}/portfolio/get-single-portfolio?${query}`;
+    const data = await tralioAPI("GET", null, url);
+    return data;
+}
+
 async function sendOtp(query) {
     const url = `api/${apiVersion}/emails/send-otp?${query}`;
     const otp = await tralioAPI("GET", null, url);
     return otp;
 }
 
-async function userPortfolio(){
-        const url = `api/${apiVersion}/`;
-        const portfolioDetails = await tralioAPI("POST", payload, url);
+async function userPortfolio(payload, query){
+        const url = `api/${apiVersion}/portfolio/register-and-update?${query}`;
+        const portfolioDetails = await tralioAPI("PUT", payload, url);
         return portfolioDetails;
 }
 export default tralioAPI;
-export { verifyOtpAndRegisterUser, sendOtp, loginUser, uploadBlog, test, dbStatus, userPortfolio };
+export { verifyOtpAndRegisterUser, sendOtp, loginUser, uploadBlog, test, dbStatus, userPortfolio, getPortfolioData };

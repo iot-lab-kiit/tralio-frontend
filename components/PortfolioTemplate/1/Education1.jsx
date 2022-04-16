@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import {Button, Container, Grid} from "@mui/material";
 import Title from "../Title";
 
-export default function Education1() {
+export default function Education1({education}) {
     return (
         <>
             <Box width={'100%'} bgcolor={'#000'} py={4} sx={{
@@ -13,59 +13,26 @@ export default function Education1() {
                     <Box width={'100%'} my={6}>
                         <Title value={'Education'} text={1} />
                         <Box mt={10} />
-                        <Grid container spacing={4}>
-                            <Grid item lg={6} md={6} sm={12} xs={12}>
-                                <Box width={'100%'} bgcolor={'rgba(255, 255, 255, 0.1)'} p={5} color={'#fff'}>
-                                    <Box color={'#ffb44b'} fontWeight={700} fontSize={'25px'}>
-                                        {'2014-15'}
-                                    </Box>
-                                    <Box mt={1} fontSize={'25px'} fontWeight={500}>
-                                        {'Master Degree of Design'}
-                                    </Box>
-                                    <Box letterSpacing={'2.3px'} mt={2} fontSize={'18px'} fontWeight={400} color={'#636363'}>
-                                        {'CAMBRIDGE UNIVERSITY'}
-                                    </Box>
-                                </Box>
-                            </Grid>
-                            <Grid item lg={6} md={6} sm={12} xs={12}>
-                                <Box width={'100%'} bgcolor={'rgba(255, 255, 255, 0.1)'} p={5} color={'#fff'}>
-                                    <Box color={'#ffb44b'} fontWeight={700} fontSize={'25px'}>
-                                        {'2014-15'}
-                                    </Box>
-                                    <Box mt={1} fontSize={'25px'} fontWeight={500}>
-                                        {'Master Degree of Design'}
-                                    </Box>
-                                    <Box letterSpacing={'2.3px'} mt={2} fontSize={'18px'} fontWeight={400} color={'#636363'}>
-                                        {'CAMBRIDGE UNIVERSITY'}
-                                    </Box>
-                                </Box>
-                            </Grid>
-                            <Grid item lg={6} md={6} sm={12} xs={12}>
-                                <Box width={'100%'} bgcolor={'rgba(255, 255, 255, 0.1)'} p={5} color={'#fff'}>
-                                    <Box color={'#ffb44b'} fontWeight={700} fontSize={'25px'}>
-                                        {'2014-15'}
-                                    </Box>
-                                    <Box mt={1} fontSize={'25px'} fontWeight={500}>
-                                        {'Master Degree of Design'}
-                                    </Box>
-                                    <Box letterSpacing={'2.3px'} mt={2} fontSize={'18px'} fontWeight={400} color={'#636363'}>
-                                        {'CAMBRIDGE UNIVERSITY'}
-                                    </Box>
-                                </Box>
-                            </Grid>
-                            <Grid item lg={6} md={6} sm={12} xs={12}>
-                                <Box width={'100%'} bgcolor={'rgba(255, 255, 255, 0.1)'} p={5} color={'#fff'}>
-                                    <Box color={'#ffb44b'} fontWeight={700} fontSize={'25px'}>
-                                        {'2014-15'}
-                                    </Box>
-                                    <Box mt={1} fontSize={'25px'} fontWeight={500}>
-                                        {'Master Degree of Design'}
-                                    </Box>
-                                    <Box letterSpacing={'2.3px'} mt={2} fontSize={'18px'} fontWeight={400} color={'#636363'}>
-                                        {'CAMBRIDGE UNIVERSITY'}
-                                    </Box>
-                                </Box>
-                            </Grid>
+                        <Grid container spacing={4} direction="row" justifyContent="center" alignItems="center">
+                            {
+                                education.map((each) => (
+                                    <Grid item lg={6} md={6} sm={12} xs={12} key={each.degree}>
+                                        <Box width={'100%'} bgcolor={'rgba(255, 255, 255, 0.1)'} p={5} color={'#fff'}>
+                                            <Box color={'#ffb44b'} fontWeight={700} fontSize={'25px'} display={'flex'} alignItems={'center'}>
+                                                <Box>{each.startDate}</Box>
+                                                <Box>{'-'}</Box>
+                                                <Box>{each.endDate}</Box>
+                                            </Box>
+                                            <Box mt={1} fontSize={'25px'} fontWeight={500}>
+                                                {each.degree}
+                                            </Box>
+                                            <Box letterSpacing={'2.3px'} mt={2} fontSize={'18px'} fontWeight={400} color={'#636363'}>
+                                                {each.school}
+                                            </Box>
+                                        </Box>
+                                    </Grid>
+                                ))
+                            }
                         </Grid>
                     </Box>
                 </Container>

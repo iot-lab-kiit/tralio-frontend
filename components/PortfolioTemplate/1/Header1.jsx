@@ -1,7 +1,8 @@
 import Box from "@mui/material/Box";
 import {Avatar, Button, Container, Grid} from "@mui/material";
 
-export default function Header1() {
+export default function Header1({profile}) {
+
     return (
         <>
             <Box width={'100%'} bgcolor={'#000'} py={6} sx={{
@@ -17,10 +18,10 @@ export default function Header1() {
                                     </Box>
                                     <Box mt={3} lineHeight={1.1} fontWeight={900} fontSize={'50px'}>
                                         <Box>
-                                            I'm <span style={{color: '#ffb44b'}}>{'Clark'}</span>
+                                            I'm <span style={{color: '#ffb44b'}}>{profile.firstName}</span>
                                         </Box>
                                         <Box color={'#ffb44b'}>
-                                            {'Thomson'}
+                                            {profile.lastName}
                                         </Box>
                                     </Box>
                                     <Box mt={4} fontSize={'20px'} fontWeight={700}>
