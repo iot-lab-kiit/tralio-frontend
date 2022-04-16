@@ -19,6 +19,9 @@ export default function MenuButton({ setDashboardPage }) {
   const Router = useRouter();
   const path = Router.pathname;
 
+  const temp = localStorage.getItem("firstname")
+  const userInitial = temp[0];
+
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
@@ -40,7 +43,7 @@ export default function MenuButton({ setDashboardPage }) {
   return (
     <>
       <Avatar onClick={handleToggle} ref={anchorRef}>
-        K
+        {userInitial}
       </Avatar>
       <Popper
         anchorEl={anchorRef.current}
