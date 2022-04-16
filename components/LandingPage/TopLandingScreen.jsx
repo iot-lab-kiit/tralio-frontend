@@ -38,13 +38,13 @@ function TopLandingScreen() {
               <h1 className={styles.heading}>BUILD. SHARE. MANAGE.</h1>
               <p className={styles.desc}>
                 Design customizable resume portfolios and showcase your skills.
-                Share what you've learned with the rest of the world!
+                Share what you&apos;ve learned with the rest of the world!
               </p>
               <Button
                 variant={"contained"}
                 onClick={handleClick}
                 sx={{
-                  mt:"10px",
+                  mt: "10px",
                   padding: {
                     lg: "5px 37px",
                     md: "5px 37px",
