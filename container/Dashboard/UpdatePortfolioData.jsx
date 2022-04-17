@@ -100,7 +100,6 @@ export default function UpdatePortfolioData() {
         [name]: newDate,
       },
     });
-    console.log(portfolioData);
   };
 
   const generateDateField = (dateSettings) => {
@@ -129,7 +128,7 @@ export default function UpdatePortfolioData() {
   };
 
   const generateFields = (input) => {
-    const fieldName = input.name + String(currentIndex);
+    const fieldName = String(input.name + String(currentIndex));
     if (input.type === "text") {
       return (
         <Box key={fieldName} width={"100%"}>
@@ -137,7 +136,7 @@ export default function UpdatePortfolioData() {
             fullWidth
             name={fieldName}
             label={input.placeholder}
-            value={portfolioData[fieldName]}
+            value={portfolioData[portfolioFormName][fieldName]}
             id="outlined-textarea"
             type="text"
             onChange={handlePortfolioDataChange}
@@ -206,10 +205,21 @@ export default function UpdatePortfolioData() {
     );
   };
 function portfolioDataAssembler(portfolioData) {
-  const finalResult = {};
+  const finalResult = {
+    Profile: {},
+  };
   for (const portfolioFieldKey of Object.keys(portfolioData)) {
+    if (portfolioFieldKey == "Profile") {
+      console.log()
+      finalResult["Profile"]["firstName"] = portfolioData["Profile"]["firstName1"];
+      finalResult["Profile"]["lastName"] = portfolioData["Profile"]["lastName1"];
+      finalResult["Profile"]["bio"] = portfolioData["Profile"]["bio1"];
+      continue;
+    }
+
     const result = [];
     for (const key of Object.keys(portfolioData[portfolioFieldKey])) {
+      
       const value = portfolioData[portfolioFieldKey][key];
       const num = key[key.length - 1] - 1;
       const newKey = key.slice(0, key.length - 1);
@@ -225,7 +235,7 @@ function portfolioDataAssembler(portfolioData) {
   const handleSave = async() => {
     const finalarray = portfolioDataAssembler(portfolioData);
     const username = localStorage.getItem("username");
-    console.log(finalarray);
+    console.log("Final Value",finalarray);
     const response = await userPortfolio(finalarray, `username=${username}`);
     if (response.status >= 200 && response.status < 300) {
       const newData = await response.json();
@@ -251,8 +261,6 @@ function portfolioDataAssembler(portfolioData) {
     ].concat(portfolioFields[portfolioFormName]);
 
     setCurrentPortfolioForm(tempPortfolioFields[portfolioFormName]);
-    console.log(currentPortfolioForm);
-    console.log("data", portfolioData);
   };
 
   const handleDialogOpen = () => {
@@ -356,20 +364,4 @@ function portfolioDataAssembler(portfolioData) {
       </Grid>
     </Grid>
   );
-}
-export async function getStaticProps(context) {
-  const res = await fetch(
-    `api/${apiVersion}/portfolio/get-single-portfolio/62599a28438d9cc96fea0168`
-  );
-  const data = await res.json();
-  console.log(data);
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {data}, // will be passed to the page component as props
-  };
 }

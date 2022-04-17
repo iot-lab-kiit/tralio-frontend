@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import {Avatar, Button, Container, Grid} from "@mui/material";
 
 export default function Header1({profile}) {
-
+   const forErrorFix = `I'm  `;
     return (
         <>
             <Box width={'100%'} bgcolor={'#000'} py={6} sx={{
@@ -18,7 +18,8 @@ export default function Header1({profile}) {
                                     </Box>
                                     <Box mt={3} lineHeight={1.1} fontWeight={900} fontSize={'50px'}>
                                         <Box>
-                                            I'm <span style={{color: '#ffb44b'}}>{profile.firstName}</span>
+                                             {forErrorFix} 
+                                             <span style={{color: '#ffb44b'}}>{profile.firstName}</span>
                                         </Box>
                                         <Box color={'#ffb44b'}>
                                             {profile.lastName}
