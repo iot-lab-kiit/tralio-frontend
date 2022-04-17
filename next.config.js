@@ -1,4 +1,4 @@
-const localAPI = 'http://localhost:8001';
+const localAPI = 'http://localhost:8000';
 const prodAPI = 'https://tralio-api.herokuapp.com';
 
 module.exports = {
