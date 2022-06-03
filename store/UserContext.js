@@ -6,13 +6,13 @@ export const UserContext = createContext([null, (user) => user]);
 UserContext.displayName = 'Language';
 
 export const UserProvider = ({ value, children }) => {
-    const [user, setUser] = useState(null);
+    const [remoteUser, setRemoteUser] = useState(null);
 
     useEffect(() => {
-        setUser(value);
+        setRemoteUser(value);
     }, [value]);
 
-    return <UserContext.Provider value={[user, setUser]}>{children}</UserContext.Provider>;
+    return <UserContext.Provider value={[remoteUser, setRemoteUser]}>{children}</UserContext.Provider>;
 };
 
 UserProvider.propTypes = {
@@ -20,4 +20,4 @@ UserProvider.propTypes = {
     value: PropTypes.object,
 };
 
-export const useUser = () => useContext(UserContext);
+export const useRemoteUser = () => useContext(UserContext);

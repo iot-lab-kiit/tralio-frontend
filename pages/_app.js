@@ -47,7 +47,6 @@ export default function MyApp(props) {
                 setLoading(false);
             }
         }
-
     }, []);
 
     const [dashboardPage, setDashboardPage] = useState(0);

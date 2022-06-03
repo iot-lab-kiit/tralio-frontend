@@ -20,8 +20,11 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import { useRouter } from 'next/router';
 import { sendOtp } from '../../TralioAPI/tralio';
+import { useRemoteUser } from '../../store/UserContext';
 
 export default function SignUp({ setCurrentStage }) {
+
+    const [remoteUser, setRemoteUser] = useRemoteUser();
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState({
         userGender: '',
@@ -62,10 +65,14 @@ export default function SignUp({ setCurrentStage }) {
             })
             .then(async (res) => {
                 setCurrentStage(2);
+                console.log('Response', res);
+                console.log('User', user);
+                setRemoteUser(user);
+                console.log('remote user',remoteUser);
                 enqueueSnackbar('OTP Sent', {
                     variant: 'success',
                 });
-                localStorage.setItem(authCookieName, res.accessToken);
+                localStorage.setItem('transid', res.data.transid);
             })
             .catch((e) => {
                 enqueueSnackbar(e ? e.message : 'Something went wrong', {
