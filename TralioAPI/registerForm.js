@@ -31,7 +31,7 @@ const registerForm = [
     },
     {
         type: 'email',
-        name: 'userEmail',
+        name: 'email',
         placeholder: 'Email',
         validation: {
             required: true,
@@ -40,7 +40,7 @@ const registerForm = [
     },
     {
         type: 'password',
-        name: 'userPassword',
+        name: 'password',
         placeholder: 'Password',
         validation: {
             required: true,
@@ -50,7 +50,7 @@ const registerForm = [
     },
     {
         type: 'password',
-        name: 'userConfirmPassword',
+        name: 'confirmPassword',
         placeholder: 'Confirm Password',
         validation: {
             required: false,

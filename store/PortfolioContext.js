@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 export const PortfolioContext = createContext([null, (user) => user]);
 
-UserContext.displayName = 'Language';
-
 export const PortfolioProvider = ({ value, children }) => {
     const [remotePortfolio, setRemotePortfolio] = useState(null);
 

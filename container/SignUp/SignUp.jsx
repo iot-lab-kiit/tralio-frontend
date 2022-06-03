@@ -27,7 +27,7 @@ export default function SignUp({ setCurrentStage }) {
     const [remoteUser, setRemoteUser] = useRemoteUser();
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState({
-        userGender: '',
+        gender: '',
     });
     const Router = useRouter();
     const { enqueueSnackbar } = useSnackbar();
@@ -56,23 +56,24 @@ export default function SignUp({ setCurrentStage }) {
     };
 
     const handleSendOtp = async () => {
-        const data = await emailService
+        await emailService
             .create({
                 id: 1,
                 project: 'Tralio',
                 subject: 'Tralio Email Verification OTP',
-                email: user.userEmail,
+                email: user.email,
             })
             .then(async (res) => {
-                setCurrentStage(2);
-                console.log('Response', res);
-                console.log('User', user);
+                if (user.gender === 'Male') user.gender = 1;
+                else if (user.gender === 'Female') user.gender = 2;
+                else user.gender = 3;
                 setRemoteUser(user);
-                console.log('remote user',remoteUser);
+                console.log('Signup remote user',remoteUser);
                 enqueueSnackbar('OTP Sent', {
                     variant: 'success',
                 });
-                localStorage.setItem('transid', res.data.transid);
+                setCurrentStage(2);
+                localStorage.setItem('transid', res.transid);
             })
             .catch((e) => {
                 enqueueSnackbar(e ? e.message : 'Something went wrong', {
@@ -134,9 +135,9 @@ export default function SignUp({ setCurrentStage }) {
                     >
                         <InputLabel>Gender</InputLabel>
                         <Select
-                            name='userGender'
+                            name='gender'
                             input={<OutlinedInput label='Gender' />}
-                            value={user.userGender}
+                            value={user.gender}
                             onChange={handleGenderChange}
                         >
                             <MenuItem key='male' value='Male'>
