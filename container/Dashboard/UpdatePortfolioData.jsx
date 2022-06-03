@@ -205,24 +205,24 @@ export default function UpdatePortfolioData() {
       </Box>
     );
   };
-function portfolioDataAssembler(portfolioData) {
-  const finalResult = {};
-  for (const portfolioFieldKey of Object.keys(portfolioData)) {
-    const result = [];
-    for (const key of Object.keys(portfolioData[portfolioFieldKey])) {
-      const value = portfolioData[portfolioFieldKey][key];
-      const num = key[key.length - 1] - 1;
-      const newKey = key.slice(0, key.length - 1);
-      result[num] = {
-        ...result[num],
-        [newKey]: value,
-      };
+  function portfolioDataAssembler(portfolioData) {
+    const finalResult = {};
+    for (const portfolioFieldKey of Object.keys(portfolioData)) {
+      const result = [];
+      for (const key of Object.keys(portfolioData[portfolioFieldKey])) {
+        const value = portfolioData[portfolioFieldKey][key];
+        const num = key[key.length - 1] - 1;
+        const newKey = key.slice(0, key.length - 1);
+        result[num] = {
+          ...result[num],
+          [newKey]: value,
+        };
+      }
+      finalResult[portfolioFieldKey] = result;
     }
-    finalResult[portfolioFieldKey] = result;
+    return finalResult;
   }
-  return finalResult;
-}
-  const handleSave = async() => {
+  const handleSave = async () => {
     const finalarray = portfolioDataAssembler(portfolioData);
     console.log(finalarray);
     const response = await userPortfolio(finalarray);
@@ -243,7 +243,7 @@ function portfolioDataAssembler(portfolioData) {
   const handleDialogClose = () => {
     setPop(false);
   };
-  
+
   const handleAddClick = () => {
     tempPortfolioFields[portfolioFormName] = tempPortfolioFields[
       portfolioFormName
@@ -369,6 +369,6 @@ export async function getStaticProps(context) {
   }
 
   return {
-    props: {data}, // will be passed to the page component as props
+    props: { data }, // will be passed to the page component as props
   };
 }
