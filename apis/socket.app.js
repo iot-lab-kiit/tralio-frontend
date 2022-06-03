@@ -4,8 +4,10 @@ import { CookieStorage } from 'cookie-storage';
 import Axios from 'axios';
 import io from 'socket.io-client';
 import services from './services.json';
+const { publicRuntimeConfig } = getConfig();
+const { API_URL } = publicRuntimeConfig;
 
-export const authCookieName = process.env.cookieName;
+export const authCookieName = 'access-token';
 
 /**
  * CookieStorage
@@ -13,7 +15,7 @@ export const authCookieName = process.env.cookieName;
  */
 export const cookieStorage = new CookieStorage();
 
-const restClient = io(process.env.NEXT_API_HOST);
+const restClient = io(API_URL);
 
 /**
  * Feathers application
