@@ -5,10 +5,13 @@ import { SnackbarProvider } from 'notistack';
 import globalStyles from '../styles/globals.css';
 import { UserProvider } from '../store/UserContext';
 import restApp, { authCookieName, cookieStorage } from '../apis/rest.app'
+import { useRouter } from "next/router";
 
 export default function MyApp(props) {
     const { Component, pageProps } = props;
     const [user, setUser] = useState(null);
+
+    const Router = useRouter();
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     useEffect(() => {
@@ -44,7 +47,6 @@ export default function MyApp(props) {
                 setLoading(false);
             }
         }
-        fetchUser();
     }, []);
 
     const [dashboardPage, setDashboardPage] = useState(0);

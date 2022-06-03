@@ -38,7 +38,7 @@ function TopLandingScreen() {
               <h1 className={styles.heading}>BUILD. SHARE. MANAGE.</h1>
               <p className={styles.desc}>
                 Design customizable resume portfolios and showcase your skills.
-                Share what you've learned with the rest of the world!
+                Share what you have learned with the rest of the world
               </p>
               <Button
                 variant={"contained"}

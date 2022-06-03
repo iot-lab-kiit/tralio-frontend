@@ -1,180 +1,197 @@
-import { useState } from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
-import LoginIcons from "../../components/LoginIcons/LoginIcons";
-import registerForm from "../../TralioAPI/registerForm";
+import { useState } from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import LoginIcons from '../../components/LoginIcons/LoginIcons';
+import registerForm from '../../TralioAPI/registerForm';
+import { emailService } from '../../apis/rest.app';
 
-import { useSnackbar } from "notistack";
+import { useSnackbar } from 'notistack';
 import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  OutlinedInput,
-  Select,
-} from "@mui/material";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
-import { useRouter } from "next/router";
-import {sendOtp} from "../../TralioAPI/tralio";
+    FormControl,
+    InputLabel,
+    MenuItem,
+    OutlinedInput,
+    Select,
+} from '@mui/material';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import { useRouter } from 'next/router';
+import { sendOtp } from '../../TralioAPI/tralio';
+import { useRemoteUser } from '../../store/UserContext';
 
 export default function SignUp({ setCurrentStage }) {
-  const [user, setUser] = useState({
-      "userGender": "",
-  });
-  const Router = useRouter();
-  const { enqueueSnackbar } = useSnackbar();
 
-  const handleUserInfo = (e) => {
-    const { id, value } = e.target;
-    setUser({
-      ...user,
-      [id]: value,
+    const [remoteUser, setRemoteUser] = useRemoteUser();
+    const [loading, setLoading] = useState(false);
+    const [user, setUser] = useState({
+        userGender: '',
     });
-  };
+    const Router = useRouter();
+    const { enqueueSnackbar } = useSnackbar();
 
-  const handleGenderChange = (event) => {
-    const { name, value } = event.target;
-    setUser({
-      ...user,
-      [name]: value,
-    });
-  };
+    const handleUserInfo = (e) => {
+        const { id, value } = e.target;
+        setUser({
+            ...user,
+            [id]: value,
+        });
+    };
 
-  const handleDate = (newDate) => {
-    setUser({
-      ...user,
-      userDOB: newDate,
-    });
-  };
+    const handleGenderChange = (event) => {
+        const { name, value } = event.target;
+        setUser({
+            ...user,
+            [name]: value,
+        });
+    };
 
-  const handleSendOtp = async() => {
-    const query = `email=${user.userEmail}`;
-    const response = await sendOtp(query);
-    const data = await response.json();
-    const finaluserData = JSON.stringify(user)
-    if (response.status === 200) {
-      localStorage.setItem("temp-user-data", finaluserData);
-      localStorage.setItem("temp-user-transid", data.transid);
-      setCurrentStage(2);
-      enqueueSnackbar('OTP sent successfully', {
-        variant: 'success',
-      });
-    } else {
-      console.log(response)
-      enqueueSnackbar("Something went wrong", {
-        variant: "error",
-      });
-    }
-  }
+    const handleDate = (newDate) => {
+        setUser({
+            ...user,
+            userDOB: newDate,
+        });
+    };
 
-  const generateSignUpForm = (input) => {
+    const handleSendOtp = async () => {
+        const data = await emailService
+            .create({
+                id: 1,
+                project: 'Tralio',
+                subject: 'Tralio Email Verification OTP',
+                email: user.userEmail,
+            })
+            .then(async (res) => {
+                setCurrentStage(2);
+                console.log('Response', res);
+                console.log('User', user);
+                setRemoteUser(user);
+                console.log('remote user',remoteUser);
+                enqueueSnackbar('OTP Sent', {
+                    variant: 'success',
+                });
+                localStorage.setItem('transid', res.data.transid);
+            })
+            .catch((e) => {
+                enqueueSnackbar(e ? e.message : 'Something went wrong', {
+                    variant: 'error',
+                });
+            })
+            .finally(() => setLoading(false));
+    };
+
+    const generateSignUpForm = (input) => {
+        return (
+            <Box key={'Signup ' + input.name} width={'100%'}>
+                <TextField
+                    fullWidth
+                    id={input.name}
+                    label={input.placeholder}
+                    variant='outlined'
+                    type={input.type}
+                    onChange={handleUserInfo}
+                />
+                <Box mt={2} />
+            </Box>
+        );
+    };
+
     return (
-      <Box key={"Signup " + input.name} width={"100%"}>
-        <TextField
-          fullWidth
-          id={input.name}
-          label={input.placeholder}
-          variant="outlined"
-          type={input.type}
-          onChange={handleUserInfo}
-        />
-        <Box mt={2} />
-      </Box>
-    );
-  };
-
-  return (
-    <>
-      <Box fontSize={"15px"} fontWeight={300}>
-        Yay ! Happy to have you onboard
-      </Box>
-      <Box fontSize={"20px"} fontWeight={600} mb={3}>
-        Sign Up with Us
-      </Box>
-      <Box
-        width={"100%"}
-        display={"flex"}
-        flexDirection={"column"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        pl={{ lg: 10, md: 8, sm: 6, xs: 2 }}
-        pr={{ lg: 10, md: 8, sm: 6, xs: 2 }}
-      >
-        {registerForm.map(generateSignUpForm)}
-        <Box
-          display={"flex"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-          width={"100%"}
-        >
-          <FormControl
-            sx={{
-              width: { lg: "200px", md: "200px", sm: "190px", xs: "180px" },
-            }}
-          >
-            <InputLabel>Gender</InputLabel>
-            <Select
-              name="userGender"
-              input={<OutlinedInput label="Gender" />}
-              value={user.userGender}
-              onChange={handleGenderChange}
+        <>
+            <Box fontSize={'15px'} fontWeight={300}>
+                Yay ! Happy to have you onboard
+            </Box>
+            <Box fontSize={'20px'} fontWeight={600} mb={3}>
+                Sign Up with Us
+            </Box>
+            <Box
+                width={'100%'}
+                display={'flex'}
+                flexDirection={'column'}
+                justifyContent={'center'}
+                alignItems={'center'}
+                pl={{ lg: 10, md: 8, sm: 6, xs: 2 }}
+                pr={{ lg: 10, md: 8, sm: 6, xs: 2 }}
             >
-              <MenuItem key="male" value="Male">
-                Male
-              </MenuItem>
-              <MenuItem key="female" value="Female">
-                Female
-              </MenuItem>
-              <MenuItem key="other" value="Other">
-                Other
-              </MenuItem>
-            </Select>
-          </FormControl>
-          <Box mr={2} />
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DesktopDatePicker
-              label="Date of Birth"
-              inputFormat="dd/MM/yyyy"
-              onChange={handleDate}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
-        </Box>
-        <Box mt={3} />
-        <Button
-          onClick={handleSendOtp}
-          variant={"contained"}
-          sx={{ width: "100%" }}
-        >
-          Get OTP
-        </Button>
-        <Box mt={2} />
-        <Divider orientation="horizontal" flexItem>
-          OR
-        </Divider>
-        <LoginIcons />
-      </Box>
-      <Box
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        mt={2}
-      >
-        <Box>{"Have an account?"}</Box>
-        <Box mr={1} />
-        <Box
-          color="#458FF6"
-          sx={{ cursor: "pointer" }}
-          onClick={() => {
-            setCurrentStage(0);
-          }}
-        >
-          {"Login"}
-        </Box>
-      </Box>
-    </>
-  );
+                {registerForm.map(generateSignUpForm)}
+                <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    width={'100%'}
+                >
+                    <FormControl
+                        sx={{
+                            width: {
+                                lg: '200px',
+                                md: '200px',
+                                sm: '190px',
+                                xs: '180px',
+                            },
+                        }}
+                    >
+                        <InputLabel>Gender</InputLabel>
+                        <Select
+                            name='userGender'
+                            input={<OutlinedInput label='Gender' />}
+                            value={user.userGender}
+                            onChange={handleGenderChange}
+                        >
+                            <MenuItem key='male' value='Male'>
+                                Male
+                            </MenuItem>
+                            <MenuItem key='female' value='Female'>
+                                Female
+                            </MenuItem>
+                            <MenuItem key='other' value='Other'>
+                                Other
+                            </MenuItem>
+                        </Select>
+                    </FormControl>
+                    <Box mr={2} />
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DesktopDatePicker
+                            label='Date of Birth'
+                            inputFormat='dd/MM/yyyy'
+                            onChange={handleDate}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </LocalizationProvider>
+                </Box>
+                <Box mt={3} />
+                <Button
+                    onClick={handleSendOtp}
+                    variant={'contained'}
+                    sx={{ width: '100%' }}
+                >
+                    Get OTP
+                </Button>
+                <Box mt={2} />
+                <Divider orientation='horizontal' flexItem>
+                    OR
+                </Divider>
+                <LoginIcons />
+            </Box>
+            <Box
+                display={'flex'}
+                justifyContent={'center'}
+                alignItems={'center'}
+                mt={2}
+            >
+                <Box>{'Have an account?'}</Box>
+                <Box mr={1} />
+                <Box
+                    color='#458FF6'
+                    sx={{ cursor: 'pointer' }}
+                    onClick={() => {
+                        setCurrentStage(0);
+                    }}
+                >
+                    {'Login'}
+                </Box>
+            </Box>
+        </>
+    );
 }
