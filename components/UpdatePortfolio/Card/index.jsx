@@ -4,6 +4,16 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import { createStyles, makeStyles } from "@mui/styles";
 import { Dialog, IconButton } from "@mui/material";
+import UpdateProfile from "../UpdateProfile";
+import UpdateEducation from "../UpdateEducation";
+import UpdateSkill from "../UpdateSkill";
+import UpdateProject from "../UpdateProject";
+import UpdateExperience from "../UpdateExperience";
+import Course from "../Course";
+import UpdateCourse from "../UpdateCourse";
+import UpdateOrganisation from "../UpdateOrganisation";
+import UpdateInterest from "../UpdateInterest";
+import UpdateAward from "../UpdateAward";
 
 
 const useStyles = makeStyles(() =>
@@ -26,7 +36,30 @@ const Index = ({index, children, icon, selectedButton }) => {
     };
     const handleClose = () => {
         setPop(false);
+        // console.log(clickedIndex, selectedButton)
     };
+
+
+    const renderEditPopper = () => {
+        if(selectedButton === "Profile")
+            return <UpdateProfile index={index} selectedButton={selectedButton} />
+        if(selectedButton === "Educations")
+            return <UpdateEducation index={index} selectedButton={selectedButton} />
+        if(selectedButton === "Skills")
+            return <UpdateSkill index={index} selectedButton={selectedButton} />
+        if(selectedButton === "Projects")
+            return <UpdateProject index={index} selectedButton={selectedButton} />
+        if(selectedButton === "Experiences")
+            return <UpdateExperience index={index} selectedButton={selectedButton} />
+        if(selectedButton === "Courses")
+            return <UpdateCourse index={index} selectedButton={selectedButton} />
+        if(selectedButton === "Organisations")
+            return <UpdateOrganisation index={index} selectedButton={selectedButton} />
+        if(selectedButton === "Interests")
+            return <UpdateInterest index={index} selectedButton={selectedButton} />
+        if(selectedButton === "Awards")
+            return <UpdateAward index={index} selectedButton={selectedButton} />
+    }
 
     return (
         <>
@@ -44,9 +77,10 @@ const Index = ({index, children, icon, selectedButton }) => {
                     px={2}
                     py={2}
                 >
-                    <Box fontSize={"16px"}>
-                        {icon}
-                    </Box>
+                    {/*<Box fontSize={"16px"}>*/}
+                    {/*    {icon}*/}
+                    {/*</Box>*/}
+                    <span />
                     <Box
                         display={"flex"}
                         alignItems={"center"}
@@ -64,7 +98,7 @@ const Index = ({index, children, icon, selectedButton }) => {
                     width={"100%"}
                     display={"flex"}
                     alignItems={"center"}
-                    px={2}
+                    px={5}
                     py={3}
                 >
                     {children}
@@ -111,6 +145,9 @@ const Index = ({index, children, icon, selectedButton }) => {
                                 <CloseIcon sx={{ color: "#000" }} />
                             </IconButton>
                         </Box>
+                        {
+                            renderEditPopper()
+                        }
                         {/*<Box />*/}
                     </Box>
                 </Box>
