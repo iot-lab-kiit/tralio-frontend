@@ -4,20 +4,20 @@ import Card from "./Card";
 import Box from "@mui/material/Box";
 
 
-export default function Profile({selectedButton}) {
+export default function Organisation({selectedButton}) {
 
     return (
         <>
-            <Grid container display={"flex"} justifyContent={"space-between"}>
+            <Grid container spacing={4} display={"flex"} justifyContent={"space-between"}>
                 <Grid item xs={12} sm={12} md={6}>
                     <Card icon={<PersonIcon sx={{ color: "#319EFF" }} />} selectedButton={selectedButton} index={0}>
                         <Box width={"100%"}>
                             <Box display={"flex"} alignItems={"flex-start"} fontSize={"16px"}>
-                                <Box color={"#545454"} minWidth={"100px"} mr={4}>
-                                    First Name:
+                                <Box color={"#545454"} minWidth={"132px"} mr={4}>
+                                    Name:
                                 </Box>
                                 <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
-                                    Roshan
+                                    IoT
                                 </Box>
                             </Box>
                             <Box
@@ -26,11 +26,11 @@ export default function Profile({selectedButton}) {
                                 fontSize={"16px"}
                                 mt={2}
                             >
-                                <Box color={"#545454"} minWidth={"100px"} mr={4}>
-                                    Last Name
+                                <Box color={"#545454"} minWidth={"132px"} mr={4}>
+                                    Position:
                                 </Box>
                                 <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
-                                    Chatei
+                                    Member
                                 </Box>
                             </Box>
                             <Box
@@ -39,13 +39,11 @@ export default function Profile({selectedButton}) {
                                 fontSize={"16px"}
                                 mt={2}
                             >
-                                <Box color={"#545454"} minWidth={"100px"} mr={4}>
-                                    Bio:
+                                <Box color={"#545454"} minWidth={"132px"} mr={4}>
+                                    City:
                                 </Box>
                                 <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
-                                    {/*{user?.education?.course ? user.education?.course : <span />}*/}
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Excepturi, rem!
+                                    Delhi
                                 </Box>
                             </Box>
                             <Box
@@ -54,11 +52,11 @@ export default function Profile({selectedButton}) {
                                 fontSize={"16px"}
                                 mt={2}
                             >
-                                <Box color={"#545454"} minWidth={"100px"} mr={4}>
-                                    Email:
+                                <Box color={"#545454"} minWidth={"132px"} mr={4}>
+                                    Country:
                                 </Box>
                                 <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
-                                    abc@gmail.com
+                                    India
                                 </Box>
                             </Box>
                         </Box>
