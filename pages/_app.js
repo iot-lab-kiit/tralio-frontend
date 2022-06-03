@@ -6,10 +6,12 @@ import globalStyles from '../styles/globals.css';
 import { UserProvider } from '../store/UserContext';
 import restApp, { authCookieName, cookieStorage } from '../apis/rest.app'
 import { useRouter } from "next/router";
+import { portfolioService } from '../apis/rest.app';
 
 export default function MyApp(props) {
     const { Component, pageProps } = props;
     const [user, setUser] = useState(null);
+    const [remotePortfolio, setRemotePortfolio] = useState(null);
 
     const Router = useRouter();
 
@@ -47,6 +49,15 @@ export default function MyApp(props) {
                 setLoading(false);
             }
         }
+    }, []);
+
+    useEffect(() => {
+        async function fetchPortfolio() {
+            const porfolio = await portfolioService.get('pass id here');
+            setRemotePortfolio(porfolio);
+        }
+        // if (condition)
+        //  fetchPortfolio();
     }, []);
 
     const [dashboardPage, setDashboardPage] = useState(0);
