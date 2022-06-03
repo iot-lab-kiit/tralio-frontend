@@ -15,7 +15,7 @@ export const authCookieName = 'access-token';
  */
 export const cookieStorage = new CookieStorage();
 
-const restClient = io(API_URL);
+const restClient = io('API_URL');
 
 /**
  * Feathers application

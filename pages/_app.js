@@ -17,9 +17,18 @@ export default function MyApp(props) {
     const Router = useRouter();
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    useEffect(() => {
-        if (localStorage.getItem('access-token')) {
-            setIsLoggedIn(true);
+    useEffect(async() => {
+        try {
+            await restApp.reAuthenticate().then((res) => {
+                console.log("Response auth", res);
+                setIsLoggedIn(true);
+                setUser(res.user);
+            }).catch((err) => {
+                setIsLoggedIn(false);
+            });
+        }
+        catch (error) {
+            console.log(error);
         }
     }, []);
 

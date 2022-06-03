@@ -17,7 +17,7 @@ export const cookieStorage = new CookieStorage();
 
 const restClient = rest(API_URL);
 
-export const authCookieName = process.env.cookieName;
+export const authCookieName = 'access-token';
 
 /**
  * Feathers application
@@ -38,6 +38,7 @@ restApp.configure(
 
 export default restApp;
 
+export const authentication = restApp.service(services.authentication);
 export const userService = restApp.service(services.user);
 export const blogService = restApp.service(services.blog);
 export const portfolioService = restApp.service(services.portfolio);
