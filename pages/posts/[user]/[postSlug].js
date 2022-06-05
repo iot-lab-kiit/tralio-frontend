@@ -9,28 +9,10 @@ const Post = (props) => {
     return (
         <div>
             <h1>Post</h1>
-            <p>{postSlug}</p>
-            <p>{props.post}</p>
+            <p>Slug</p>
+            <p>post</p>
         </div>
     );
 };
-
-export async function getServerSideProps(context) {
-    const {user, postSlug} = context.query
-
-    const apiPath = `posts`
-    const query = `user=${user}&postSlug=${postSlug}`
-
-    const data = await fetch(
-        `${API_URL}/api/${apiVersion}/${apiPath}?${query}`
-    ).then((res) => res.json());
-
-    
-    return {
-        props: {
-            post: `Successfull Testing post ${postSlug} by user ${user}`,
-        }
-    }
-}
 
 export default Post
