@@ -14,7 +14,7 @@ export default function Skill({selectedButton}) {
             <Grid container spacing={4} display={"flex"} justifyContent={"space-between"}>
                 {
                     remotePortfolio?.Skills.map((each, index) => (
-                        <Grid item xs={12} sm={12} md={6}>
+                        <Grid key={'Skills.map' + index} item xs={12} sm={12} md={6}>
                             <Card icon={<PersonIcon sx={{ color: "#319EFF" }} />} selectedButton={selectedButton} index={index}>
                                 <Box width={"100%"}>
                                     <Box display={"flex"} alignItems={"flex-start"} fontSize={"16px"}>
