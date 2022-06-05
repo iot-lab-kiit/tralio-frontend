@@ -1,0 +1,47 @@
+.organization_cont{
+    min-height: 10vh;
+    background-color: white;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #141d28;
+}
+
+.container{
+    margin: 2.5rem;
+    width: 80%;
+    background-color: #141d28;
+    border:0.2rem solid #141d28;
+    color: white;
+    padding: 2rem 5rem;
+    border-radius: 8rem 0.4rem;
+}
+
+.container:hover{
+    background-color: white;
+    color: #18222E;
+    border:0.2rem solid #18222E;
+}
+
+.heading{
+    font-size: 2.5rem;
+}
+
+@media (max-width: 600px){
+    .heading{
+        font-size: 6vw;
+    }
+    .organization_cont{
+        padding: 2rem;
+    }
+    .container{
+        margin: 1rem;
+        padding: 1rem 1.8rem 0.6rem 1.8rem;
+        font-size: 2.5vw;
+        border-radius: 4rem 0.4rem;
+        width: 100%;
+    }
+}
+
