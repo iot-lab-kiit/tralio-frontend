@@ -1,4 +1,4 @@
-import styles from '../../styles/TemplateCSS/Experience2.module.css'
+import styles from '../../../styles/TemplateCSS/2/Experience2.module.css'
 
 function Experience() {
   return (

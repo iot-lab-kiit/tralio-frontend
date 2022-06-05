@@ -1,4 +1,4 @@
-import styles from '../../styles/TemplateCSS/Skill2.module.css'
+import styles from '../../../styles/TemplateCSS/2/Skill2.module.css'
 
 function Skill() {
   return (

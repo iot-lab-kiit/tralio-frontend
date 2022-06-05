@@ -1,4 +1,5 @@
-import styles from '../../styles/TemplateCSS/About2.module.css'
+import styles from '../../../styles/TemplateCSS/2/About2.module.css'
+
 
 function About() {
   return (

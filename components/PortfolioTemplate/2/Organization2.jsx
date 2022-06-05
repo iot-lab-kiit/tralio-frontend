@@ -1,4 +1,4 @@
-import styles from '../../styles/TemplateCSS/Organization2.module.css'
+import styles from '../../../styles/TemplateCSS/2/Organization2.module.css'
 
 function Organization() {
   return (

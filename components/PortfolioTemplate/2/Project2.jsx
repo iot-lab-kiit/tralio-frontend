@@ -1,6 +1,6 @@
 // import React from 'react'
 // import ProjectCard from './ProjectCard'
-// import styles from '../../styles/TemplateCSS/Project2.module.css'
+// import styles from '../../../styles/TemplateCSS/2/Project2.module.css'
 
 // function Project() {
 //   return (

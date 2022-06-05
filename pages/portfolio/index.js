@@ -1,11 +1,11 @@
 
 import Box from "@mui/material/Box";
-import PortfolioTemplate1 from "../../container/PortfolioTemplate/PortfolioTemplate1";
+import PortfolioTemplate2 from "../../container/PortfolioTemplate/PortfolioTemplate2";
 
 export default function Portfolio() {
     return (
         <>
-            <PortfolioTemplate1 />
+            <PortfolioTemplate2 />
         </>
     );
 }

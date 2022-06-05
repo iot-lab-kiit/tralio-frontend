@@ -1,6 +1,5 @@
 import Image from "next/image";
-import selfImg1 from "../../public/images/portfolio/selfImg1.svg"
-import styles from '../../styles/TemplateCSS/Self2.module.css'
+import styles from '../../../styles/TemplateCSS/2/Self2.module.css'
 
 
 function self() {

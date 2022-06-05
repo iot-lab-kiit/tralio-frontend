@@ -1,4 +1,4 @@
-import styles from '../../styles/TemplateCSS/Award2.module.css'
+import styles from '../../../styles/TemplateCSS/2/Award2.module.css'
 
 function Award() {
   return (

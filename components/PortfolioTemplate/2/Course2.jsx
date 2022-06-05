@@ -1,4 +1,4 @@
-import styles from "../../styles/TemplateCSS/Course2.module.css"
+import styles from "../../../styles/TemplateCSS/2/Course2.module.css"
 import React from 'react'
 
 function Course() {

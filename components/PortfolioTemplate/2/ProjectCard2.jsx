@@ -1,4 +1,4 @@
-import styles from '../../styles/TemplateCSS/ProjectCard2.module.css'
+import styles from '../../../styles/TemplateCSS/2/ProjectCard2.module.css'
 
 function ProjectCard() {
     return (
