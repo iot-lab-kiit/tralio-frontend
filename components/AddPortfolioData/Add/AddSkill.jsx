@@ -4,30 +4,59 @@ import {useState} from "react";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import {useSnackbar} from "notistack";
+import {useRemotePortfolio} from "../../../store/PortfolioContext";
+import {portfolioService} from "../../../apis/rest.app";
 
-export default function AddSkill({index, selectedButton}) {
+export default function AddSkill({selectedButton, handleClose}) {
+
+    const { enqueueSnackbar } = useSnackbar();
+    const [remotePortfolio, setRemotePortfolio] = useRemotePortfolio();
 
     const [skill, setSkill] = useState('')
     const [desc, setDesc] = useState('')
     const [level, setLevel] = useState('')
 
+    const change = () => {
+        const temp = remotePortfolio.Skills;
+        temp.unshift({
+            name: skill,
+            desc,
+            level
+        })
+        return temp
+    }
+    const addSkillsData = () => {
+        portfolioService.patch(remotePortfolio._id,{
+            Skills: change()
+        })
+            .then((res) => {
+                enqueueSnackbar('Skill Card added successfully', { variant: 'success' });
+                setRemotePortfolio(res);
+                handleClose();
+            })
+            .catch((err) => {
+                enqueueSnackbar(err.message, { variant: 'error' });
+            });
+    }
+
     return (
         <>
             <TextField
-                // onChange={(event) => {
-                //     setDegree(event.target.value);
-                // }}
-                // value={degree}
+                onChange={(event) => {
+                    setSkill(event.target.value);
+                }}
+                value={skill}
                 fullWidth
                 label={"Skill"}
                 type={"text"}
             />
             <Box mt={2} />
             <TextField
-                // onChange={(event) => {
-                //     setUniversity(event.target.value);
-                // }}
-                // value={university}
+                onChange={(event) => {
+                    setDesc(event.target.value);
+                }}
+                value={desc}
                 fullWidth
                 label={"Description"}
                 type={"text"}
@@ -37,24 +66,24 @@ export default function AddSkill({index, selectedButton}) {
                 label={"Level"}
                 select
                 fullWidth
-                // value={maritalStatus}
-                // onChange={(event) => {
-                //     setMaritalStatus(event.target.value);
-                // }}
+                value={level}
+                onChange={(event) => {
+                    setLevel(event.target.value);
+                }}
             >
-                <MenuItem key={"married"} value={"1"}>
+                <MenuItem key={"married"} value={"Beginner"}>
                     Beginner
                 </MenuItem>
-                <MenuItem key={"single"} value={"2"}>
+                <MenuItem key={"single"} value={"Intermediate"}>
                     Intermediate
                 </MenuItem>
-                <MenuItem key={"single"} value={"2"}>
+                <MenuItem key={"single"} value={"Expert"}>
                     Expert
                 </MenuItem>
             </TextField>
             <Box mt={4} />
             <Button
-                // onClick={handleChange}
+                onClick={addSkillsData}
                 variant={"contained"}
                 fullWidth
                 sx={{

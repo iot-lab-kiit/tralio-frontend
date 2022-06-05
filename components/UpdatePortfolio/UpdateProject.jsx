@@ -4,29 +4,63 @@ import {useState} from "react";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import {useSnackbar} from "notistack";
+import {useRemotePortfolio} from "../../store/PortfolioContext";
+import {portfolioService} from "../../apis/rest.app";
 
-export default function UpdateProject({index, selectedButton}) {
+export default function UpdateProject({index, selectedButton, handleClose}) {
 
-    const [title, setTitle] = useState('')
-    const [desc, setDesc] = useState('')
+    const { enqueueSnackbar } = useSnackbar();
+    const [remotePortfolio, setRemotePortfolio] = useRemotePortfolio();
+
+    const [title, setTitle] = useState(remotePortfolio?.Projects[index]?.title)
+    const [desc, setDesc] = useState(remotePortfolio?.Projects[index]?.desc)
+
+    const change = () => {
+        return remotePortfolio?.Projects.map(function (obj, i) {
+            if (i === index) {
+                return {
+                    title,
+                    desc
+                };
+            } else {
+                return {...obj};
+            }
+        });
+    }
+
+    const updateProjectsData = () => {
+        portfolioService.patch(remotePortfolio._id,{
+            Projects: change()
+        })
+            .then((res) => {
+                enqueueSnackbar('Projects updated successfully', { variant: 'success' });
+                setRemotePortfolio(res);
+                handleClose();
+            })
+            .catch((err) => {
+                enqueueSnackbar(err.message, { variant: 'error' });
+            });
+    }
+
 
     return (
         <>
             <TextField
-                // onChange={(event) => {
-                //     setDegree(event.target.value);
-                // }}
-                // value={degree}
+                onChange={(event) => {
+                    setTitle(event.target.value);
+                }}
+                value={title}
                 fullWidth
                 label={"Name"}
                 type={"text"}
             />
             <Box mt={2} />
             <TextField
-                // onChange={(event) => {
-                //     setUniversity(event.target.value);
-                // }}
-                // value={university}
+                onChange={(event) => {
+                    setDesc(event.target.value);
+                }}
+                value={desc}
                 fullWidth
                 multiline
                 rows={4}
@@ -35,7 +69,7 @@ export default function UpdateProject({index, selectedButton}) {
             />
             <Box mt={4} />
             <Button
-                // onClick={handleChange}
+                onClick={updateProjectsData}
                 variant={"contained"}
                 fullWidth
                 sx={{

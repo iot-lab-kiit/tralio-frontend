@@ -4,7 +4,7 @@ function PostPage(props) {
   const { posts } = props;
 
   const createPost = (post,index) => {
-      console.log(index);
+      // console.log(index);
     return (
       <Box width="100%" >
         <Post key={post._id} title={post.title} content={post.content} />

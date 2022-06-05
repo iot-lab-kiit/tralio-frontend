@@ -76,7 +76,7 @@ export default function UpdatePortfolioDataNew() {
                     </Hidden>
                 </Grid>
                 <Grid item mt={8} xs={12} sm={9} md={10}>
-                    <Box width={'100%'} px={8} mt={4} mb={4}>
+                    <Box width={'100%'} px={{lg: 8, md: 8, sm: 6, xs: 2}} mt={4} mb={4}>
                         <Box display={"flex"}
                              alignItems={"center"}
                              justifyContent={"space-between"}

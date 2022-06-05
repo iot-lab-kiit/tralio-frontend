@@ -4,6 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import { createStyles, makeStyles } from "@mui/styles";
 import { Dialog, IconButton } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateProfile from "../UpdateProfile";
 import UpdateEducation from "../UpdateEducation";
 import UpdateSkill from "../UpdateSkill";
@@ -14,6 +15,9 @@ import UpdateCourse from "../UpdateCourse";
 import UpdateOrganisation from "../UpdateOrganisation";
 import UpdateInterest from "../UpdateInterest";
 import UpdateAward from "../UpdateAward";
+import {portfolioService} from "../../../apis/rest.app";
+import {useSnackbar} from "notistack";
+import {useRemotePortfolio} from "../../../store/PortfolioContext";
 
 
 const useStyles = makeStyles(() =>
@@ -27,9 +31,12 @@ const useStyles = makeStyles(() =>
 
 const Index = ({index, children, icon, selectedButton }) => {
     const classes = useStyles();
+    const { enqueueSnackbar } = useSnackbar();
+    const [remotePortfolio, setRemotePortfolio] = useRemotePortfolio();
 
     const [pop, setPop] = useState(false);
     const [clickedIndex, setClickedIndex] = useState(null)
+    const [isDelete, setIsDelete] = useState(false)
     const handleClick = (event) => {
         setPop(true);
         setClickedIndex(index)
@@ -39,26 +46,50 @@ const Index = ({index, children, icon, selectedButton }) => {
         // console.log(clickedIndex, selectedButton)
     };
 
+    const change = () => {
+
+        const temp = remotePortfolio[selectedButton];
+        temp.splice(index, 1)
+        return temp
+    }
+
+    const handleDelete = () =>{
+        setClickedIndex(index);
+        portfolioService.patch(remotePortfolio._id,{
+            [selectedButton]: change()
+        })
+            .then((res) => {
+                enqueueSnackbar(`Successful deleted ${selectedButton} Card `, { variant: 'success' });
+                setRemotePortfolio(res);
+                handleClose();
+                // console.log(isDelete)
+                // setIsDelete(false)
+            })
+            .catch((err) => {
+                enqueueSnackbar(err.message, { variant: 'error' });
+            });
+    }
+
 
     const renderEditPopper = () => {
         if(selectedButton === "Profile")
-            return <UpdateProfile index={index} selectedButton={selectedButton} />
+            return <UpdateProfile handleClose={handleClose} index={index} selectedButton={selectedButton} />
         if(selectedButton === "Educations")
-            return <UpdateEducation index={index} selectedButton={selectedButton} />
+            return <UpdateEducation handleClose={handleClose} index={index} selectedButton={selectedButton} />
         if(selectedButton === "Skills")
-            return <UpdateSkill index={index} selectedButton={selectedButton} />
+            return <UpdateSkill handleClose={handleClose} index={index} selectedButton={selectedButton} />
         if(selectedButton === "Projects")
-            return <UpdateProject index={index} selectedButton={selectedButton} />
+            return <UpdateProject handleClose={handleClose} index={index} selectedButton={selectedButton} />
         if(selectedButton === "Experiences")
-            return <UpdateExperience index={index} selectedButton={selectedButton} />
+            return <UpdateExperience handleClose={handleClose} index={index} selectedButton={selectedButton} />
         if(selectedButton === "Courses")
-            return <UpdateCourse index={index} selectedButton={selectedButton} />
+            return <UpdateCourse handleClose={handleClose} index={index} selectedButton={selectedButton} />
         if(selectedButton === "Organisations")
-            return <UpdateOrganisation index={index} selectedButton={selectedButton} />
+            return <UpdateOrganisation handleClose={handleClose} index={index} selectedButton={selectedButton} />
         if(selectedButton === "Interests")
-            return <UpdateInterest index={index} selectedButton={selectedButton} />
+            return <UpdateInterest handleClose={handleClose} index={index} selectedButton={selectedButton} />
         if(selectedButton === "Awards")
-            return <UpdateAward index={index} selectedButton={selectedButton} />
+            return <UpdateAward handleClose={handleClose} index={index} selectedButton={selectedButton} />
     }
 
     return (
@@ -77,10 +108,9 @@ const Index = ({index, children, icon, selectedButton }) => {
                     px={2}
                     py={2}
                 >
-                    {/*<Box fontSize={"16px"}>*/}
-                    {/*    {icon}*/}
-                    {/*</Box>*/}
-                    <span />
+                    <IconButton onClick={handleDelete} disabled={selectedButton === 'Profile'}>
+                        <DeleteIcon sx={{color: '#F1655C'}} />
+                    </IconButton>
                     <Box
                         display={"flex"}
                         alignItems={"center"}

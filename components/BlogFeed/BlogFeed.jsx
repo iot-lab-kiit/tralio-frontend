@@ -7,7 +7,7 @@ function BlogFeed(props) {
     setIsReadMore(!isReadMore);
   };
   const sliceblog = () => {
-    console.log(props.blog.length);
+    // console.log(props.blog.length);
     return (
       <div>
         {props.blog.slice(0, 150)}

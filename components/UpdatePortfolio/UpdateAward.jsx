@@ -1,36 +1,69 @@
 import Box from "@mui/material/Box";
 import {Button, TextField} from "@mui/material";
 import {useState} from "react";
+import {useSnackbar} from "notistack";
+import {useRemotePortfolio} from "../../store/PortfolioContext";
+import {portfolioService} from "../../apis/rest.app";
 
-export default function UpdateAward({index, selectedButton}) {
+export default function UpdateAward({index, selectedButton, handleClose}) {
 
-    const [name, setName] = useState('')
-    const [issuer, setIssuer] = useState('')
+    const { enqueueSnackbar } = useSnackbar();
+    const [remotePortfolio, setRemotePortfolio] = useRemotePortfolio();
+
+    const [title, setTitle] = useState(remotePortfolio?.Awards[index]?.title)
+    const [issuer, setIssuer] = useState(remotePortfolio?.Awards[index]?.issuer)
+
+    const change = () => {
+        return remotePortfolio?.Awards.map(function (obj, i) {
+            if (i === index) {
+                return {
+                    title,
+                    issuer
+                };
+            } else {
+                return {...obj};
+            }
+        });
+    }
+
+    const updateAwardsData = () => {
+        portfolioService.patch(remotePortfolio._id,{
+            Awards: change()
+        })
+            .then((res) => {
+                enqueueSnackbar('Awards updated successfully', { variant: 'success' });
+                setRemotePortfolio(res);
+                handleClose();
+            })
+            .catch((err) => {
+                enqueueSnackbar(err.message, { variant: 'error' });
+            });
+    }
 
     return (
         <>
             <TextField
-                // onChange={(event) => {
-                //     setDegree(event.target.value);
-                // }}
-                // value={degree}
+                onChange={(event) => {
+                    setTitle(event.target.value);
+                }}
+                value={title}
                 fullWidth
                 label={"Name"}
                 type={"text"}
             />
             <Box mt={2} />
             <TextField
-                // onChange={(event) => {
-                //     setUniversity(event.target.value);
-                // }}
-                // value={university}
+                onChange={(event) => {
+                    setIssuer(event.target.value);
+                }}
+                value={issuer}
                 fullWidth
                 label={"Issuer"}
                 type={"text"}
             />
             <Box mt={4} />
             <Button
-                // onClick={handleChange}
+                onClick={updateAwardsData}
                 variant={"contained"}
                 fullWidth
                 sx={{

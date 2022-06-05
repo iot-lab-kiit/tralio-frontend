@@ -9,9 +9,10 @@ import LoginIcons from '../../components/LoginIcons/LoginIcons';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/router';
 import { loginUser } from '../../TralioAPI/tralio';
-import restApp from '../../apis/rest.app';
+import restApp, {portfolioService} from '../../apis/rest.app';
 import { useState } from 'react';
 import { useRemoteUser } from '../../store/UserContext';
+import {useRemotePortfolio} from "../../store/PortfolioContext";
 
 export default function Login({ setCurrentStage }) {
     const Router = useRouter();
@@ -19,13 +20,39 @@ export default function Login({ setCurrentStage }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [remoteUser, setRemoteUser] = useRemoteUser();
+    const [remotePortfolio, setRemotePortfolio] = useRemotePortfolio();
+
+    const createPortfolio = async () => {
+        await portfolioService.create({})
+            .then((res) => {
+                setRemotePortfolio(res)
+            })
+            .catch((err) => {
+                enqueueSnackbar(err.message, {variant: 'error'});
+            });
+    }
+
+    const portfolioExists = async () => {
+        await portfolioService.find()
+            .then((res) => {
+                if(res){
+                    return res;
+                }
+                else return false
+            })
+            .catch((err) => {
+                enqueueSnackbar(err.message, { variant: 'error' });
+            });
+    }
 
     const login = async (payload) => {
         await restApp
             .authenticate(payload)
-            .then((res) => {
+            .then(async (res) => {
                 setRemoteUser(res.user);
-                enqueueSnackbar('Login successful', { variant: 'success' });
+                enqueueSnackbar('Login successful', {variant: 'success'});
+                const portfolio = await portfolioExists()
+                portfolio ? setRemotePortfolio(portfolio) : await createPortfolio();
                 Router.reload();
             })
             .catch((err) => {

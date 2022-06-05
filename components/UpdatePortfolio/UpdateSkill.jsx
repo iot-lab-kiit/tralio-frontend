@@ -1,33 +1,69 @@
 import Box from "@mui/material/Box";
 import {Button, MenuItem, TextField} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import {useSnackbar} from "notistack";
+import {useRemotePortfolio} from "../../store/PortfolioContext";
+import {portfolioService} from "../../apis/rest.app";
 
-export default function UpdateSkill({index, selectedButton}) {
+export default function UpdateSkill({index, selectedButton, handleClose}) {
 
-    const [skill, setSkill] = useState('')
-    const [desc, setDesc] = useState('')
-    const [level, setLevel] = useState('')
+    const { enqueueSnackbar } = useSnackbar();
+    const [remotePortfolio, setRemotePortfolio] = useRemotePortfolio();
+
+    const [skill, setSkill] = useState(remotePortfolio?.Skills[index]?.name)
+    const [desc, setDesc] = useState(remotePortfolio?.Skills[index]?.desc)
+    const [level, setLevel] = useState(remotePortfolio?.Skills[index]?.level)
+
+    const change = () => {
+        return remotePortfolio?.Skills.map(function (obj, i) {
+            if (i === index) {
+                return {
+                    name: skill,
+                    desc,
+                    level
+                };
+            } else {
+                return {...obj};
+            }
+        });
+    }
+
+    const updateSkillsData = () => {
+        portfolioService.patch(remotePortfolio._id,{
+            Skills: change()
+        })
+            .then((res) => {
+                enqueueSnackbar('Skills updated successfully', { variant: 'success' });
+                setRemotePortfolio(res);
+                handleClose();
+                // console.log(isDelete)
+                // setIsDelete(false)
+            })
+            .catch((err) => {
+                enqueueSnackbar(err.message, { variant: 'error' });
+            });
+    }
 
     return (
         <>
             <TextField
-                // onChange={(event) => {
-                //     setDegree(event.target.value);
-                // }}
-                // value={degree}
+                onChange={(event) => {
+                    setSkill(event.target.value);
+                }}
+                value={skill}
                 fullWidth
                 label={"Skill"}
                 type={"text"}
             />
             <Box mt={2} />
             <TextField
-                // onChange={(event) => {
-                //     setUniversity(event.target.value);
-                // }}
-                // value={university}
+                onChange={(event) => {
+                    setDesc(event.target.value);
+                }}
+                value={desc}
                 fullWidth
                 label={"Description"}
                 type={"text"}
@@ -37,24 +73,24 @@ export default function UpdateSkill({index, selectedButton}) {
                 label={"Level"}
                 select
                 fullWidth
-                // value={maritalStatus}
-                // onChange={(event) => {
-                //     setMaritalStatus(event.target.value);
-                // }}
+                value={level}
+                onChange={(event) => {
+                    setLevel(event.target.value);
+                }}
             >
-                <MenuItem key={"married"} value={"1"}>
+                <MenuItem key={"married"} value={"Beginner"}>
                     Beginner
                 </MenuItem>
-                <MenuItem key={"single"} value={"2"}>
+                <MenuItem key={"single"} value={"Intermediate"}>
                     Intermediate
                 </MenuItem>
-                <MenuItem key={"single"} value={"2"}>
+                <MenuItem key={"single"} value={"Expert"}>
                     Expert
                 </MenuItem>
             </TextField>
             <Box mt={4} />
             <Button
-                // onClick={handleChange}
+                onClick={updateSkillsData}
                 variant={"contained"}
                 fullWidth
                 sx={{

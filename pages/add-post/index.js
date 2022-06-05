@@ -10,7 +10,7 @@ export default function AddPost() {
   const [initial, setInitial] = useState("Write Something");
   const [headerData, setHeaderData] = useState({})
   const log = () => {
-    console.log(editorRef.current.getContent().innerHTML(editorRef.current));
+    // console.log(editorRef.current.getContent().innerHTML(editorRef.current));
   };
     const handleDataChange = (e) => {
       const { name, value } = e.target;
@@ -21,10 +21,10 @@ export default function AddPost() {
       });
     };
   const publishBlogs = () => {
-    console.log(headerData.heading);
-    console.log(headerData.subheading);
-
-    console.log(initial);
+    // console.log(headerData.heading);
+    // console.log(headerData.subheading);
+    //
+    // console.log(initial);
     setPublishStage(1);
     window.location.href = "/";
   };

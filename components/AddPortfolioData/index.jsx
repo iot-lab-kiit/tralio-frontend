@@ -4,7 +4,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import { createStyles, makeStyles } from "@mui/styles";
 import { Dialog, IconButton } from "@mui/material";
-import AddProfile from "./Add/AddProfile";
 import AddEducation from "./Add/AddEducation";
 import AddSkill from "./Add/AddSkill";
 import AddProject from "./Add/AddProject";
@@ -38,29 +37,27 @@ const Index = ({selectedButton }) => {
 
 
     const renderAddPopper = () => {
-        if(selectedButton === "Profile")
-            return <AddProfile selectedButton={selectedButton} />
         if(selectedButton === "Educations")
-            return <AddEducation selectedButton={selectedButton} />
+            return <AddEducation handleClose={handleClose} selectedButton={selectedButton} />
         if(selectedButton === "Skills")
-            return <AddSkill selectedButton={selectedButton} />
+            return <AddSkill handleClose={handleClose} selectedButton={selectedButton} />
         if(selectedButton === "Projects")
-            return <AddProject selectedButton={selectedButton} />
+            return <AddProject handleClose={handleClose} selectedButton={selectedButton} />
         if(selectedButton === "Experiences")
-            return <AddExperience selectedButton={selectedButton} />
+            return <AddExperience handleClose={handleClose} selectedButton={selectedButton} />
         if(selectedButton === "Courses")
-            return <AddCourse selectedButton={selectedButton} />
+            return <AddCourse handleClose={handleClose} selectedButton={selectedButton} />
         if(selectedButton === "Organisations")
-            return <AddOrganisation selectedButton={selectedButton} />
+            return <AddOrganisation handleClose={handleClose} selectedButton={selectedButton} />
         if(selectedButton === "Interests")
-            return <AddInterest selectedButton={selectedButton} />
+            return <AddInterest handleClose={handleClose} selectedButton={selectedButton} />
         if(selectedButton === "Awards")
-            return <AddAward selectedButton={selectedButton} />
+            return <AddAward handleClose={handleClose} selectedButton={selectedButton} />
     }
 
     return (
         <>
-           <IconButton onClick={handleClick}>
+           <IconButton onClick={handleClick} disabled={selectedButton === "Profile"}>
                <AddIcon sx={{ color: "#319EFF" }} />
            </IconButton>
             <Dialog

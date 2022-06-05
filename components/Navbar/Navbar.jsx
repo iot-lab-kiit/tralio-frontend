@@ -5,8 +5,11 @@ import Hidden from '@mui/material/Hidden';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MenuButton from "../MenuButton/MenuButton";
+import {useRouter} from "next/router";
 
 const Navbar = ({setDashboardPage}) => {
+
+    const Router = useRouter()
 
     // const [onTop, setOnTop] = useState(true);
     // const navRef = useRef();
@@ -49,9 +52,6 @@ const Navbar = ({setDashboardPage}) => {
                             </Box>
                         </Hidden>
                     </Box>
-                    <Hidden mdDown>
-                        <MenuButton setDashboardPage={setDashboardPage} />
-                    </Hidden>
                 </Box>
             </AppBar>
         </>

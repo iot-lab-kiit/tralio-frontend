@@ -2,9 +2,12 @@ import {Grid} from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 import Card from "./Card";
 import Box from "@mui/material/Box";
+import {useRemotePortfolio} from "../../store/PortfolioContext";
 
 
 export default function Profile({selectedButton}) {
+
+    const [remotePortfolio, setRemotePortfolio] = useRemotePortfolio();
 
     return (
         <>
@@ -17,7 +20,7 @@ export default function Profile({selectedButton}) {
                                     First Name:
                                 </Box>
                                 <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
-                                    Roshan
+                                    {remotePortfolio?.Profile?.firstName}
                                 </Box>
                             </Box>
                             <Box
@@ -30,7 +33,7 @@ export default function Profile({selectedButton}) {
                                     Last Name
                                 </Box>
                                 <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
-                                    Chatei
+                                    {remotePortfolio?.Profile?.lastName}
                                 </Box>
                             </Box>
                             <Box
@@ -44,8 +47,7 @@ export default function Profile({selectedButton}) {
                                 </Box>
                                 <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
                                     {/*{user?.education?.course ? user.education?.course : <span />}*/}
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Excepturi, rem!
+                                    {remotePortfolio?.Profile?.bio}
                                 </Box>
                             </Box>
                             <Box
@@ -58,7 +60,7 @@ export default function Profile({selectedButton}) {
                                     Email:
                                 </Box>
                                 <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
-                                    abc@gmail.com
+                                    {remotePortfolio?.Profile?.email}
                                 </Box>
                             </Box>
                         </Box>

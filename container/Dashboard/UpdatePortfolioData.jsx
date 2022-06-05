@@ -100,7 +100,7 @@ export default function UpdatePortfolioData() {
         [name]: newDate,
       },
     });
-    console.log(portfolioData);
+    // console.log(portfolioData);
   };
 
   const generateDateField = (dateSettings) => {
@@ -224,11 +224,11 @@ export default function UpdatePortfolioData() {
   }
   const handleSave = async () => {
     const finalarray = portfolioDataAssembler(portfolioData);
-    console.log(finalarray);
+    // console.log(finalarray);
     const response = await userPortfolio(finalarray);
     if (response.status >= 200 && response.status < 300) {
       const newData = await response.json();
-      console.log(newData);
+      // console.log(newData);
     } else {
       const resError = await response.json();
       enqueueSnackbar(
@@ -250,8 +250,8 @@ export default function UpdatePortfolioData() {
     ].concat(portfolioFields[portfolioFormName]);
 
     setCurrentPortfolioForm(tempPortfolioFields[portfolioFormName]);
-    console.log(currentPortfolioForm);
-    console.log("data", portfolioData);
+    // console.log(currentPortfolioForm);
+    // console.log("data", portfolioData);
   };
 
   const handleDialogOpen = () => {
@@ -361,7 +361,7 @@ export async function getStaticProps(context) {
     `api/${apiVersion}/portfolio/get-single-portfolio/62599a28438d9cc96fea0168`
   );
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
   if (!data) {
     return {
       notFound: true,

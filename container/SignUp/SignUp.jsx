@@ -68,7 +68,7 @@ export default function SignUp({ setCurrentStage }) {
                 else if (user.gender === 'Female') user.gender = 2;
                 else user.gender = 3;
                 setRemoteUser(user);
-                console.log('Signup remote user',remoteUser);
+                // console.log('Signup remote user',remoteUser);
                 enqueueSnackbar('OTP Sent', {
                     variant: 'success',
                 });
