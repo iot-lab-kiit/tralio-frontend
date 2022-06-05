@@ -16,7 +16,7 @@ export default function Profile({selectedButton}) {
                     <Card icon={<PersonIcon sx={{ color: "#319EFF" }} />} selectedButton={selectedButton} index={0}>
                         <Box width={"100%"}>
                             <Box display={"flex"} alignItems={"flex-start"} fontSize={"16px"}>
-                                <Box color={"#545454"} minWidth={"100px"} mr={4}>
+                                <Box color={"#545454"} minWidth={"83px"} mr={4}>
                                     First Name:
                                 </Box>
                                 <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
@@ -29,7 +29,7 @@ export default function Profile({selectedButton}) {
                                 fontSize={"16px"}
                                 mt={2}
                             >
-                                <Box color={"#545454"} minWidth={"100px"} mr={4}>
+                                <Box color={"#545454"} minWidth={"83px"} mr={4}>
                                     Last Name
                                 </Box>
                                 <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
@@ -42,7 +42,7 @@ export default function Profile({selectedButton}) {
                                 fontSize={"16px"}
                                 mt={2}
                             >
-                                <Box color={"#545454"} minWidth={"100px"} mr={4}>
+                                <Box color={"#545454"} minWidth={"83px"} mr={4}>
                                     Bio:
                                 </Box>
                                 <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
@@ -56,7 +56,7 @@ export default function Profile({selectedButton}) {
                                 fontSize={"16px"}
                                 mt={2}
                             >
-                                <Box color={"#545454"} minWidth={"100px"} mr={4}>
+                                <Box color={"#545454"} minWidth={"83px"} mr={4}>
                                     Email:
                                 </Box>
                                 <Box color={"#000"} fontSize={"16px"} fontWeight={600}>

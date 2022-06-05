@@ -18,7 +18,7 @@ export default function Award({selectedButton}) {
                             <Card icon={<PersonIcon sx={{ color: "#319EFF" }} />} selectedButton={selectedButton} index={index}>
                                 <Box width={"100%"}>
                                     <Box display={"flex"} alignItems={"flex-start"} fontSize={"16px"}>
-                                        <Box color={"#545454"} minWidth={"132px"} mr={4}>
+                                        <Box color={"#545454"} minWidth={"49px"} mr={4}>
                                             Name:
                                         </Box>
                                         <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
@@ -31,7 +31,7 @@ export default function Award({selectedButton}) {
                                         fontSize={"16px"}
                                         mt={2}
                                     >
-                                        <Box color={"#545454"} minWidth={"132px"} mr={4}>
+                                        <Box color={"#545454"} minWidth={"49px"} mr={4}>
                                             Issuer:
                                         </Box>
                                         <Box color={"#000"} fontSize={"16px"} fontWeight={600}>
