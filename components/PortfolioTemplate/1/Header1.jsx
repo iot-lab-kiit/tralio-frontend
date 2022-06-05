@@ -18,7 +18,7 @@ export default function Header1(props) {
                                     </Box>
                                     <Box mt={3} lineHeight={1.1} fontWeight={900} fontSize={'50px'}>
                                         <Box>
-                                            I'm <span style={{color: '#ffb44b'}}>{profile?.firstName}</span>
+                                            {"I'm"} <span style={{color: '#ffb44b'}}>{profile?.firstName}</span>
                                         </Box>
                                         <Box color={'#ffb44b'}>
                                             {profile?.lastName}
