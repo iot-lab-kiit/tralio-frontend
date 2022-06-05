@@ -12,20 +12,33 @@ import Hidden from "@mui/material/Hidden";
 import Awards1 from "../../components/PortfolioTemplate/1/Awards1";
 import Contact1 from "../../components/PortfolioTemplate/1/Contact1";
 
-export default function PortfolioTemplate1() {
+export default function PortfolioTemplate1(props) {
+    const portfolio = props.portfolio;
     const Router = useRouter();
 
     return (
         <>
-            <Header1 />
-            <AboutMe1 />
-            <Education1 />
-            <Skills1 />
+            <Header1 profile={portfolio?.Profile} />
+            <AboutMe1 profile={portfolio?.Profile} />
+            {
+                portfolio?.Educations &&  <Education1 education={portfolio?.Educations} />
+            }
+            {
+                portfolio?.Skills &&  <Skills1 skill={portfolio?.Skills} />
+            }
             <Box width={'100%'} bgcolor={'#000'}>
-                <Work1 />
-                <Project1 />
-                <Courses1 />
-                <Awards1 />
+                {
+                    portfolio?.Experiences &&  <Work1 experience={portfolio?.Experiences} />
+                }
+                {
+                    portfolio?.Projects &&  <Project1 project={portfolio?.Projects} />
+                }
+                {
+                    portfolio?.Courses &&   <Courses1 course={portfolio?.Courses} />
+                }
+                {
+                    portfolio?.Awards &&  <Awards1 award={portfolio?.Awards} />
+                }
                 <Contact1 />
                 <Hidden smDown>
                     <Box display={'flex'} alignItems={'center'} width={'100%'} justifyContent={'center'} color={'#909090'} fontSize={'18px'} fontWeight={500} pb={8}>
@@ -45,7 +58,7 @@ export default function PortfolioTemplate1() {
                                      color: '#fff',
                                  },
                              }}>
-                            Trailo
+                            Tralio
                         </Box>
                     </Box>
                 </Hidden>
@@ -60,8 +73,8 @@ export default function PortfolioTemplate1() {
                         <FavoriteIcon />
                         <Box ml={0.5}>by</Box>
                         <Box ml={0.5}
-                             onClick={() => {
-                                 Router.push("/");
+                             onClick={async () => {
+                                 await Router.push("/");
                              }}
                              sx={{
                                  textDecoration: 'underline',

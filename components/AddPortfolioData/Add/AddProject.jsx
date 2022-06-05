@@ -30,7 +30,7 @@ export default function AddProject({handleClose, selectedButton}) {
             Projects: change()
         })
             .then((res) => {
-                enqueueSnackbar('Projects updated successfully', { variant: 'success' });
+                enqueueSnackbar('Project Card added successfully', { variant: 'success' });
                 setRemotePortfolio(res);
                 handleClose();
             })

@@ -29,8 +29,7 @@ export default function Dashboard({dashboardPage, setDashboardPage}) {
             }
             {/*{*/}
             {/*    dashboardPage === 4 &&*/}
-            {/*        // <UpdatePortfolioData />*/}
-            {/*    <UpdatePortfolioDataNew />*/}
+            {/*        <UpdatePortfolioData />*/}
             {/*}*/}
         </>
     )

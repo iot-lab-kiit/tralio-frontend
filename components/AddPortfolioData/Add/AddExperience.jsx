@@ -4,40 +4,70 @@ import {useState} from "react";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import {useSnackbar} from "notistack";
+import {useRemotePortfolio} from "../../../store/PortfolioContext";
+import {portfolioService} from "../../../apis/rest.app";
 
-export default function AddExperience({index, selectedButton}) {
+export default function AddExperience({handleClose, selectedButton}) {
+
+    const { enqueueSnackbar } = useSnackbar();
+    const [remotePortfolio, setRemotePortfolio] = useRemotePortfolio();
 
     const [position, setPosition] = useState('')
     const [company, setCompany] = useState('')
     const [desc, setDesc] = useState('')
 
+    const change = () => {
+        const temp = remotePortfolio.Experiences;
+        temp.unshift({
+            position,
+            company,
+            desc
+        })
+        return temp
+    }
+
+    const addExperiencesData = () => {
+        portfolioService.patch(remotePortfolio._id,{
+            Experiences: change()
+        })
+            .then((res) => {
+                enqueueSnackbar('Experience Card added successfully', { variant: 'success' });
+                setRemotePortfolio(res);
+                handleClose();
+            })
+            .catch((err) => {
+                enqueueSnackbar(err.message, { variant: 'error' });
+            });
+    }
+
     return (
         <>
             <TextField
-                // onChange={(event) => {
-                //     setDegree(event.target.value);
-                // }}
-                // value={degree}
+                onChange={(event) => {
+                    setPosition(event.target.value);
+                }}
+                value={position}
                 fullWidth
                 label={"Position"}
                 type={"text"}
             />
             <Box mt={2} />
             <TextField
-                // onChange={(event) => {
-                //     setUniversity(event.target.value);
-                // }}
-                // value={university}
+                onChange={(event) => {
+                    setCompany(event.target.value);
+                }}
+                value={company}
                 fullWidth
                 label={"Company"}
                 type={"text"}
             />
             <Box mt={2} />
             <TextField
-                // onChange={(event) => {
-                //     setCourse(event.target.value);
-                // }}
-                // value={course}
+                onChange={(event) => {
+                    setDesc(event.target.value);
+                }}
+                value={desc}
                 fullWidth
                 multiline
                 rows={4}
@@ -46,7 +76,7 @@ export default function AddExperience({index, selectedButton}) {
             />
             <Box mt={4} />
             <Button
-                // onClick={handleChange}
+                onClick={addExperiencesData}
                 variant={"contained"}
                 fullWidth
                 sx={{

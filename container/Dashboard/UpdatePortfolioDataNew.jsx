@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Box, Button, Grid, Hidden} from "@mui/material";
+import {Box, Button, Dialog, Grid, Hidden} from "@mui/material";
 import {portfolioButtons} from "../../utils/UpdatePortfolioHelper";
 import Divider from "@mui/material/Divider";
 import Profile from "../../components/UpdatePortfolio/Profile";
@@ -13,10 +13,30 @@ import Organisation from "../../components/UpdatePortfolio/Organisation";
 import Interest from "../../components/UpdatePortfolio/Interest";
 import Award from "../../components/UpdatePortfolio/Award";
 import AddPortfolioData from "../../components/AddPortfolioData";
+import {createStyles, makeStyles} from "@mui/styles";
+
+const useStyles = makeStyles(() =>
+    createStyles({
+        backDrop: {
+            backdropFilter: "blur(3px)",
+            backgroundColor: "rgba(0, 0, 0, 0.81)",
+        },
+    })
+);
 
 export default function UpdatePortfolioDataNew() {
+    const classes = useStyles();
 
     const [selectedButton, setSelectedButton] = useState('Profile')
+
+    const [pop, setPop] = useState(false);
+    const handleClick = (event) => {
+        setPop(true);
+
+    };
+    const handleClose = () => {
+        setPop(false);
+    };
 
     const generatePortfolioButtons = (buttonName) => {
         return (
@@ -31,6 +51,7 @@ export default function UpdatePortfolioDataNew() {
                     }}
                     onClick={() => {
                         setSelectedButton(buttonName)
+                        setPop(false)
                     }}
                 >
                     {buttonName}
@@ -81,10 +102,53 @@ export default function UpdatePortfolioDataNew() {
                              alignItems={"center"}
                              justifyContent={"space-between"}
                         >
-                            <h1>{selectedButton}</h1>
+                            <Hidden mdDown>
+                                <h1>{selectedButton}</h1>
+                            </Hidden>
+                            <Hidden mdUp>
+                                <Box display={"flex"} justifyContent={"space-between"}>
+                                    <Button
+                                        variant={"outlined"}
+                                        onClick={handleClick}
+                                    >
+                                        {selectedButton}
+                                    </Button>
+                                </Box>
+                                <Dialog
+                                    open={pop}
+                                    onClose={handleClose}
+                                    BackdropProps={{
+                                        classes: {
+                                            root: classes.backDrop,
+                                        },
+                                    }}>
+                                    <Box
+                                        width={"100%"}
+                                        height={"100%"}
+                                        display={"flex"}
+                                        justifyContent={"center"}
+                                        alignItems={"center"}>
+                                        <Box
+                                            zIndex={1}
+                                            width={"500px"}
+                                            bgcolor={"white"}
+                                            display={"flex"}
+                                            flexWrap={"wrap"}
+                                            justifyContent={"center"}
+                                            alignItems={"center"}
+                                            p={3}
+                                        >
+                                            {portfolioButtons.map(generatePortfolioButtons)}
+                                        </Box>
+                                    </Box>
+                                </Dialog>
+                            </Hidden>
+
                             <AddPortfolioData selectedButton={selectedButton} />
                         </Box>
-
+                        <Hidden mdUp>
+                            <Box mt={2} />
+                        </Hidden>
                         <Divider />
                         <Box mt={5} />
                         {
