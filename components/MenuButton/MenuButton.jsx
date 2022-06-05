@@ -14,18 +14,23 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/router";
+import { useRemoteUser } from "../../store/UserContext";
+import {cookieStorage} from "../../apis/rest.app";
 
 export default function MenuButton({ setDashboardPage }) {
+
+  const [remoteUser, setRemoteUser] = useRemoteUser();
   const Router = useRouter();
   const path = Router.pathname;
 
-  const temp = localStorage.getItem("firstname")
-  const userInitial = temp[0];
+  // console.log('Remote USer from menu', remoteUser);
+  const userInitial = remoteUser?.firstname[0];
 
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
   const handleLogout = () => {
+    cookieStorage.clear()
     localStorage.removeItem("access-token");
     Router.reload();
   };

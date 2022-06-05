@@ -100,7 +100,7 @@ export default function UpdatePortfolioData() {
         [name]: newDate,
       },
     });
-    console.log(portfolioData);
+    // console.log(portfolioData);
   };
 
   const generateDateField = (dateSettings) => {
@@ -205,30 +205,30 @@ export default function UpdatePortfolioData() {
       </Box>
     );
   };
-function portfolioDataAssembler(portfolioData) {
-  const finalResult = {};
-  for (const portfolioFieldKey of Object.keys(portfolioData)) {
-    const result = [];
-    for (const key of Object.keys(portfolioData[portfolioFieldKey])) {
-      const value = portfolioData[portfolioFieldKey][key];
-      const num = key[key.length - 1] - 1;
-      const newKey = key.slice(0, key.length - 1);
-      result[num] = {
-        ...result[num],
-        [newKey]: value,
-      };
+  function portfolioDataAssembler(portfolioData) {
+    const finalResult = {};
+    for (const portfolioFieldKey of Object.keys(portfolioData)) {
+      const result = [];
+      for (const key of Object.keys(portfolioData[portfolioFieldKey])) {
+        const value = portfolioData[portfolioFieldKey][key];
+        const num = key[key.length - 1] - 1;
+        const newKey = key.slice(0, key.length - 1);
+        result[num] = {
+          ...result[num],
+          [newKey]: value,
+        };
+      }
+      finalResult[portfolioFieldKey] = result;
     }
-    finalResult[portfolioFieldKey] = result;
+    return finalResult;
   }
-  return finalResult;
-}
-  const handleSave = async() => {
+  const handleSave = async () => {
     const finalarray = portfolioDataAssembler(portfolioData);
-    console.log(finalarray);
+    // console.log(finalarray);
     const response = await userPortfolio(finalarray);
     if (response.status >= 200 && response.status < 300) {
       const newData = await response.json();
-      console.log(newData);
+      // console.log(newData);
     } else {
       const resError = await response.json();
       enqueueSnackbar(
@@ -243,15 +243,15 @@ function portfolioDataAssembler(portfolioData) {
   const handleDialogClose = () => {
     setPop(false);
   };
-  
+
   const handleAddClick = () => {
     tempPortfolioFields[portfolioFormName] = tempPortfolioFields[
       portfolioFormName
     ].concat(portfolioFields[portfolioFormName]);
 
     setCurrentPortfolioForm(tempPortfolioFields[portfolioFormName]);
-    console.log(currentPortfolioForm);
-    console.log("data", portfolioData);
+    // console.log(currentPortfolioForm);
+    // console.log("data", portfolioData);
   };
 
   const handleDialogOpen = () => {
@@ -361,7 +361,7 @@ export async function getStaticProps(context) {
     `api/${apiVersion}/portfolio/get-single-portfolio/62599a28438d9cc96fea0168`
   );
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
   if (!data) {
     return {
       notFound: true,
@@ -369,6 +369,6 @@ export async function getStaticProps(context) {
   }
 
   return {
-    props: {data}, // will be passed to the page component as props
+    props: { data }, // will be passed to the page component as props
   };
 }

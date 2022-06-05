@@ -12,9 +12,11 @@ import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
 import Bg from '../../public/backgrounds/portfolio1.jpg'
 import Image from "next/image";
+import {useRouter} from "next/router";
 
 export default function DashboardDefault({setDashboardPage}) {
 
+    const Router = useRouter()
     const [currentStage , setCurrentStage] = useState(0);
 
     return (
@@ -23,7 +25,9 @@ export default function DashboardDefault({setDashboardPage}) {
             <Container maxWidth={'lg'}>
                 {/*flexDirection={{lg: 'row', md: 'row', sm: 'row', xs: 'column'}}*/}
                 <Box mt={7} width={'100%'} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
-                    <CustomButton id={'Update Data'} image={<EditIcon />} onClick={() => {setDashboardPage(4)}} />
+                    <CustomButton id={'Update Data'} image={<EditIcon />} onClick={async () => {
+                        await Router.push('/portfolio')
+                    }} />
                     <CustomButton id={'Add Post'} image={<AddIcon />} onClick={() => {window.location.href = '/add-post'}} />
                     {/*<CustomButton id={'Check Task'} image={<TimelineIcon />} />*/}
                 </Box>

@@ -4,14 +4,20 @@ import {useEffect, useState} from "react";
 import OtpInput from "react-otp-input";
 import {useSnackbar} from "notistack";
 import {useRouter} from "next/router";
+import { useRemoteUser } from '../../store/UserContext';
 import { verifyOtpAndRegisterUser } from "../../TralioAPI/tralio";
+import { userService } from '../../apis/rest.app';
 
 export default function Otp ({setCurrentStage}) {
 
     const Router = useRouter();
     const { enqueueSnackbar } = useSnackbar();
     const [OTP, setOTP] = useState('');
-    const [time, setTime] = useState(15);
+    const [time, setTime] = useState(10);
+
+    const [loading, setLoading] = useState(false);
+
+    const [remoteUser, setRemoteUser] = useRemoteUser();
 
     useEffect(() => {
         if (time > 0){
@@ -21,19 +27,9 @@ export default function Otp ({setCurrentStage}) {
         }
     }, [time]);
 
-    // const handleOtp = () => {
-    //     if(OTP === '000000'){
-    //         localStorage.setItem("access-token", "test-access-token");
-    //         enqueueSnackbar("User Successfully Registered", {
-    //             variant: "success",
-    //         });
-    //         Router.reload();
-    //     }
-    // }
-
     const isUserPayloadValid = (userPayload) => {
       // here we need to verify the input fields
-      if (userPayload.userPassword === userPayload.userConfirmPassword) {
+      if (userPayload.password === userPayload.confirmPassword) {
         delete userPayload.userConfirmPassword;
         return true;
       }
@@ -42,36 +38,29 @@ export default function Otp ({setCurrentStage}) {
 
     const handleRegistration = async () => {
 
-      let user = JSON.parse(localStorage.getItem("temp-user-data"));
-      console.log(user);
-      const transid = localStorage.getItem('temp-user-transid');
-      user["transid"] = transid;
-      user["otp"] = OTP;
-      
-      console.log(user);
-      if (isUserPayloadValid(user)) {
-        const response = await verifyOtpAndRegisterUser(user);
-        // Checking if the response is an error
-        if (response.status >= 200 && response.status < 300) {
-          const newUser = await response.json();
-          localStorage.setItem("access-token", newUser.access_token);
-            localStorage.setItem("username", newUser.user.username);
-            localStorage.setItem("firstname", newUser.user.firstname);
-            localStorage.setItem("lastname", newUser.user.lastname);
-          enqueueSnackbar("User Successfully Registered", {
-            variant: "success",
-          });
-          Router.reload();
-          // Further actions you want to perform after successful registration
-        } else {
-          const resError = await response.json();
-          enqueueSnackbar(
-            resError.error ? resError.error.message : "Something went wrong",
-            {
-              variant: "error",
-            }
-          );
-        }
+      const transid = localStorage.getItem('transid');
+      if (isUserPayloadValid(remoteUser)) {
+        setLoading(true);
+        await userService.create({
+            ...remoteUser,
+            otp: OTP,
+            transid: transid,
+            role: 1,
+        }).then((res) => {
+            setRemoteUser(res);
+            enqueueSnackbar('User Registerd Successfully', {
+                variant: 'success',
+            });
+            localStorage.removeItem('transid');
+            Router.reload();
+        })
+        .catch((e) => {
+            enqueueSnackbar(e ? e.message : 'Something went wrong', {
+                variant: 'error',
+            });
+        })
+        .finally(() => setLoading(false));
+        
       } else {
         enqueueSnackbar(`Password didn't match`, {
           variant: "error",
@@ -120,12 +109,12 @@ export default function Otp ({setCurrentStage}) {
             </Box>
             <Box display="flex" alignItems={'center'} justifyContent="center" mt={2}>
                 <Typography variant={'body2'}>
-                    Didn’t got the OTP?
+                    Did not got the OTP?
                 </Typography>
                 <Box mr={1} />
                 <Button disabled={time !== 0 } variant={'outlined'} size={'small'} onClick={()=>{
                     setOTP('');
-                    setTime(15);
+                    setTime(10);
                     enqueueSnackbar('OTP sent successfully', {
                         variant: 'success',
                     });

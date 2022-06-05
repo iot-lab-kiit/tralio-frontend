@@ -4,6 +4,7 @@ import DashboardPosts from "./DashboardPosts";
 import DashboardPortfolio from "./DashboardPortfolio";
 import Profile from "./Profile";
 import UpdatePortfolioData from "./UpdatePortfolioData";
+import UpdatePortfolioDataNew from "./UpdatePortfolioDataNew";
 
 export default function Dashboard({dashboardPage, setDashboardPage}) {
 
@@ -26,10 +27,10 @@ export default function Dashboard({dashboardPage, setDashboardPage}) {
                 dashboardPage === 3 &&
                     <Profile />
             }
-            {
-                dashboardPage === 4 &&
-                    <UpdatePortfolioData />
-            }
+            {/*{*/}
+            {/*    dashboardPage === 4 &&*/}
+            {/*        <UpdatePortfolioData />*/}
+            {/*}*/}
         </>
     )
 }

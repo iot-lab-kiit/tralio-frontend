@@ -91,7 +91,7 @@ export default function Settings() {
       ...settingsData,
       [name]: value,
     });
-    console.log(settingsData);
+    // console.log(settingsData);
   };
   const settingsMap = settings.map((input) => {
     return (
@@ -143,7 +143,7 @@ export default function Settings() {
             sx={{ m: 1 }}
             onClick={() => {
               setEdit(false);
-              console.log(settingsData);
+              // console.log(settingsData);
             }}>
             Edit
           </Button>
