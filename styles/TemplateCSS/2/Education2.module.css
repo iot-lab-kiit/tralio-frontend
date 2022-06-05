@@ -1,0 +1,96 @@
+.education_cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 10vh;
+    margin: 1rem 0;
+    background-color: #18222E;
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main_edu_cont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.edu_image_left{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 35vw; */
+    margin: 2rem;
+}
+
+.imgg_edu{
+    width: 100%;
+}
+
+.edu_content_right{
+    display: flex;
+    flex-direction: column;
+    width: 45vw;
+    margin: 1rem;
+}
+
+
+
+
+
+.edu_container{
+    margin: 1rem;
+    background-color: white;
+    color: #18222E;
+    padding: 1.5rem 2rem;
+    border-radius: 4vw 0;
+    border: 0.1rem solid #18222E;
+}
+
+.edu_container:hover{
+    color: white;
+    background-color: #18222E;
+    border: 0.1rem solid white;
+}
+
+.edu_heading{
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+
+
+/* .... */
+
+
+
+@media (max-width: 900px){
+    .main_edu_cont{
+        flex-direction: column;
+    }
+    .edu_content_right{
+        width: 85vw;
+    }
+    .edu_container{
+        font-size: 2vw;
+        padding: 1rem 3rem;
+        border-radius: 7vw 0;
+    }
+}
+
+
+
+@media (max-width: 600px){
+    .edu_heading{
+        font-size: 6vw;
+    }
+    .edu_container{
+        font-size: 3vw;
+        padding: 1rem 2rem;
+        border-radius: 9vw 0;
+    }
+}
