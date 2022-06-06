@@ -8,7 +8,7 @@ import Course from '../../components/PortfolioTemplate/2/Course2'
 import Organization from '../../components/PortfolioTemplate/2/Organization2';
 import Award from '../../components/PortfolioTemplate/2/Award2';
 
-function Template2() {
+function PortfolioTemplate2() {
   return (
     <div>
       <Self />
@@ -24,4 +24,4 @@ function Template2() {
   )
 }
 
-export default Template2
+export default PortfolioTemplate2;
