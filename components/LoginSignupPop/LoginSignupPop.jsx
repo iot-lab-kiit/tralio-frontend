@@ -12,7 +12,7 @@ const Pop = ({initial}) => {
     return(
         <>
             <Box width={'100%'} height={'100%'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                <Box zIndex={1} width={'500px'} bgcolor={'white'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} pt={6} pb={6}>
+                <Box px={6} zIndex={1} width={'400px'} bgcolor={'white'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} pt={6} pb={6}>
                     {
                         currentStage === 0 &&
                         <Login setCurrentStage={setCurrentStage} />

@@ -1,13 +1,11 @@
-const localAPI = 'http://localhost:8000';
-const prodAPI = 'https://tralio-api.herokuapp.com';
+const localAPI = "http://localhost:8000";
+const prodAPI = "https://tralio-api.herokuapp.com";
 
 module.exports = {
   reactStrictMode: true,
-  serverRuntimeConfig: {
-    
-  },
+  serverRuntimeConfig: {},
   publicRuntimeConfig: {
-    API_URL: prodAPI,
-    apiVersion: 'v1',
+    API_URL: localAPI,
+    apiVersion: "v1",
   },
-}
+};

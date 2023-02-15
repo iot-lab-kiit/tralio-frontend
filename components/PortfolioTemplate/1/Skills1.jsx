@@ -48,7 +48,7 @@ export default function Skills1(props) {
                     {
                         skill.map((each) => (
                             <Grid item lg={6} md={6} sm={12} xs={12} key={each._id}>
-                                <Box width={'100%'} py={3} px={6}>
+                                <Box py={3} px={6}>
                                     <Box mb={2} width={'100%'} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
                                         <Box fontWeight={700} fontSize={'25px'}>
                                             {each?.name}

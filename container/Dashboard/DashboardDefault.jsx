@@ -13,11 +13,14 @@ import Avatar from "@mui/material/Avatar";
 import Bg from '../../public/backgrounds/portfolio1.jpg'
 import Image from "next/image";
 import {useRouter} from "next/router";
+import {useRemoteUser} from "../../store/UserContext";
 
 export default function DashboardDefault({setDashboardPage}) {
 
     const Router = useRouter()
     const [currentStage , setCurrentStage] = useState(0);
+
+    const [user] = useRemoteUser()
 
     return (
         <>
@@ -27,6 +30,9 @@ export default function DashboardDefault({setDashboardPage}) {
                 <Box mt={7} width={'100%'} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
                     <CustomButton id={'Update Data'} image={<EditIcon />} onClick={async () => {
                         await Router.push('/portfolio')
+                    }} />
+                    <CustomButton id={'Generate Portfolio'} image={<TimelineIcon />} onClick={ () => {
+                        window.open(`/u/${user.username}`, 'blank')
                     }} />
                     <CustomButton id={'Add Post'} image={<AddIcon />} onClick={() => {window.location.href = '/add-post'}} />
                     {/*<CustomButton id={'Check Task'} image={<TimelineIcon />} />*/}

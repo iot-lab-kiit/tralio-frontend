@@ -27,9 +27,9 @@ export default function Login({ setCurrentStage }) {
             .then((res) => {
                 setRemotePortfolio(res)
             })
-            .catch((err) => {
-                enqueueSnackbar(err.message, {variant: 'error'});
-            });
+            // .catch((err) => {
+            //     enqueueSnackbar(err.message, {variant: 'error'});
+            // });
     }
 
     const portfolioExists = async () => {
@@ -40,9 +40,9 @@ export default function Login({ setCurrentStage }) {
                 }
                 else return false
             })
-            .catch((err) => {
-                enqueueSnackbar(err.message, { variant: 'error' });
-            });
+            // .catch((err) => {
+            //     enqueueSnackbar(err.message, { variant: 'error' });
+            // });
     }
 
     const login = async (payload) => {
@@ -50,10 +50,13 @@ export default function Login({ setCurrentStage }) {
             .authenticate(payload)
             .then(async (res) => {
                 setRemoteUser(res.user);
+                console.log("hiii")
+                await Router.push('/');
+                console.log("done")
                 enqueueSnackbar('Login successful', {variant: 'success'});
                 const portfolio = await portfolioExists()
+                // setRemotePortfolio(portfolio)
                 portfolio ? setRemotePortfolio(portfolio) : await createPortfolio();
-                Router.reload();
             })
             .catch((err) => {
                 enqueueSnackbar(err.message, { variant: 'error' });

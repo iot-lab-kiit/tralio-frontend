@@ -28,7 +28,7 @@ export default function Education1(props) {
                             {
                                 education.map((each) => (
                                     <Grid item lg={6} md={6} sm={12} xs={12} key={each._id}>
-                                        <Box width={'100%'} bgcolor={'rgba(255, 255, 255, 0.1)'} p={5} color={'#fff'}>
+                                        <Box bgcolor={'rgba(255, 255, 255, 0.1)'} p={5} color={'#fff'}>
                                             <Box color={'#ffb44b'} fontWeight={700} fontSize={'25px'}>
                                                 {dateParse(each?.startDate) +  " - " + dateParse(each?.endDate)}
                                             </Box>

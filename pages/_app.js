@@ -2,7 +2,6 @@ import * as React from 'react';
 import CustomLayout from '../components/Layouts/CustomLayout';
 import { useEffect, useMemo, useState } from 'react';
 import {SnackbarProvider, useSnackbar} from 'notistack';
-import globalStyles from '../styles/globals.css';
 import { UserProvider } from '../store/UserContext';
 import { PortfolioProvider } from '../store/PortfolioContext';
 import restApp, { authCookieName, cookieStorage } from '../apis/rest.app';
@@ -47,19 +46,20 @@ export default function MyApp(props) {
     useEffect(() => {
         if(!remotePortfolio)
             portfolioExists().then(r => console.log(r));
-    })
+    }, [remotePortfolio])
 
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
     useEffect(() => {
         try {
             restApp.reAuthenticate().then(async (res) => {
                 // console.log("Response auth", res);
-                setIsLoggedIn(true);
+                // setIsLoggedIn(true);
+                if (Router.pathname === "/home") Router.push("/").then((e) => console.log(e));
                 setUser(res.user);
                 // portfolio ? setRemotePortfolio(portfolio) : await createPortfolio();
             }).catch((err) => {
-                setIsLoggedIn(false);
+                if (Router.pathname !== "/home") Router.push("/home").then((e) => console.log(e));
             });
         }
         catch (error) {
@@ -84,11 +84,9 @@ export default function MyApp(props) {
             <PortfolioProvider value={remotePortfolio}>
                 <SnackbarProvider>
                     <Layout
-                        isLoggedIn={isLoggedIn}
                         setDashboardPage={setDashboardPage}
                     >
                         <Component
-                            isLoggedIn={isLoggedIn}
                             dashboardPage={dashboardPage}
                             setDashboardPage={setDashboardPage}
                             {...pageProps}

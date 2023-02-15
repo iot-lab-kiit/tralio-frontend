@@ -19,7 +19,7 @@ export default function Work1(props) {
                         {
                             experience.map((each) => (
                                 <Grid item lg={6} md={6} sm={12} xs={12} key={each._id}>
-                                    <Box width={'100%'} bgcolor={'rgba(255, 255, 255, 0.1)'} p={5} color={'#fff'}>
+                                    <Box bgcolor={'rgba(255, 255, 255, 0.1)'} p={5} color={'#fff'}>
                                         <Box fontSize={'25px'} fontWeight={500}>
                                             {each?.position}
                                         </Box>

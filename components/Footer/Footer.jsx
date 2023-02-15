@@ -88,7 +88,8 @@ const Footer = () => {
       }}
       color={"#FFF"}
       p={{ lg: 6, md: 5, sm: 4, xs: 1 }}
-      width={"100%"}>
+      // width={"100%"}
+    >
       <Container maxWidth={"lg"}>
         <Grid container spacing={0}>
           <Grid item xs={12}>
