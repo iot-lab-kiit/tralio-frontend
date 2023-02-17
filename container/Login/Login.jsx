@@ -8,8 +8,7 @@ import Hidden from '@mui/material/Hidden';
 import LoginIcons from '../../components/LoginIcons/LoginIcons';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/router';
-import { loginUser } from '../../TralioAPI/tralio';
-import restApp, {portfolioService} from '../../apis/rest.app';
+import restApp, {authentication, portfolioService} from '../../apis/rest.app';
 import { useState } from 'react';
 import { useRemoteUser } from '../../store/UserContext';
 import {useRemotePortfolio} from "../../store/PortfolioContext";
@@ -36,6 +35,7 @@ export default function Login({ setCurrentStage }) {
         await portfolioService.find()
             .then((res) => {
                 if(res){
+                    console.log(res)
                     return res;
                 }
                 else return false
@@ -45,20 +45,24 @@ export default function Login({ setCurrentStage }) {
             // });
     }
 
+    const updatePortfolio = async () => {
+        const portfolio = await portfolioExists()
+        setRemotePortfolio(portfolio)
+        // portfolio?._id ? setRemotePortfolio(portfolio) : await createPortfolio();
+    }
+
     const login = async (payload) => {
         await restApp
             .authenticate(payload)
             .then(async (res) => {
+                updatePortfolio().then((e) => console.log(e))
+                localStorage.setItem("access-token", res.accessToken)
                 setRemoteUser(res.user);
-                console.log("hiii")
                 await Router.push('/');
-                console.log("done")
                 enqueueSnackbar('Login successful', {variant: 'success'});
-                const portfolio = await portfolioExists()
-                // setRemotePortfolio(portfolio)
-                portfolio ? setRemotePortfolio(portfolio) : await createPortfolio();
             })
             .catch((err) => {
+                console.log(err)
                 enqueueSnackbar(err.message, { variant: 'error' });
             });
     };
