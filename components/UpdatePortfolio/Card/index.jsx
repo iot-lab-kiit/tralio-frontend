@@ -125,7 +125,6 @@ const Index = ({index, children, icon, selectedButton }) => {
                     </Box>
                 </Box>
                 <Box
-                    width={"100%"}
                     display={"flex"}
                     alignItems={"center"}
                     px={5}

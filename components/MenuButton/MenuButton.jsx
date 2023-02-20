@@ -81,15 +81,15 @@ export default function MenuButton({ setDashboardPage }) {
                     <Box mr={1.5} />
                     <Typography variant={"subtitle2"}>{"Profile"}</Typography>
                   </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      Router.push("/settings");
-                    }}
-                  >
-                    <SettingsIcon />
-                    <Box mr={1.5} />
-                    <Typography variant={"subtitle2"}>{"Settings"}</Typography>
-                  </MenuItem>
+                  {/*<MenuItem*/}
+                  {/*  onClick={() => {*/}
+                  {/*    Router.push("/settings");*/}
+                  {/*  }}*/}
+                  {/*>*/}
+                  {/*  <SettingsIcon />*/}
+                  {/*  <Box mr={1.5} />*/}
+                  {/*  <Typography variant={"subtitle2"}>{"Settings"}</Typography>*/}
+                  {/*</MenuItem>*/}
                   <MenuItem onClick={handleLogout}>
                     <ExitToAppIcon />
                     <Box mr={1.5} />

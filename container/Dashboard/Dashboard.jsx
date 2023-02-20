@@ -27,10 +27,6 @@ export default function Dashboard({dashboardPage, setDashboardPage}) {
                 dashboardPage === 3 &&
                     <Profile />
             }
-            {/*{*/}
-            {/*    dashboardPage === 4 &&*/}
-            {/*        <UpdatePortfolioData />*/}
-            {/*}*/}
         </>
     )
 }

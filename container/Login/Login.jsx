@@ -8,8 +8,7 @@ import Hidden from '@mui/material/Hidden';
 import LoginIcons from '../../components/LoginIcons/LoginIcons';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/router';
-import { loginUser } from '../../TralioAPI/tralio';
-import restApp, {portfolioService} from '../../apis/rest.app';
+import restApp, {authentication, portfolioService} from '../../apis/rest.app';
 import { useState } from 'react';
 import { useRemoteUser } from '../../store/UserContext';
 import {useRemotePortfolio} from "../../store/PortfolioContext";
@@ -27,35 +26,43 @@ export default function Login({ setCurrentStage }) {
             .then((res) => {
                 setRemotePortfolio(res)
             })
-            .catch((err) => {
-                enqueueSnackbar(err.message, {variant: 'error'});
-            });
+            // .catch((err) => {
+            //     enqueueSnackbar(err.message, {variant: 'error'});
+            // });
     }
 
     const portfolioExists = async () => {
         await portfolioService.find()
             .then((res) => {
                 if(res){
+                    console.log(res)
                     return res;
                 }
                 else return false
             })
-            .catch((err) => {
-                enqueueSnackbar(err.message, { variant: 'error' });
-            });
+            // .catch((err) => {
+            //     enqueueSnackbar(err.message, { variant: 'error' });
+            // });
+    }
+
+    const updatePortfolio = async () => {
+        const portfolio = await portfolioExists()
+        setRemotePortfolio(portfolio)
+        // portfolio?._id ? setRemotePortfolio(portfolio) : await createPortfolio();
     }
 
     const login = async (payload) => {
         await restApp
             .authenticate(payload)
             .then(async (res) => {
+                updatePortfolio().then((e) => console.log(e))
+                localStorage.setItem("access-token", res.accessToken)
                 setRemoteUser(res.user);
+                await Router.push('/');
                 enqueueSnackbar('Login successful', {variant: 'success'});
-                const portfolio = await portfolioExists()
-                portfolio ? setRemotePortfolio(portfolio) : await createPortfolio();
-                Router.reload();
             })
             .catch((err) => {
+                console.log(err)
                 enqueueSnackbar(err.message, { variant: 'error' });
             });
     };

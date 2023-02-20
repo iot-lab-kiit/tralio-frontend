@@ -56,9 +56,9 @@ const DashboardNavbar = ({ setDashboardPage }) => {
   const drawerWidth = 240;
   const appbarHeight = 55;
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.removeItem("access-token");
-    Router.reload();
+    await Router.push('/home');
   };
 
   const tabs = [
