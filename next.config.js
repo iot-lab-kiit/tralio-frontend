@@ -5,7 +5,7 @@ module.exports = {
   reactStrictMode: true,
   serverRuntimeConfig: {},
   publicRuntimeConfig: {
-    API_URL: prodAPI,
+    API_URL: localAPI,
     apiVersion: "v1",
   },
 };
